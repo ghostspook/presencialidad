@@ -20,6 +20,7 @@ class CreateUserCardsTable extends Migration
             $table->foreignId('authorization_id')->nullable()->constrained();
             $table->dateTime('mandatorily_quarantined_at')->nullable();
             $table->dateTime('preemptively_quarantined_at')->nullable();
+            $table->dateTime('most_recent_negative_test_result_at')->nullable();
             $table->smallInteger('state')->default(1);
             $table->timestamps();
         });

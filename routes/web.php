@@ -33,4 +33,6 @@ Route::post('questionnaireonesubmit', [ QuestionnaireOneController::class, 'ques
 Route::get('recomendacion', [AdvicedNotToAttendController::class, 'index'])->name('advicedNotToAttend');
 Route::get('pruebarapida1', [TestOneController::class, 'index'])->name('testOne');
 Route::get('pruebas/pendientes', [TestResultController::class, 'listUsersPendingTests'])->name('enterTestResults');
+Route::get('usuarios/{userId}/resultados/nuevo', [TestResultController::class, 'newTestResult'])->name('newtestresult');
+Route::post('usuarios/resultados/nuevo/submit', [ TestResultController::class, 'newTestResultSubmit'])->name('newtestresultsubmit');
 

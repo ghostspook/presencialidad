@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TestResult;
+use App\Models\Transition;
 use App\Models\UserCard;
+use App\Models\User;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,11 +15,81 @@ class TestResultController extends Controller
 {
     public function listUsersPendingTests()
     {
-        $u = Auth::user();
+        $u = User::find(Auth::user()->id);
         if (!$u->can_enter_test_results)
             return redirect('/');
 
         $cards = UserCard::where('state', UserCard::PENDING_COVERED_TEST_1)->get();
         return view('userspendingtests', ['cards' => $cards]);
+    }
+
+    public function newTestResult($userId)
+    {
+        $u = User::find(Auth::user()->id);
+        if (!$u->can_enter_test_results)
+            return redirect('/');
+
+        $card = UserCard::firstWhere('user_id', $userId);
+        return view('newtestresult', ['card' => $card]);
+    }
+
+    public function newTestResultSubmit(Request $request)
+    {
+        $u = User::find(Auth::user()->id);
+        if (!$u->can_enter_test_results)
+            return redirect('/');
+
+        $c = UserCard::firstWhere('user_id', $u->id);
+
+        $input = $request->all();
+        TestResult::create(['user_id' => $input['user_id'],
+                            'test_type' => $input['test_type'],
+                            'result' => $input['result'],
+                            'test_date' => $input['test_date'] ]);
+
+        if ($input['test_type'] == 1) // PRUEBA RÁPIDA
+        {
+            if($input['result'] == 1) // NEGATIVO
+            {
+                $c->most_recent_negative_test_result_at = Carbon::now();
+                if ($c->state == UserCard::PENDING_COVERED_TEST_1)
+                {
+                    $c->state = UserCard::PENDING_COVERED_TEST_2;
+                } elseif ($c->state == UserCard::PENDING_COVERED_TEST_2) {
+                    $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
+                } elseif ($c->state == UserCard::PENDING_NON_COVERED_TEST) {
+                    $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
+                }
+            }
+            else // PRUEBA SALIÓ POSITIVA
+            {
+                if ($c->state == UserCard::PENDING_COVERED_TEST_1 || $c->state == UserCard::PENDING_COVERED_TEST_2) {
+                    $c->state = UserCard::PENDING_PCR_TEST;
+                } elseif ($c->state == UserCard::PENDING_NON_COVERED_TEST) {
+                    $c->state = UserCard::MANDATORY_QUARANTINE;
+                    $c->mandatorily_quarantined_at = $input['test_date'];
+                }
+            }
+
+            if ($input['test_type'] == 2) // PRUEBA PCR
+            {
+                if($input['result'] == 1) // NEGATIVO
+                {
+                    $c->most_recent_negative_test_result_at = Carbon::now();
+                    $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
+                } else // PRUEBA SALIÓ POSITIVA
+                {
+                    $c->state = UserCard::MANDATORY_QUARANTINE;
+                    $c->mandatorily_quarantined_at = $input['test_date'];
+                }
+            }
+            $c->save();
+
+            Transition::create([ 'user_id' => $c->user_id,
+                                 'state' => $c->state,
+                                 'actor' => $u->name ]);
+        }
+
+        return redirect()->route('enterTestResults');
     }
 }

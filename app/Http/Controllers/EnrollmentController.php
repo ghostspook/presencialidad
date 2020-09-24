@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserCard;
+use App\Models\Transition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -27,6 +28,10 @@ class EnrollmentController extends Controller
             $userCard = UserCard::firstWhere('user_id', $userId);
             $userCard->state = UserCard::PENDING_QUESTIONNAIRE_1;
             $userCard->save();
+
+            Transition::create([ 'user_id' => $userId,
+                                 'state' => $userCard->state,
+                                 'actor' => Auth::user()->name ]);
 
             return redirect()->route('questionnarieone');
         }
