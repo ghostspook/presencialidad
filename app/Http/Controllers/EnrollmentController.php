@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserCard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class EnrollmentController extends Controller
 {
     public function index()
     {
+        $userId = Auth::user()->id;
+        $userCard = UserCard::firstWhere('user_id', $userId);
+        if ($userCard->state != UserCard::PENDING_ENROLLMENT)
+            return redirect('/');
         return view('enroll');
     }
 
@@ -16,7 +23,12 @@ class EnrollmentController extends Controller
         $inputs = $request->all();
         if (array_key_exists('acceptance', $inputs))
         {
-            dd('Todo ok');
+            $userId = Auth::user()->id;
+            $userCard = UserCard::firstWhere('user_id', $userId);
+            $userCard->state = UserCard::PENDING_QUESTIONNAIRE_1;
+            $userCard->save();
+
+            return redirect()->route('questionnarieone');
         }
         else
         {

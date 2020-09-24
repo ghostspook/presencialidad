@@ -17,8 +17,10 @@
                 @csrf
 
                 <input type="checkbox" name="acceptance" value="checked"> Acepto los términos y condiciones descritos en este documento de descargo de responsabilidad
-                <div>
-                    <button type="submit" class="btn btn-primary">Submit Game</button>
+                <div class="row mt-3">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </div>
                 </div>
             </form>
 

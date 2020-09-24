@@ -16,6 +16,8 @@ class HomeController extends Controller
         switch (Auth::user()->userCard->state) {
             case UserCard::PENDING_ENROLLMENT:
                 return redirect()->route('enrollment');
+            case UserCard::PENDING_QUESTIONNAIRE_1:
+                return redirect()->route('questionnarieone');
             default:
                 return view('home');
         }

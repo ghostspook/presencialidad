@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\QuestionnaireOneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::get('cuentanohabilitada', [LoginController::class, 'displayCuentaNoHabili
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/aceptacion', [ EnrollmentController::class, 'index'])->name('enrollment');
 Route::post('/enrollsubmit', [ EnrollmentController::class, 'enrollSubmit'] );
+Route::get('/cuestionariohabilitante', [ QuestionnaireOneController::class, 'index'])->name('questionnarieone');
