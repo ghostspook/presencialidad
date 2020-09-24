@@ -40,7 +40,7 @@ class QuestionnaireTwoController extends Controller
         else{
             $a = Authorization::create([
                 'user_id' => $userCard->user_id,
-                'code' => 'asdfasdfsadf',
+                'code' => mt_rand(1000000000000000,9999999999999999),
                 'expires_at' =>  Carbon::now()->addDays($userCard->days_authorazation_valid)
             ]);
 

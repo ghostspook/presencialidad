@@ -3,7 +3,7 @@
 @section('main-content')
     <div id="app" class="row">
         <div class="col-md-12">
-            Mostrar autorización aquí
+            {!! QrCode::size(200)->generate($a->code); !!}
         </div>
     </div>
 @endsection
