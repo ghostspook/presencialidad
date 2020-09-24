@@ -19,7 +19,7 @@ class TestResultController extends Controller
         if (!$u->can_enter_test_results)
             return redirect('/');
 
-        $cards = UserCard::where('state', UserCard::PENDING_COVERED_TEST_1)->get();
+        $cards = UserCard::where('state', UserCard::PENDING_COVERED_TEST_1)->orWhere('state', UserCard::PENDING_COVERED_TEST_2)->get();
         return view('userspendingtests', ['cards' => $cards]);
     }
 

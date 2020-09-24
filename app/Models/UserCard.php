@@ -12,13 +12,13 @@ class UserCard extends Model
     const PENDING_COVERED_TEST_1 = 3;
     const PENDING_COVERED_TEST_2 = 4;
     const PENDING_QUESTIONNAIRE_2 = 5;
-    const AUTHORIZED = 5;
-    const ADVICED_NOT_TO_ATTEND = 6;
-    const PENDING_ADVICE_OVERRIDE = 7;
-    const PENDING_PCR_TEST = 8;
-    const MANDATORY_QUARANTINE = 9;
-    const PREEMPTIVE_QUARANTINE = 10;
-    const PENDING_NON_COVERED_TEST = 11;
+    const AUTHORIZED = 6;
+    const ADVICED_NOT_TO_ATTEND = 7;
+    const PENDING_ADVICE_OVERRIDE = 8;
+    const PENDING_PCR_TEST = 9;
+    const MANDATORY_QUARANTINE = 10;
+    const PREEMPTIVE_QUARANTINE = 11;
+    const PENDING_NON_COVERED_TEST = 12;
 
     /**
      * The attributes that are mass assignable.

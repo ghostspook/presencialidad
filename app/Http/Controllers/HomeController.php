@@ -24,6 +24,8 @@ class HomeController extends Controller
                 return redirect()->route('testOne');
             case UserCard::PENDING_QUESTIONNAIRE_2:
                 return redirect()->route('questionnarieTwo');
+            case UserCard::AUTHORIZED:
+                return redirect()->route('showValidAuthorization');
             default:
                 return view('home');
         }
