@@ -38,7 +38,7 @@ class LoginController extends Controller
             $account = TrackedAccount::firstWhere('email', $social_user->email);
 
             if (!$account) {
-                return redirect()->to('/bienvenido')->withErrors(['msg', 'Su cuenta no está habilitada']);
+                return redirect()->route('cuentanohabilitada');
             }
             // En caso de que no exista creamos un nuevo usuario con sus datos.
             $user = User::create([
@@ -69,5 +69,10 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect()->to('/');
+    }
+
+    public function displayCuentaNoHabilitada()
+    {
+        return view('cuentanohabilitada');
     }
 }

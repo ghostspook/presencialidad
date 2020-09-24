@@ -18,5 +18,6 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('login/google', [LoginController::class, 'redirectToProvider'])->name('login');
 Route::get('login/google/callback', [LoginController::class, 'handleProviderCallback']);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('cuentanohabilitada', [LoginController::class, 'displayCuentaNoHabilitada'])->name('cuentanohabilitada');
 
 Route::get('/', [HomeController::class, 'index']);
