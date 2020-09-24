@@ -17,4 +17,9 @@ class TrackedAccount extends Model
         'account_type_id',
         'user_id'
     ];
+
+    public function accountType()
+    {
+        return $this->belongsTo('App\Models\AccountType');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use App\Models\TrackedAccount;
+use App\Models\UserCard;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -47,6 +48,11 @@ class LoginController extends Controller
             ]);
             $account->user_id = $user->id;
             $account->save();
+            $user_card = UserCard::create ([
+                'user_id' => $user->id,
+                'days_authorazation_valid' => $account->accountType->default_days_authorization_valid,
+                'state' => UserCard::PENDING_ENROLLMENT,
+            ]);
 
             return $this->authAndRedirect($user); // Login y redirección
         }
