@@ -13,7 +13,15 @@
                 <li>Declaro mantener completa confidencialidad respecto a los protocolos utilizados por IDE Business School o la Universidad de Los Hemisferios, responsabilizándome por los daños y perjuicios que pudiese ocasionar en caso de divulgar o arremeter acciones en su contra como resultado del proceso de retorno a la presencialidad que he aceptado previamente.</li>
                 <li>Autorizo a Veris a transmitir a IDE Business School los resultados de las pruebas rápidas realizadas con las órdenes emitidas a través de los procesos establecidos en este protocolo.</li>
             </ol>
-            Acepto los términos y condiciones descritos en este documento de descargo de responsabilidad
+            <form method="POST" action="/enrollsubmit">
+                @csrf
+
+                <input type="checkbox" name="acceptance" value="checked"> Acepto los términos y condiciones descritos en este documento de descargo de responsabilidad
+                <div>
+                    <button type="submit" class="btn btn-primary">Submit Game</button>
+                </div>
+            </form>
+
 
 
         </div>

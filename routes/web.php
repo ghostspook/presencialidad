@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\EnrollmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,5 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('cuentanohabilitada', [LoginController::class, 'displayCuentaNoHabilitada'])->name('cuentanohabilitada');
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/aceptacion', [ EnrollmentController::class, 'index'])->name('enrollment');
+Route::post('/enrollsubmit', [ EnrollmentController::class, 'enrollSubmit'] );
