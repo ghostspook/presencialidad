@@ -19,6 +19,21 @@ class QuestionnaireOneController extends Controller
 
     public function questionnaireSubmit(Request $request)
     {
-       dd($request->all());
+        $userId = Auth::user()->id;
+        $userCard = UserCard::firstWhere('user_id', $userId);
+
+        $inputs = $request->all();
+        unset($inputs["_token"]);
+        if (count($inputs) > 0)
+        {
+            $userCard->state = UserCard::ADVICED_NOT_TO_ATTEND;
+            $userCard->save();
+            return redirect()->route('advicedNotToAttend');
+        }
+        else{
+            $userCard->state = UserCard::PENDING_COVERED_TEST_1;
+            $userCard->save();
+            return redirect()->route('testOne');
+        }
     }
 }

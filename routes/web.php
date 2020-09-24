@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdvicedNotToAttendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\QuestionnaireOneController;
+use App\Http\Controllers\TestOneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,10 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('cuentanohabilitada', [LoginController::class, 'displayCuentaNoHabilitada'])->name('cuentanohabilitada');
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/aceptacion', [ EnrollmentController::class, 'index'])->name('enrollment');
-Route::post('/enrollsubmit', [ EnrollmentController::class, 'enrollSubmit'] );
-Route::get('/cuestionariohabilitante', [ QuestionnaireOneController::class, 'index'])->name('questionnarieone');
-Route::get('/questionnaireonesubmit', [ QuestionnaireOneController::class, 'questionnaireSubmit'])->name('questionnaireOneSubmit');
+Route::get('aceptacion', [ EnrollmentController::class, 'index'])->name('enrollment');
+Route::post('enrollsubmit', [ EnrollmentController::class, 'enrollSubmit'] );
+Route::get('cuestionariohabilitante', [ QuestionnaireOneController::class, 'index'])->name('questionnarieone');
+Route::post('questionnaireonesubmit', [ QuestionnaireOneController::class, 'questionnaireSubmit'])->name('questionnaireOneSubmit');
+Route::get('recomendacion', [AdvicedNotToAttendController::class, 'index'])->name('advicedNotToAttend');
+Route::get('pruebarapida1', [TestOneController::class, 'index'])->name('testOne');
+

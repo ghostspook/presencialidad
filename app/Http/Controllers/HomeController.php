@@ -18,6 +18,10 @@ class HomeController extends Controller
                 return redirect()->route('enrollment');
             case UserCard::PENDING_QUESTIONNAIRE_1:
                 return redirect()->route('questionnarieone');
+            case UserCard::ADVICED_NOT_TO_ATTEND:
+                return redirect()->route('advicedNotToAttend');
+            case UserCard::PENDING_COVERED_TEST_1:
+                return redirect()->route('testOne');
             default:
                 return view('home');
         }
