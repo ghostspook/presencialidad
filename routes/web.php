@@ -26,3 +26,4 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/aceptacion', [ EnrollmentController::class, 'index'])->name('enrollment');
 Route::post('/enrollsubmit', [ EnrollmentController::class, 'enrollSubmit'] );
 Route::get('/cuestionariohabilitante', [ QuestionnaireOneController::class, 'index'])->name('questionnarieone');
+Route::get('/questionnaireonesubmit', [ QuestionnaireOneController::class, 'questionnaireSubmit'])->name('questionnaireOneSubmit');
