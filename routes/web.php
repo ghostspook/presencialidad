@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\QuestionnaireOneController;
 use App\Http\Controllers\TestOneController;
+use App\Http\Controllers\TestResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,5 @@ Route::get('cuestionariohabilitante', [ QuestionnaireOneController::class, 'inde
 Route::post('questionnaireonesubmit', [ QuestionnaireOneController::class, 'questionnaireSubmit'])->name('questionnaireOneSubmit');
 Route::get('recomendacion', [AdvicedNotToAttendController::class, 'index'])->name('advicedNotToAttend');
 Route::get('pruebarapida1', [TestOneController::class, 'index'])->name('testOne');
+Route::get('pruebas/pendientes', [TestResultController::class, 'listUsersPendingTests'])->name('enterTestResults');
 

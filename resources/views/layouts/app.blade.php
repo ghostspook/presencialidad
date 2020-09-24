@@ -49,7 +49,10 @@
                                 {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a>
+                                    @if (Auth::user()->can_enter_test_results)
+                                        <a class="dropdown-item" href="{{ route('enterTestResults') }}">Ingresar Resultados</a>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a>
                                 </div>
                             </li>
                         @else

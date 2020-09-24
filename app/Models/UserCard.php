@@ -43,4 +43,20 @@ class UserCard extends Model
         'mandatorily_quarantined_at' => 'datetime',
         'preemptively_quarantined_at' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function getStateText()
+    {
+        switch ($this->state)
+        {
+            case UserCard::PENDING_COVERED_TEST_1:
+                return "Pendiente prueba rápida 1";
+            case UserCard::PENDING_COVERED_TEST_2:
+                return "Pendiente prueba rápida 2";
+        }
+    }
 }

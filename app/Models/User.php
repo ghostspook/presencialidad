@@ -20,7 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'provider'
+        'provider',
+        'can_enter_test_results'
     ];
 
     /**

@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('provider');
+            $table->boolean('can_enter_test_results')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
