@@ -10,6 +10,7 @@ use App\Http\Controllers\QuestionnaireOneController;
 use App\Http\Controllers\TestOneController;
 use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\QuestionnaireTwoController;
+use App\Http\Controllers\PreemptiveQuarantineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,6 @@ Route::post('usuarios/resultados/nuevo/submit', [ TestResultController::class, '
 Route::get('cuestionardeautorizacion', [ QuestionnaireTwoController::class, 'index'])->name('questionnarieTwo');
 Route::post('questionnairetwosubmit', [ QuestionnaireTwoController::class, 'questionnaireSubmit'])->name('questionnaireTwoSubmit');
 Route::get('autorizaciones/vigente', [ AuthorizationController::class, 'showValidAuthorization'])->name('showValidAuthorization');
+Route::get('cuarentenapreventiva', [PreemptiveQuarantineController::class, 'index'])->name('preemptiveQuarantine');
 
 
