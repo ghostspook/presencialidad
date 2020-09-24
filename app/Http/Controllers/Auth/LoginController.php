@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use App\Models\TrackedAccount;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -33,12 +34,19 @@ class LoginController extends Controller
         if ($user = User::where('email', $social_user->email)->first()) {
             return $this->authAndRedirect($user); // Login y redirección
         } else {
+            $account = TrackedAccount::firstWhere('email', $social_user->email);
+
+            if (!$account) {
+                return redirect()->to('/bienvenido')->withErrors(['msg', 'Su cuenta no está habilitada']);
+            }
             // En caso de que no exista creamos un nuevo usuario con sus datos.
             $user = User::create([
                 'name' => $social_user->name,
                 'email' => $social_user->email,
                 'provider' => 'google',
             ]);
+            $account->user_id = $user->id;
+            $account->save();
 
             return $this->authAndRedirect($user); // Login y redirección
         }
@@ -48,7 +56,7 @@ class LoginController extends Controller
     {
         Auth::login($user);
 
-        return redirect()->to('/home');
+        return redirect()->to('/');
     }
 
     public function logout()
