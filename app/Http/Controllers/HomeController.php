@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,6 +13,11 @@ class HomeController extends Controller
         if (!Auth::check())
             return view('welcome');
 
-        return view('home');
+        switch (Auth::user()->userCard->state) {
+            case UserCard::PENDING_ENROLLMENT:
+                return view('enroll');
+            default:
+                return view('home');
+        }
     }
 }
