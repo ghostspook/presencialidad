@@ -21,5 +21,6 @@ Route::get('/', function () {
 
 Route::get('login/google', [LoginController::class, 'redirectToProvider']);
 Route::get('login/google/callback', [LoginController::class, 'handleProviderCallback']);
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('home', [HomeController::class, 'index']);

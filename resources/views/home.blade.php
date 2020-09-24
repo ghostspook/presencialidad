@@ -25,6 +25,7 @@
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <span class="text-sm text-gray-700 underline">{{ Auth::user()->name }}</span>
+                        <a href="{{ route('logout') }}" class="text-sm text-gray-700 underline">Logout</a>
                     @else
 
                     @endif

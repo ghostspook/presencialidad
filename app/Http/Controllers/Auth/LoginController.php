@@ -50,4 +50,10 @@ class LoginController extends Controller
 
         return redirect()->to('/home');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->to('/');
+    }
 }
