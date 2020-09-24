@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class AccountType extends Model
 {
-    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
