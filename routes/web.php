@@ -15,10 +15,6 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/bienvenido', function () {
-    return view('welcome');
-});
-
 Route::get('login/google', [LoginController::class, 'redirectToProvider'])->name('login');
 Route::get('login/google/callback', [LoginController::class, 'handleProviderCallback']);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');

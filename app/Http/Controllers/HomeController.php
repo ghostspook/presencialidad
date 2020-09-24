@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         if (!Auth::check())
-            return redirect()->to('/bienvenido');
+            return view('welcome');
 
         return view('home');
     }
