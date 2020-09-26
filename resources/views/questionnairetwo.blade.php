@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <form method="POST" class="form" action="{{ route('questionnaireTwoSubmit') }}">
                 @csrf
-
+                <h1 class="title text-center">Cuestionario para obtener autorización de ingreso</h1>
                 <h3>¿Usted ha presentado síntomas de COVID (fiebre, dolor de cabeza, dolor de garganta, tos, dolor en el pecho, pérdida del olfato o el gusto, vómito, mareo) desde el último test negativo que se ha realizado?</h3>
                 <div class="ml-4">
                     <div class="form-check">

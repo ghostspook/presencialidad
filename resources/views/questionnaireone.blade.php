@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <form method="POST" class="form" action="{{ route('questionnaireOneSubmit') }}">
                 @csrf
-
+                <h1 class="title text-center">Cuestionario habilitante</h1>
                 <h3>¿Tiene Usted y/o algún familiar que viva en su misma residencia (personas con las que entro en contacto directo)?</h3>
                 <div class="ml-4">
                     <input type="checkbox" name="condition_1" value="Hipertensión arterial"> Hipertensión arterial<br>
