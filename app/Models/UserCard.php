@@ -14,7 +14,7 @@ class UserCard extends Model
     const PENDING_QUESTIONNAIRE_2 = 5;
     const AUTHORIZED = 6;
     const ADVICED_NOT_TO_ATTEND = 7;
-    const PENDING_ADVICE_OVERRIDE = 8;
+    // const PENDING_ADVICE_OVERRIDE = 8;
     const PENDING_PCR_TEST = 9;
     const MANDATORY_QUARANTINE = 10;
     const PREEMPTIVE_QUARANTINE = 11;
