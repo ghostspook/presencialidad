@@ -7,8 +7,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\QuestionnaireOneController;
-use App\Http\Controllers\TestOneController;
-use App\Http\Controllers\TestTwoController;
 use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\QuestionnaireTwoController;
 use App\Http\Controllers\PreemptiveQuarantineController;
@@ -18,8 +16,6 @@ use App\Http\Middleware\CanEnterTestResults;
 use App\Http\Middleware\PendingEnrollment;
 use App\Http\Middleware\PendingQuestionnaireOne;
 use App\Http\Middleware\PendingQuestionnaireTwo;
-use App\Http\Middleware\PendingTestOne;
-use App\Http\Middleware\PendingTestTwo;
 use App\Http\Middleware\PreemptiveQuarantine;
 
 /*
@@ -44,6 +40,7 @@ Route::post('enrollsubmit', [ EnrollmentController::class, 'enrollSubmit'])->mid
 Route::get('cuestionariohabilitante', [ QuestionnaireOneController::class, 'index'])->name('questionnarieone')->middleware('auth:web', PendingQuestionnaireOne::class);
 Route::post('questionnaireonesubmit', [ QuestionnaireOneController::class, 'questionnaireSubmit'])->name('questionnaireOneSubmit')->middleware('auth:web', PendingQuestionnaireOne::class);
 Route::get('recomendacion', [AdvicedNotToAttendController::class, 'index'])->name('advicedNotToAttend')->middleware('auth:web', AdvicedNotToAttend::class);
+Route::post('submitdontfollowadvice', [ AdvicedNotToAttendController::class, 'submitDecisionToAttend'])->name('submitDontFollowAdvice')->middleware('auth:web', AdvicedNotToAttend::class);
 Route::get('pruebas/pendientes', [TestResultController::class, 'listUsersPendingTests'])->name('enterTestResults')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('usuarios/{userId}/resultados/nuevo', [TestResultController::class, 'newTestResult'])->name('newtestresult')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('usuarios/resultados/nuevo/submit', [ TestResultController::class, 'newTestResultSubmit'])->name('newtestresultsubmit')->middleware('auth:web', CanEnterTestResults::class);
