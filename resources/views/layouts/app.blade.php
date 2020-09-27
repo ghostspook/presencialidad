@@ -28,7 +28,9 @@
         <nav class="navbar navbar-expand-md bg-primary navbar-dark fixed-top">
             <div class="container">
                 <!-- Brand -->
-                <a class="navbar-brand" href="#">IDE</a>
+                <a class="navbar-brand" href="#">
+                    <img src="/images/logo.png" height="30" alt="">
+                </a>
 
                 <!-- Toggler/collapsibe Button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
