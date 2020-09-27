@@ -16,7 +16,11 @@
             <form method="POST" action="/enrollsubmit">
                 @csrf
 
-                <input type="checkbox" name="acceptance" value="checked"> Acepto los términos y condiciones descritos en este documento de descargo de responsabilidad
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="acceptance" value="checked">
+                    <label class="custom-control-label" for="customCheck1"> Acepto los términos y condiciones descritos en este documento de descargo de responsabilidad</label>
+                  </div>
+
                 <div class="row mt-3">
                     <div class="col-md-12 d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary">Aceptar</button>
