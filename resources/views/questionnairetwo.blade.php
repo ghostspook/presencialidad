@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <form method="POST" class="form" action="{{ route('questionnaireTwoSubmit') }}">
                 @csrf
-                <h1 class="title text-center">Cuestionario para obtener autorización de ingreso</h1>
+                <h1 class="title text-center mb-5">Cuestionario para obtener autorización de ingreso</h1>
                 <h3>¿Usted ha presentado síntomas de COVID (fiebre, dolor de cabeza, dolor de garganta, tos, dolor en el pecho, pérdida del olfato o el gusto, vómito, mareo) desde el último test negativo que se ha realizado?</h3>
                 <div class="ml-4">
                     <div class="form-check">
@@ -25,13 +25,13 @@
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question2" id="r3" value="Frecuentó sitios de reisgo" checked>
-                        <label class="form-check-label" for="r1">
+                        <label class="form-check-label" for="r3">
                           Sí
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question2" id="r4" value="no">
-                        <label class="form-check-label" for="r2">
+                        <label class="form-check-label" for="r4">
                           No
                         </label>
                     </div>
@@ -40,13 +40,13 @@
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question3" id="r5" value="En contacto con sospechoso COVID-19" checked>
-                        <label class="form-check-label" for="r1">
+                        <label class="form-check-label" for="r5">
                           Sí
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question3" id="r6" value="no">
-                        <label class="form-check-label" for="r2">
+                        <label class="form-check-label" for="r6">
                           No
                         </label>
                     </div>
@@ -55,13 +55,13 @@
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question4" id="r7" value="Reuniones sociales con riesgo" checked>
-                        <label class="form-check-label" for="r1">
+                        <label class="form-check-label" for="r7">
                           Sí
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question4" id="r8" value="no">
-                        <label class="form-check-label" for="r2">
+                        <label class="form-check-label" for="r8">
                           No
                         </label>
                     </div>
@@ -70,13 +70,13 @@
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question5" id="r9" value="Otro factor de riesgo" checked>
-                        <label class="form-check-label" for="r1">
+                        <label class="form-check-label" for="r9">
                           Sí
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question5" id="r10" value="no">
-                        <label class="form-check-label" for="r2">
+                        <label class="form-check-label" for="r10">
                           No
                         </label>
                     </div>
@@ -85,13 +85,13 @@
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question6" id="r11" value="Transporte público - descuido medidas" checked>
-                        <label class="form-check-label" for="r1">
+                        <label class="form-check-label" for="r11">
                           Sí
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question6" id="r12" value="no">
-                        <label class="form-check-label" for="r2">
+                        <label class="form-check-label" for="r12">
                           No
                         </label>
                     </div>
@@ -100,13 +100,13 @@
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question7" id="r13" value="No cuida habitualmente medidas" checked>
-                        <label class="form-check-label" for="r1">
+                        <label class="form-check-label" for="r13">
                           Sí
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question7" id="r14" value="no">
-                        <label class="form-check-label" for="r2">
+                        <label class="form-check-label" for="r14">
                           No
                         </label>
                     </div>
