@@ -5,9 +5,11 @@
         <div class="col-md-12">
             @error('acceptance')
             <div class="alert alert-danger" role="alert">
-                Para poder continuar con el proceso de retorno a la presencialidad. Debe aceptar los términos y condiciones haciendo clic en el cuadro sobre el botón de Continuar
+                <h3 class="alert-heading">Acepte los términos para continuar</h3>
+                Para poder continuar con el proceso de retorno a la presencialidad. Debe aceptar los términos y condiciones haciendo clic en el <a class="alert-link" href="#customCheck1">cuadro sobre el botón de Continuar</a>.
             </div>
             <div class="alert alert-info" role="alert">
+                <h3 class="alert-heading">Importante</h3>
                 El proceso de retorno a la presencialidad es completamente opcional y voluntario. No está Usted obligado a asistir presencialmente.
             </div>
             @enderror
