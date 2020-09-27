@@ -20,7 +20,7 @@ class AdvicedNotToAttendController extends Controller
         if (array_key_exists('acceptance', $inputs))
         {
             $userCard = Auth::user()->userCard;
-            $userCard->state = UserCard::PENDING_QUESTIONNAIRE_1;
+            $userCard->state = UserCard::PENDING_COVERED_TEST_1;
             $userCard->save();
 
             Transition::create([ 'user_id' => Auth::user()->id,
