@@ -3,6 +3,15 @@
 @section('main-content')
     <div id="app" class="row">
         <div class="col-md-12">
+            @error('acceptance')
+            <div class="alert alert-danger" role="alert">
+                Para poder continuar con el proceso de retorno a la presencialidad. Debe aceptar los términos y condiciones haciendo clic en el cuadro sobre el botón de Continuar
+            </div>
+            <div class="alert alert-info" role="alert">
+                El proceso de retorno a la presencialidad es completamente opcional y voluntario. No está Usted obligado a asistir presencialmente.
+            </div>
+            @enderror
+
             <h1>Términos y Condiciones</h1>
             <p class="mt-4">Reconozco que he leído, comprendo y acepto los siguientes términos y condiciones:</p>
             <ol>
@@ -18,8 +27,8 @@
 
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="customCheck1" name="acceptance" value="checked">
-                    <label class="custom-control-label" for="customCheck1"> Acepto los términos y condiciones descritos en este documento de descargo de responsabilidad</label>
-                  </div>
+                    <label class="custom-control-label" for="customCheck1"> <strong>Acepto los términos y condiciones descritos en este documento de descargo de responsabilidad</strong></label>
+                </div>
 
                 <div class="row mt-3">
                     <div class="col-md-12 d-flex justify-content-center">
