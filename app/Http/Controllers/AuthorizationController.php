@@ -15,6 +15,11 @@ class AuthorizationController extends Controller
 {
     public function showValidAuthorization()
     {
+        $userCard = Auth::user()->userCard;
+
+        if ($userCard->state != UserCard::AUTHORIZED)
+            return redirect('/');
+
         $c = UserCard::firstWhere('user_id', Auth::user()->id);
         if (!$c->authorization_id)
         {
