@@ -19,9 +19,9 @@ class HomeController extends Controller
             case UserCard::PENDING_QUESTIONNAIRE_1:
                 return redirect()->route('questionnarieone');
             case UserCard::PENDING_COVERED_TEST_1:
-                return redirect()->route('testOne');
-                case UserCard::PENDING_COVERED_TEST_2:
-                    return redirect()->route('testTwo');
+                return view('testone');
+            case UserCard::PENDING_COVERED_TEST_2:
+                return view('testtwo');
             case UserCard::PENDING_QUESTIONNAIRE_2:
                 return redirect()->route('questionnarieTwo');
             case UserCard::AUTHORIZED:

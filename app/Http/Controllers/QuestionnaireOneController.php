@@ -40,7 +40,7 @@ class QuestionnaireOneController extends Controller
             Transition::create([ 'user_id' => $userCard->user_id,
                                 'state' => $userCard->state,
                                 'actor' => $userCard->user->name ]);
-            return redirect()->route('testOne');
+            return redirect()->to('/');
         }
     }
 }

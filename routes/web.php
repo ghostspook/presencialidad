@@ -44,8 +44,6 @@ Route::post('enrollsubmit', [ EnrollmentController::class, 'enrollSubmit'])->mid
 Route::get('cuestionariohabilitante', [ QuestionnaireOneController::class, 'index'])->name('questionnarieone')->middleware('auth:web', PendingQuestionnaireOne::class);
 Route::post('questionnaireonesubmit', [ QuestionnaireOneController::class, 'questionnaireSubmit'])->name('questionnaireOneSubmit')->middleware('auth:web', PendingQuestionnaireOne::class);
 Route::get('recomendacion', [AdvicedNotToAttendController::class, 'index'])->name('advicedNotToAttend')->middleware('auth:web', AdvicedNotToAttend::class);
-Route::get('pruebarapida1', [TestOneController::class, 'index'])->name('testOne')->middleware('auth:web', PendingTestOne::class);
-Route::get('pruebarapida2', [TestTwoController::class, 'index'])->name('testTwo')->middleware('auth:web', PendingTestTwo::class);
 Route::get('pruebas/pendientes', [TestResultController::class, 'listUsersPendingTests'])->name('enterTestResults')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('usuarios/{userId}/resultados/nuevo', [TestResultController::class, 'newTestResult'])->name('newtestresult')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('usuarios/resultados/nuevo/submit', [ TestResultController::class, 'newTestResultSubmit'])->name('newtestresultsubmit')->middleware('auth:web', CanEnterTestResults::class);
