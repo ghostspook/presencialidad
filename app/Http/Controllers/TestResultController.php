@@ -15,31 +15,19 @@ class TestResultController extends Controller
 {
     public function listUsersPendingTests()
     {
-        $u = User::find(Auth::user()->id);
-        if (!$u->can_enter_test_results)
-            return redirect('/');
-
         $cards = UserCard::where('state', UserCard::PENDING_COVERED_TEST_1)->orWhere('state', UserCard::PENDING_COVERED_TEST_2)->get();
         return view('userspendingtests', ['cards' => $cards]);
     }
 
     public function newTestResult($userId)
     {
-        $u = User::find(Auth::user()->id);
-        if (!$u->can_enter_test_results)
-            return redirect('/');
-
         $card = UserCard::firstWhere('user_id', $userId);
         return view('newtestresult', ['card' => $card]);
     }
 
     public function newTestResultSubmit(Request $request)
     {
-        $u = User::find(Auth::user()->id);
-        if (!$u->can_enter_test_results)
-            return redirect('/');
-
-        $c = UserCard::firstWhere('user_id', $u->id);
+        $c = UserCard::firstWhere('user_id', Auth::user()->id);
 
         $input = $request->all();
         TestResult::create(['user_id' => $input['user_id'],
@@ -87,7 +75,7 @@ class TestResultController extends Controller
 
             Transition::create([ 'user_id' => $c->user_id,
                                  'state' => $c->state,
-                                 'actor' => $u->name ]);
+                                 'actor' => $c->user->name ]);
         }
 
         return redirect()->route('enterTestResults');
