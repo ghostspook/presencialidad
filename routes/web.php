@@ -30,19 +30,19 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('cuentanohabilitada', [LoginController::class, 'displayCuentaNoHabilitada'])->name('cuentanohabilitada');
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('aceptacion', [ EnrollmentController::class, 'index'])->name('enrollment');
-Route::post('enrollsubmit', [ EnrollmentController::class, 'enrollSubmit'] );
-Route::get('cuestionariohabilitante', [ QuestionnaireOneController::class, 'index'])->name('questionnarieone');
-Route::post('questionnaireonesubmit', [ QuestionnaireOneController::class, 'questionnaireSubmit'])->name('questionnaireOneSubmit');
-Route::get('recomendacion', [AdvicedNotToAttendController::class, 'index'])->name('advicedNotToAttend');
-Route::get('pruebarapida1', [TestOneController::class, 'index'])->name('testOne');
-Route::get('pruebarapida2', [TestTwoController::class, 'index'])->name('testTwo');
-Route::get('pruebas/pendientes', [TestResultController::class, 'listUsersPendingTests'])->name('enterTestResults');
-Route::get('usuarios/{userId}/resultados/nuevo', [TestResultController::class, 'newTestResult'])->name('newtestresult');
-Route::post('usuarios/resultados/nuevo/submit', [ TestResultController::class, 'newTestResultSubmit'])->name('newtestresultsubmit');
-Route::get('cuestionardeautorizacion', [ QuestionnaireTwoController::class, 'index'])->name('questionnarieTwo');
-Route::post('questionnairetwosubmit', [ QuestionnaireTwoController::class, 'questionnaireSubmit'])->name('questionnaireTwoSubmit');
-Route::get('autorizaciones/vigente', [ AuthorizationController::class, 'showValidAuthorization'])->name('showValidAuthorization');
-Route::get('cuarentenapreventiva', [PreemptiveQuarantineController::class, 'index'])->name('preemptiveQuarantine');
+Route::get('aceptacion', [ EnrollmentController::class, 'index'])->name('enrollment')->middleware('auth:web');
+Route::post('enrollsubmit', [ EnrollmentController::class, 'enrollSubmit'])->middleware('auth:web');
+Route::get('cuestionariohabilitante', [ QuestionnaireOneController::class, 'index'])->name('questionnarieone')->middleware('auth:web');
+Route::post('questionnaireonesubmit', [ QuestionnaireOneController::class, 'questionnaireSubmit'])->name('questionnaireOneSubmit')->middleware('auth:web');
+Route::get('recomendacion', [AdvicedNotToAttendController::class, 'index'])->name('advicedNotToAttend')->middleware('auth:web');
+Route::get('pruebarapida1', [TestOneController::class, 'index'])->name('testOne')->middleware('auth:web');
+Route::get('pruebarapida2', [TestTwoController::class, 'index'])->name('testTwo')->middleware('auth:web');
+Route::get('pruebas/pendientes', [TestResultController::class, 'listUsersPendingTests'])->name('enterTestResults')->middleware('auth:web');
+Route::get('usuarios/{userId}/resultados/nuevo', [TestResultController::class, 'newTestResult'])->name('newtestresult')->middleware('auth:web');
+Route::post('usuarios/resultados/nuevo/submit', [ TestResultController::class, 'newTestResultSubmit'])->name('newtestresultsubmit')->middleware('auth:web');
+Route::get('cuestionardeautorizacion', [ QuestionnaireTwoController::class, 'index'])->name('questionnarieTwo')->middleware('auth:web');
+Route::post('questionnairetwosubmit', [ QuestionnaireTwoController::class, 'questionnaireSubmit'])->name('questionnaireTwoSubmit')->middleware('auth:web');
+Route::get('autorizaciones/vigente', [ AuthorizationController::class, 'showValidAuthorization'])->name('showValidAuthorization')->middleware('auth:web');
+Route::get('cuarentenapreventiva', [PreemptiveQuarantineController::class, 'index'])->name('preemptiveQuarantine')->middleware('auth:web');
 
 
