@@ -3,7 +3,11 @@
 @section('main-content')
     <div id="app" class="row">
         <div class="col-md-12">
-            <h1 class="display text-center">Por favor, acérquese a Veris a realizarse la primera prueba rápida.</h1>
+            <div class="text-center">
+                <img src="/images/lab-test.png">
+            </div>
+            <h2 class="display text-center mt-5">Por favor, acérquese a Veris a realizarse la</h2>
+            <h1 class="display text-center"><span class="text-primary">Primera Prueba Rápida.</span></h1>
         </div>
     </div>
 @endsection
