@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="text-center">
                 {!! QrCode::size(200)->generate($a->code); !!}
-                <h3 class="title mt-5 text-primary">{{ $a->user->name }}</h3>
+                <h2 class="title mt-5 text-primary">{{ $a->user->name }}</h2>
                 <p>
                     está autorizado para ingresar hasta
                 </p>
