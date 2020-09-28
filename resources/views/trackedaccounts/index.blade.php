@@ -17,8 +17,16 @@
                 <div class="form-control-group">
                     <label for="email">Agregar nuevo email</label>
                     <input type="email" class="form-control" id="email" name="email">
-                    <button type="submit" class="btn btn-primary">Añadir</button>
+                    <div class="form-group">
+                        <label for="account_type_id">Tipo de cuenta:</label>
+                        <select class="form-control" id="account_type_id" name="account_type_id">
+                            @foreach ($accountTypes as $type)
+                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+                <button type="submit" class="btn btn-primary">Añadir</button>
             </form>
         </div>
     </div>

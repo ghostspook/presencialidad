@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountType;
 use App\Models\TrackedAccount;
 use App\Models\Transition;
 use App\Models\User;
@@ -19,7 +20,9 @@ class TrackedAccountController extends Controller
     public function index()
     {
         $accounts = TrackedAccount::orderBy('email')->get();
-        return view('trackedaccounts.index', ['accounts' => $accounts]);
+        $accountTypes = AccountType::all();
+
+        return view('trackedaccounts.index', ['accounts' => $accounts, 'accountTypes' => $accountTypes]);
     }
 
     /**
@@ -41,7 +44,7 @@ class TrackedAccountController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        TrackedAccount::create([ 'email' => $inputs['email'], 'account_type_id' => 3]);
+        TrackedAccount::create([ 'email' => $inputs['email'], 'account_type_id' => $inputs['account_type_id']]);
         return redirect()->route('trackedaccounts_index');
     }
 
