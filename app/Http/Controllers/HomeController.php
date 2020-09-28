@@ -28,6 +28,8 @@ class HomeController extends Controller
                 return redirect()->route('showValidAuthorization');
             case UserCard::ADVICED_NOT_TO_ATTEND:
                 return redirect()->route('advicedNotToAttend');
+            case UserCard::PREEMPTIVE_QUARANTINE:
+                return redirect()->route('preemptiveQuarantine');
             default:
                 return view('home');
         }
