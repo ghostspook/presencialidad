@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TrackedAccount;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TrackedAccountController extends Controller
@@ -49,7 +50,8 @@ class TrackedAccountController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('trackedaccounts.show', ['user' => $user ]);
     }
 
     /**

@@ -50,6 +50,7 @@ Route::post('questionnairetwosubmit', [ QuestionnaireTwoController::class, 'ques
 Route::get('autorizaciones/vigente', [ AuthorizationController::class, 'showValidAuthorization'])->name('showValidAuthorization')->middleware('auth:web', Authorized::class);
 Route::get('cuarentenapreventiva', [PreemptiveQuarantineController::class, 'index'])->name('preemptiveQuarantine')->middleware('auth:web', PreemptiveQuarantine::class);
 Route::get('cuentas', [TrackedAccountController::class, 'index'])->name('trackedaccounts_index')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('cuentas/{id}', [TrackedAccountController::class, 'show'])->name('trackedaccounts_show')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('cuentas/store', [TrackedAccountController::class, 'store'])->name('trackedaccount_store')->middleware('auth:web', CanEnterTestResults::class);
 
 

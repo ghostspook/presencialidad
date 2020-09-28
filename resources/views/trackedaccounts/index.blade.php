@@ -7,7 +7,7 @@
             @foreach ($accounts as $a)
                 <li>{{ $a->email }}&nbsp;
                     @if($a->user_id)
-                        ({{ $a->user->userCard->getStateText() }})
+                        (<a href="{{ route('trackedaccounts_show', ['id' => $a->user_id]) }}">{{ $a->user->userCard->getStateText() }}</a>)
                     @endif
                 </li>
             @endforeach

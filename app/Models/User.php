@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UserCard');
     }
+
+    public function transitions()
+    {
+        return $this->hasMany('App\Models\Transition');
+    }
 }
