@@ -27,9 +27,10 @@ class TestResultController extends Controller
 
     public function newTestResultSubmit(Request $request)
     {
-        $c = UserCard::firstWhere('user_id', Auth::user()->id);
 
         $input = $request->all();
+        $c = UserCard::firstWhere('user_id', $input['user_id']);
+
         TestResult::create(['user_id' => $input['user_id'],
                             'test_type' => $input['test_type'],
                             'result' => $input['result'],
