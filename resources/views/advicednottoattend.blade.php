@@ -21,8 +21,8 @@
                 @csrf
 
                 <div class="custom-control custom-checkbox mt-5">
-                    <input type="checkbox" class="custom-control-input" id="acceptance" name="acceptance" value="Tengo claro que no estoy obligado a asistir, pero asumo el riesto y decido continuar con el proceso de retorno a la presencialidad.">
-                    <label class="custom-control-label" for="acceptance"> Tengo claro que no estoy obligado a asistir, pero asumo el riesto y decido continuar con el proceso de retorno a la presencialidad.</label>
+                    <input type="checkbox" class="custom-control-input" id="acceptance" name="acceptance" value="Tengo claro que no estoy obligado a asistir, pero asumo el riesgo y decido continuar con el proceso de retorno a la presencialidad.">
+                    <label class="custom-control-label" for="acceptance"> Tengo claro que no estoy obligado a asistir, pero asumo el riesgo y decido continuar con el proceso de retorno a la presencialidad.</label>
                 </div>
 
                 <div class="row mt-5">
