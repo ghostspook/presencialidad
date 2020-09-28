@@ -10,6 +10,7 @@ use App\Http\Controllers\QuestionnaireOneController;
 use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\QuestionnaireTwoController;
 use App\Http\Controllers\PreemptiveQuarantineController;
+use App\Http\Controllers\TrackedAccountController;
 use App\Http\Middleware\AdvicedNotToAttend;
 use App\Http\Middleware\Authorized;
 use App\Http\Middleware\CanEnterTestResults;
@@ -48,5 +49,6 @@ Route::get('cuestionardeautorizacion', [ QuestionnaireTwoController::class, 'ind
 Route::post('questionnairetwosubmit', [ QuestionnaireTwoController::class, 'questionnaireSubmit'])->name('questionnaireTwoSubmit')->middleware('auth:web', PendingQuestionnaireTwo::class);
 Route::get('autorizaciones/vigente', [ AuthorizationController::class, 'showValidAuthorization'])->name('showValidAuthorization')->middleware('auth:web', Authorized::class);
 Route::get('cuarentenapreventiva', [PreemptiveQuarantineController::class, 'index'])->name('preemptiveQuarantine')->middleware('auth:web', PreemptiveQuarantine::class);
+Route::get('cuentas', [TrackedAccountController::class, 'index'])->name('trackedaccounts_index')->middleware('auth:web', CanEnterTestResults::class);
 
 

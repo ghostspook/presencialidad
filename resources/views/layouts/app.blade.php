@@ -53,6 +53,7 @@
                                 <div class="dropdown-menu">
                                     @if (Auth::user()->can_enter_test_results)
                                         <a class="dropdown-item" href="{{ route('enterTestResults') }}">Ingresar Resultados</a>
+                                        <a class="dropdown-item" href="{{ route('trackedaccounts_index') }}">Cuentas habilitadas</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a>
                                 </div>
