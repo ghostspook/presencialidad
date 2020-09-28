@@ -36,7 +36,7 @@
                         </label>
                     </div>
                 </div>
-                <h3 class="mt-5">¿Ha estado en contacto estrecho (por más de 15 minutos y a menos de dos metros de distancia y sin mascarilla) con una persona confirmada por PCR de tener COVID 19? </h3>
+                <h3 class="mt-5">¿Ha estado en contacto estrecho (a menos de dos metros de distancia, sin mascarilla y por más de 15 minutos) con una persona confirmada por PCR de tener COVID 19? </h3>
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question3" id="r5" value="En contacto con sospechoso COVID-19" checked>
