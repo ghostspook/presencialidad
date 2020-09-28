@@ -18,4 +18,9 @@ class Answer extends Model
         'transition_id',
         'answers_text',
     ];
+
+    public function transition()
+    {
+        return $this->belongsTo('App\Models\Transition');
+    }
 }

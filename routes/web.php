@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvicedNotToAttendController;
+use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
@@ -53,5 +54,6 @@ Route::get('cuentas', [TrackedAccountController::class, 'index'])->name('tracked
 Route::get('cuentas/{id}', [TrackedAccountController::class, 'show'])->name('trackedaccounts_show')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('cuentas/store', [TrackedAccountController::class, 'store'])->name('trackedaccount_store')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('transitions/create', [TrackedAccountController::class, 'transitionToState'])->name('trackedaccount_transition')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('respuesta/{id}', [AnswerController::class, 'show'])->name('answer_show')->middleware('auth:web', CanEnterTestResults::class);
 
 

@@ -40,7 +40,13 @@
                     <h3 class="title">Transiciones</h3>
                     <ul>
                         @foreach ($user->transitions as $t)
-                            <li>{{$t->created_at}} - {{ $t->getStateText() }} ({{ $t->actor}})</li>
+                        <li>{{$t->created_at}} - {{ $t->getStateText() }} ({{ $t->actor}})
+                        @if($t->answer)
+                            <small>
+                                <a href="{{ route('answer_show', [ 'id' => $t->answer->id]) }}">Ver respuesta</a>
+                            </small>
+                        @endif
+                        </li>
                         @endforeach
                     </ul>
                 </div>

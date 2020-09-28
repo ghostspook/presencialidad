@@ -46,4 +46,14 @@ class Transition extends Model
                 return "?";
         }
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function answer()
+    {
+        return $this->hasOne('App\Models\Answer');
+    }
 }
