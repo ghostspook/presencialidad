@@ -70,6 +70,8 @@ class UserCard extends Model
                 return "Pendiente cuestionario 2";
             case UserCard::PREEMPTIVE_QUARANTINE:
                 return "Aislamiento preventivo";
+            case UserCard::AUTHORIZED:
+                return "Autorizado/a";
             default:
                 return "?";
         }
