@@ -36,7 +36,9 @@ class TrackedAccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->all();
+        TrackedAccount::create([ 'email' => $inputs['email'], 'account_type_id' => 3]);
+        return redirect()->route('trackedaccounts_index');
     }
 
     /**
