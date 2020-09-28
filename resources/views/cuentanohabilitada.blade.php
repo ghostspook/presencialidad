@@ -4,7 +4,8 @@
     <div id="app" class="row">
         <div class="col-md-12">
             <div class="text-center">
-                Su cuenta no está habilitada. Por favor solicite la habilitación de su cuenta a rcastillo&#64;ide.edu.ec
+                <h1 class="title">Su cuenta no está habilitada.</h1>
+                Por favor solicite la habilitación de su cuenta a rcastillo&#64;ide.edu.ec
             </div>
         </div>
     </div>
