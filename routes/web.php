@@ -52,5 +52,6 @@ Route::get('cuarentenapreventiva', [PreemptiveQuarantineController::class, 'inde
 Route::get('cuentas', [TrackedAccountController::class, 'index'])->name('trackedaccounts_index')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('cuentas/{id}', [TrackedAccountController::class, 'show'])->name('trackedaccounts_show')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('cuentas/store', [TrackedAccountController::class, 'store'])->name('trackedaccount_store')->middleware('auth:web', CanEnterTestResults::class);
+Route::post('transitions/create', [TrackedAccountController::class, 'transitionToState'])->name('trackedaccount_transition')->middleware('auth:web', CanEnterTestResults::class);
 
 

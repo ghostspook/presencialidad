@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\TrackedAccount;
+use App\Models\Transition;
 use App\Models\User;
+use App\Models\UserCard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TrackedAccountController extends Controller
 {
@@ -86,5 +89,21 @@ class TrackedAccountController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function transitionToState(Request $request)
+    {
+        $inputs = $request->all();
+
+        $c = UserCard::firstWhere('user_id', $inputs['user_id']);
+        $c->state = $inputs['state'];
+        $c->save();
+        $t = Transition::create([
+            'user_id' => $inputs['user_id'],
+            'state' => $inputs['state'],
+            'actor' => Auth::user()->name,
+        ]);
+
+        return redirect()->route('trackedaccounts_show', ['id' => $inputs['user_id']]);
     }
 }
