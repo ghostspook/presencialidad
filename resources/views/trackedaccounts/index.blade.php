@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <h1 class="title">Cuentas habilitadas</h1>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <table class="table">
                         <tr>
                             <th>Email</th>
@@ -32,7 +32,7 @@
                         @endforeach
                     </table>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <h2 class="title text-primary">Añadir cuenta</h2>
                     <form method="POST" class="form" action="{{ route('trackedaccount_store') }}">
                         @csrf
