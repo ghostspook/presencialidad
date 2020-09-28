@@ -32,6 +32,7 @@ class QuestionnaireTwoController extends Controller
         if (count($inputs) > 0)
         {
             $userCard->state = UserCard::PREEMPTIVE_QUARANTINE;
+            $userCard->preemptively_quarantined_at = Carbon::now();
             $userCard->save();
             $t =Transition::create([ 'user_id' => $userCard->user_id,
                                 'state' => $userCard->state,

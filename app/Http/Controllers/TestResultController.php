@@ -40,7 +40,7 @@ class TestResultController extends Controller
         {
             if($input['result'] == 1) // NEGATIVO
             {
-                $c->most_recent_negative_test_result_at = Carbon::now();
+                $c->most_recent_negative_test_result_at = $input['test_date'];
                 if ($c->state == UserCard::PENDING_COVERED_TEST_1)
                 {
                     $c->state = UserCard::PENDING_COVERED_TEST_2;
@@ -64,7 +64,7 @@ class TestResultController extends Controller
             {
                 if($input['result'] == 1) // NEGATIVO
                 {
-                    $c->most_recent_negative_test_result_at = Carbon::now();
+                    $c->most_recent_negative_test_result_at = $input['test_date'];
                     $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
                 } else // PRUEBA SALIÓ POSITIVA
                 {
