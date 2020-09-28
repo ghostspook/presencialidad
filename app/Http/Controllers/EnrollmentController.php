@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\UserCard;
 use App\Models\Transition;
 use Illuminate\Http\Request;
@@ -25,9 +26,14 @@ class EnrollmentController extends Controller
             $userCard->state = UserCard::PENDING_QUESTIONNAIRE_1;
             $userCard->save();
 
-            Transition::create([ 'user_id' => $userId,
+            $t = Transition::create([ 'user_id' => $userId,
                                  'state' => $userCard->state,
                                  'actor' => Auth::user()->name ]);
+
+            Answer::create([
+                            'transition_id' => $t->id ,
+                            'answers_text' => json_encode($inputs),
+                            ]);
 
             return redirect()->route('questionnarieone');
         }

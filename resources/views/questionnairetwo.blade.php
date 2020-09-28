@@ -9,7 +9,7 @@
                 <h3>¿Usted ha presentado síntomas de COVID (fiebre, dolor de cabeza, dolor de garganta, tos, dolor en el pecho, pérdida del olfato o el gusto, vómito, mareo) desde el último test negativo que se ha realizado?</h3>
                 <div class="ml-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question1" id="r1" value="Presenta síntomas COVID-19" checked>
+                        <input class="form-check-input" type="radio" name="question1" id="r1" value="Sí ha presentado síntomas de COVID (fiebre, dolor de cabeza, dolor de garganta, tos, dolor en el pecho, pérdida del olfato o el gusto, vómito, mareo) desde el último test negativo que se ha realizado" checked>
                         <label class="form-check-label" for="r1">
                           Sí
                         </label>
@@ -24,7 +24,7 @@
                 <h3 class="mt-5">¿Usted ha frecuentado bares, restaurantes, hospitales o cualquier otro lugar público y/o privado donde no ha respetado medidas de bioseguridad? (distancia mínima y uso de mascarilla)</h3>
                 <div class="ml-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question2" id="r3" value="Frecuentó sitios de reisgo" checked>
+                        <input class="form-check-input" type="radio" name="question2" id="r3" value="Sí ha frecuentado bares, restaurantes, hospitales o cualquier otro lugar público y/o privado donde no ha respetado medidas de bioseguridad" checked>
                         <label class="form-check-label" for="r3">
                           Sí
                         </label>
@@ -39,7 +39,7 @@
                 <h3 class="mt-5">¿Ha estado en <strong>"contacto estrecho"</strong>: a menos de dos metros de distancia, sin mascarilla y por más de 15 minutos con una persona confirmada de tener actualmente COVID-19 a través de una prueba PCR? </h3>
                 <div class="ml-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question3" id="r5" value="En contacto con sospechoso COVID-19" checked>
+                        <input class="form-check-input" type="radio" name="question3" id="r5" value="Sí ha estado en 'contacto estrecho': a menos de dos metros de distancia, sin mascarilla y por más de 15 minutos con una persona confirmada de tener actualmente COVID-19 a través de una prueba PCR" checked>
                         <label class="form-check-label" for="r5">
                           Sí
                         </label>
@@ -54,7 +54,7 @@
                 <h3 class="mt-5">¿Usted ha estado en fiestas o reuniones sociales y/o familiares en las que considera que ha estado en <strong>"contacto estrecho"</strong>?</h3>
                 <div class="ml-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question4" id="r7" value="Reuniones sociales con riesgo" checked>
+                        <input class="form-check-input" type="radio" name="question4" id="r7" value="Sí ha estado en fiestas o reuniones sociales y/o familiares en las que considera que ha estado en 'contacto estrecho'" checked>
                         <label class="form-check-label" for="r7">
                           Sí
                         </label>
@@ -69,7 +69,7 @@
                 <h3 class="mt-5">¿Ha estado expuesto a algún otro factor de riesgo que sea relevante? </h3>
                 <div class="ml-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question5" id="r9" value="Otro factor de riesgo" checked>
+                        <input class="form-check-input" type="radio" name="question5" id="r9" value="Sí estado expuesto a algún otro factor de riesgo que sea relevante" checked>
                         <label class="form-check-label" for="r9">
                           Sí
                         </label>
@@ -84,7 +84,7 @@
                 <h3 class="mt-5">¿Usted ha utilizado transporte público, avión o taxi a menos de dos sillas de distancia, en <strong>"contacto estrecho"</strong>?</h3>
                 <div class="ml-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question6" id="r11" value="Transporte público - descuido medidas" checked>
+                        <input class="form-check-input" type="radio" name="question6" id="r11" value="Sí ha utilizado transporte público, avión o taxi a menos de dos sillas de distancia, en contacto estrecho" checked>
                         <label class="form-check-label" for="r11">
                           Sí
                         </label>
@@ -105,7 +105,7 @@
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question7" id="r14" value="No cuida habitualmente medidas">
+                        <input class="form-check-input" type="radio" name="question7" id="r14" value="No cuida habitualmente medidas de bioseguridad? (uso de mascarilla, lavado frecuente de manos, uso de alcohol o alcohol gel">
                         <label class="form-check-label" for="r14">
                           No
                         </label>

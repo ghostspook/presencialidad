@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Answer;
 use App\Models\UserCard;
 use App\Models\Transition;
 use App\Models\Authorization;
@@ -32,9 +33,13 @@ class QuestionnaireTwoController extends Controller
         {
             $userCard->state = UserCard::PREEMPTIVE_QUARANTINE;
             $userCard->save();
-            Transition::create([ 'user_id' => $userCard->user_id,
+            $t =Transition::create([ 'user_id' => $userCard->user_id,
                                 'state' => $userCard->state,
                                 'actor' => $userCard->user->name ]);
+            Answer::create([
+                            'transition_id' => $t->id ,
+                            'answers_text' => json_encode($inputs),
+                            ]);
             return redirect()->route('preemptiveQuarantine');
         }
         else{
@@ -47,9 +52,13 @@ class QuestionnaireTwoController extends Controller
             $userCard->state = UserCard::AUTHORIZED;
             $userCard->authorization_id = $a->id;
             $userCard->save();
-            Transition::create([ 'user_id' => $userCard->user_id,
+            $t = Transition::create([ 'user_id' => $userCard->user_id,
                                 'state' => $userCard->state,
                                 'actor' => $userCard->user->name ]);
+            Answer::create([
+                            'transition_id' => $t->id ,
+                            'answers_text' => json_encode($inputs),
+                            ]);
             return redirect()->to('/');
         }
     }

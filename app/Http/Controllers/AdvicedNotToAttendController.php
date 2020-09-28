@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\UserCard;
 use App\Models\Transition;
 use Illuminate\Http\Request;
@@ -23,9 +24,13 @@ class AdvicedNotToAttendController extends Controller
             $userCard->state = UserCard::PENDING_COVERED_TEST_1;
             $userCard->save();
 
-            Transition::create([ 'user_id' => Auth::user()->id,
+            $t = Transition::create([ 'user_id' => Auth::user()->id,
                                  'state' => $userCard->state,
                                  'actor' => Auth::user()->name ]);
+            Answer::create([
+                'transition_id' => $t->id ,
+                'answers_text' => json_encode($inputs),
+                ]);
 
             return redirect()->route('questionnarieone');
         }

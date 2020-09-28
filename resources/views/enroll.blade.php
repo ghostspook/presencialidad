@@ -28,7 +28,7 @@
                 @csrf
 
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="acceptance" value="checked">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="acceptance" value="Acepto los términos y condiciones descritos en este documento de descargo de responsabilidad">
                     <label class="custom-control-label" for="customCheck1"> <strong>Acepto los términos y condiciones descritos en este documento de descargo de responsabilidad</strong></label>
                 </div>
 
