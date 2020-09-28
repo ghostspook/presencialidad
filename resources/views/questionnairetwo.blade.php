@@ -36,7 +36,7 @@
                         </label>
                     </div>
                 </div>
-                <h3 class="mt-5">¿Ha estado en contacto estrecho (a menos de dos metros de distancia, sin mascarilla y por más de 15 minutos) con una persona confirmada por PCR de tener COVID 19? </h3>
+                <h3 class="mt-5">¿Ha estado en <strong>"contacto estrecho"</strong> (a menos de dos metros de distancia, sin mascarilla y por más de 15 minutos) con una persona confirmada por PCR de tener COVID-19? </h3>
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question3" id="r5" value="En contacto con sospechoso COVID-19" checked>
@@ -51,7 +51,7 @@
                         </label>
                     </div>
                 </div>
-                <h3 class="mt-5">¿Usted ha estado en fiestas o reuniones sociales donde no se ha respetado el distanciamiento y el uso de mascarilla?</h3>
+                <h3 class="mt-5">¿Usted ha estado en fiestas o reuniones sociales y/o familiares en las que no se ha respetado el distanciamiento y el uso de mascarilla?</h3>
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question4" id="r7" value="Reuniones sociales con riesgo" checked>
@@ -81,7 +81,7 @@
                         </label>
                     </div>
                 </div>
-                <h3 class="mt-5">¿Usted ha utilizado transporte público, avión o taxi a menos de dos sillas de distancia de una persona confirmada COVID-19 donde no se ha respetó el distanciamiento y el uso de mascarilla por más 15 minutos? <small>Por favor, reflexione y conteste con la más absoluta sinceridad</small></h3>
+                <h3 class="mt-5">¿Usted ha utilizado transporte público, avión o taxi a menos de dos sillas de distancia, en contacto estrecho, de una persona confirmada COVID-19 donde no se ha respetó el distanciamiento y el uso de mascarilla por más 15 minutos? <small>Por favor, reflexione y conteste con la más absoluta sinceridad</small></h3>
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question6" id="r11" value="Transporte público - descuido medidas" checked>
