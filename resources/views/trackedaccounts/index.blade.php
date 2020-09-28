@@ -6,15 +6,31 @@
             <h1 class="title">Cuentas habilitadas</h1>
             <div class="row">
                 <div class="col-md-8">
-                    <ul>
+                    <table class="table">
+                        <tr>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>Nombre</th>
+                            <th>Estado</th>
+                        </tr>
                         @foreach ($accounts as $a)
-                            <li>{{ $a->email }}&nbsp;
-                                @if($a->user_id)
-                                    (<a href="{{ route('trackedaccounts_show', ['id' => $a->user_id]) }}">{{ $a->user->userCard->getStateText() }}</a>)
+                            <tr>
+                                <td>{{ $a->email }}</td>
+                                <td>{{ $a->accountType->name }}</td>
+                                @if($a->user)
+                                <td>
+                                    <a href="{{ route('trackedaccounts_show', ['id' => $a->user_id]) }}">
+                                        {{ $a->user->name }}
+                                    </a>
+                                </td>
+                                <td>{{ $a->user->userCard->getStateText() }}</td>
+                                @else
+                                <td>-</td>
+                                <td>-</td>
                                 @endif
-                            </li>
+                            </tr>
                         @endforeach
-                        </ul>
+                    </table>
                 </div>
                 <div class="col-md-4">
                     <h2 class="title text-primary">Añadir cuenta</h2>
