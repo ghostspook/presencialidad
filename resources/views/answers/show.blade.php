@@ -16,7 +16,12 @@
                     </dl>
                 </div>
                 <div class="col-md-8">
-                    {{ $answer->answers_text }}
+                    <h3>Opciones seleccionadas</h3>
+                    <ul>
+                    @foreach ($answerInput as $key => $value )
+                        <li>{{ $value }}</li>
+                    @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

@@ -47,7 +47,10 @@ class AnswerController extends Controller
     public function show($id)
     {
         $a = Answer::find($id);
-        return view('answers.show', ['answer' => $a ]);
+        $answerInput = json_decode($a->answers_text, true);
+        unset($answerInput['_token']);
+
+        return view('answers.show', ['answer' => $a, 'answerInput' => $answerInput ]);
     }
 
     /**
