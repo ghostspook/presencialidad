@@ -5,7 +5,11 @@
         <div class="col-md-12">
             <ul>
             @foreach ($accounts as $a)
-                <li>{{ $a->email }}</li>
+                <li>{{ $a->email }}&nbsp;
+                    @if($a->user_id)
+                        ({{ $a->user->userCard->getStateText() }})
+                    @endif
+                </li>
             @endforeach
             </ul>
             <form method="POST" class="form" action="{{ route('trackedaccount_store') }}">

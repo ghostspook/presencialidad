@@ -22,4 +22,9 @@ class TrackedAccount extends Model
     {
         return $this->belongsTo('App\Models\AccountType');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
