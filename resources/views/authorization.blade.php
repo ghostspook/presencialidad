@@ -11,7 +11,7 @@
                 </p>
                 <h2 class="title text-primary">
                     {{ $a->expires_at->day }} / {{ $a->expires_at->shortLocaleMonth }} / {{ $a->expires_at->year }}<br>
-                    {{ $a->expires_at->format('h:i') }}
+                    {{ $a->expires_at->format('h:i A') }}
                 </h2>
             </div>
         </div>
