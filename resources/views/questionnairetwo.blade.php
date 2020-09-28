@@ -81,7 +81,7 @@
                         </label>
                     </div>
                 </div>
-                <h3 class="mt-5">¿Usted ha utilizado transporte público, avión o taxi a menos de dos sillas de distancia, en <strong>"contacto estrecho"</strong>, de una persona confirmada COVID-19 donde no se ha respetó el distanciamiento y el uso de mascarilla por más 15 minutos? <small>Por favor, reflexione y conteste con la más absoluta sinceridad</small></h3>
+                <h3 class="mt-5">¿Usted ha utilizado transporte público, avión o taxi a menos de dos sillas de distancia, en <strong>"contacto estrecho"</strong>?</h3>
                 <div class="ml-4">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question6" id="r11" value="Transporte público - descuido medidas" checked>
@@ -99,13 +99,13 @@
                 <h3 class="mt-5">¿Cuida habitualmente medidas de bioseguridad? (uso de mascarilla, lavado frecuente de manos, uso de alcohol o alcohol gel).</h3>
                 <div class="ml-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question7" id="r13" value="No cuida habitualmente medidas" checked>
+                        <input class="form-check-input" type="radio" name="question7" id="r13" value="no" checked>
                         <label class="form-check-label" for="r13">
                           Sí
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question7" id="r14" value="no">
+                        <input class="form-check-input" type="radio" name="question7" id="r14" value="No cuida habitualmente medidas">
                         <label class="form-check-label" for="r14">
                           No
                         </label>
