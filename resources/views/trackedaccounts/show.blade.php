@@ -10,8 +10,10 @@
                     <dl>
                         <dt>Status actual:</dt>
                         <dd>{{ $user->userCard->getStateText() }}</dd>
+                        @if($user->userCard->most_recent_negative_test_result_at)
                         <dt>Última prueba con resultado negativo:</dt>
                         <dd>{{ $user->userCard->most_recent_negative_test_result_at->toDateString() }}</dd>
+                        @endif
                     </dl>
                     <hr class="dotted">
                     <h3 class="title text-danger">Forzar transición</h3>
