@@ -5,13 +5,13 @@
         <div class="col-md-12">
             <div class="text-center">
                 {!! QrCode::size(200)->generate($a->code); !!}
-                <h1 class="title mt-5">Código QR de Autorización</h1>
+                <h3 class="title mt-5 text-primary">{{ $a->user->name }}</h3>
                 <p>
-                    Válido hasta el
+                    está autorizado para ingresar hasta
                 </p>
-                <h2>
-                    {{ $a->expires_at->day }} / {{ $a->expires_at->month }} / {{ $a->expires_at->year }}<br>
-                    {{ $a->expires_at->hour }}:{{ $a->expires_at->minute }}
+                <h2 class="title text-primary">
+                    {{ $a->expires_at->day }} / {{ $a->expires_at->shortLocaleMonth }} / {{ $a->expires_at->year }}<br>
+                    {{ $a->expires_at->format('h:i') }}
                 </h2>
             </div>
         </div>
