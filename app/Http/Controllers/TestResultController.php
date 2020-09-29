@@ -37,11 +37,11 @@ class TestResultController extends Controller
 
         $input = $request->all();
 
-        if ($input['test_type'] != '1' || $input['test_type'] != '2') {
+        if ($input['test_type'] != '1' && $input['test_type'] != '2') {
             return redirect()->back()->withErrors([ 'test_type' => 'Respuesta no permitida' ]);
         }
 
-        if ($input['result'] != '1' || $input['result'] != '2') {
+        if ($input['result'] != '1' && $input['result'] != '2') {
             return redirect()->back()->withErrors([ 'result' => 'Respuesta no permitida' ]);
         }
 
