@@ -9,7 +9,7 @@
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', '{{ env(GOOGLE_ANALYTICS_CODE) }}');
+            gtag('config', '{{ env("GOOGLE_ANALYTICS_CODE") }}');
         </script>
         @endif
         <meta charset="utf-8" />
