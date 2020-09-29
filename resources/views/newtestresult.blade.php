@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="test_date">Fecha de la prueba</label>
-                    <input type="date" class="form-control" id="test_date" name="test_date">
+                    <input type="date" class="form-control" id="test_date" name="test_date" required>
                 </div>
                 <input type="hidden" id="user_id" name="user_id" value="{{ $card->user_id }}">
                 <button type="submit" class="btn btn-primary">Submit</button>

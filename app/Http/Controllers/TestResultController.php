@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class TestResultController extends Controller
 {
@@ -27,6 +28,22 @@ class TestResultController extends Controller
 
     public function newTestResultSubmit(Request $request)
     {
+
+        $request->validate([
+            'test_type' => 'required',
+            'result' => 'required',
+            'test_date' => 'required|date',
+        ]);
+
+        $input = $request->all();
+
+        if ($input['test_type'] != '1' || $input['test_type'] != '2') {
+            return redirect()->back()->withErrors([ 'test_type' => 'Respuesta no permitida' ]);
+        }
+
+        if ($input['result'] != '1' || $input['result'] != '2') {
+            return redirect()->back()->withErrors([ 'result' => 'Respuesta no permitida' ]);
+        }
 
         $input = $request->all();
         $c = UserCard::firstWhere('user_id', $input['user_id']);
