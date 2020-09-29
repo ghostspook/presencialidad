@@ -65,6 +65,7 @@ class PCRTestController extends Controller
         else
         {
             $c->state = UserCard::MANDATORY_QUARANTINE;
+            $c->mandatorily_quarantined_at = $t->test_date;
         }
         $c->save();
 
