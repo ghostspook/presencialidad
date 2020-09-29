@@ -2,7 +2,7 @@
 
 @section('main-content')
     <div id="app" class="row">
-        <h1 class="table">Pruebas pendientes</h1>
+        <h1 class="title">Pruebas pendientes</h1>
         <div class="col-md-12">
             <table class="table">
                 <tr>
