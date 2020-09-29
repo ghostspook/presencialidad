@@ -22,6 +22,7 @@
                         <div class="form-group">
                             <label for="state">Transicionar al estado:</label>
                             <select class="form-control" id="state" name="state">
+                                <option value="1">Pendiente inscripción</option>
                                 <option value="2">Pendiente cuestionario 1</option>
                                 <option value="4">Pendiente Prueba rápida 2</option>
                                 <option value="5">Pendiente cuestionario 2</option>
