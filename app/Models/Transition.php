@@ -42,6 +42,10 @@ class Transition extends Model
                 return "Aislamiento preventivo";
             case UserCard::AUTHORIZED:
                 return "Autorizado/a";
+            case UserCard::PENDING_PCR_TEST:
+                return 'Pendiente prueba PCR';
+            case UserCard::MANDATORY_QUARANTINE:
+                return 'Cuarentena mandatoria';
             default:
                 return "?";
         }
