@@ -18,9 +18,11 @@
         <title>Protocolo de Retorno a la Presencialidad</title>
 
         <script src="{{ asset('/js/app.js') }}"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
         @stack('head-scripts')
         <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="{{ asset('/css/site.css') }}" />
         @stack('head-links')
     </head>

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UserCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class TrackedAccountController extends Controller
 {
@@ -108,5 +109,37 @@ class TrackedAccountController extends Controller
         ]);
 
         return redirect()->route('trackedaccounts_show', ['id' => $inputs['user_id']]);
+    }
+
+    public function dataTable(Request $request)
+    {
+        $accounts = TrackedAccount::all();
+        return Datatables::of($accounts)
+            ->addColumn('action', function($a) {
+                return '<a href="'.route('trackedaccounts_show', $a->id).'">'
+                    .$a->email.'</a>';
+            })
+            ->addColumn('type', function($a) {
+                return $a->getAccountTypeText();
+            })
+            ->addColumn('name', function($a) {
+                if ($a->user)
+                {
+                    return $a->user->name;
+                }
+                else{
+                    return '-';
+                }
+            })
+            ->addColumn('state', function($a) {
+                if ($a->user && $a->user->userCard)
+                {
+                    return $a->user->userCard->getStateText();
+                }
+                else{
+                    return '-';
+                }
+            })
+            ->make(true);
     }
 }

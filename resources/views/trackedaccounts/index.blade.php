@@ -6,30 +6,15 @@
             <h1 class="title">Cuentas habilitadas</h1>
             <div class="row">
                 <div class="col-md-9">
-                    <table class="table">
-                        <tr>
-                            <th>Email</th>
-                            <th>Tipo</th>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                        </tr>
-                        @foreach ($accounts as $a)
+                    <table class="table table-striped table-hover" id="myTable">
+                        <thead>
                             <tr>
-                                <td>{{ $a->email }}</td>
-                                <td>{{ $a->accountType->name }}</td>
-                                @if($a->user)
-                                <td>
-                                    <a href="{{ route('trackedaccounts_show', ['id' => $a->user_id]) }}">
-                                        {{ $a->user->name }}
-                                    </a>
-                                </td>
-                                <td>{{ $a->user->userCard->getStateText() }}</td>
-                                @else
-                                <td>-</td>
-                                <td>-</td>
-                                @endif
+                                <th>Email</th>
+                                <th>Tipo</th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
                             </tr>
-                        @endforeach
+                        </thead>
                     </table>
                 </div>
                 <div class="col-md-3">
@@ -55,3 +40,24 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script type="text/javascript">
+        $(function() {
+            $('#myTable').DataTable({
+                processing: true,
+                serverSide: false,
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                },
+                ajax: '{!! route('trackedaccounts_datatables') !!}',
+                columns: [
+                    { data: 'action', name: 'nombre' },
+                    { data: 'type', name: 'type' },
+                    { data: 'name', name: 'name' },
+                    { data: 'state', name: 'state' }
+                ]
+            });
+        });
+    </script>
+@endpush

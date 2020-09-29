@@ -27,4 +27,16 @@ class TrackedAccount extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function getAccountTypeText()
+    {
+        switch ($this->account_type_id) {
+            case 1:
+                return 'Alumno';
+            case 2:
+                return 'Profesor';
+            case 3:
+                return 'Administrativo';
+        }
+    }
 }
