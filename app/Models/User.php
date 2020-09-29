@@ -21,7 +21,8 @@ class User extends Authenticatable
         'email',
         'password',
         'provider',
-        'can_enter_test_results'
+        'can_enter_test_results',
+        'poses_risk_due_work_home_circumstance',
     ];
 
     /**

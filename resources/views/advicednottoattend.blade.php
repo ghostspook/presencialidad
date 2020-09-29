@@ -16,13 +16,33 @@
             </div>
             @enderror
 
+        @if(!$userCard->poses_risk_due_work_home_circumstance)
             <h1 class="title text-center text-danger">Por su salud se le recomienda no asistir</h1>
+        @else
+            <h1 class="title text-center text-danger">Por su salud y la de los demás se le recomienda no asistir</h1>
+        @endif
             <form method="POST" action="{{ route('submitDontFollowAdvice') }}">
                 @csrf
 
                 <div class="custom-control custom-checkbox mt-5">
-                    <input type="checkbox" class="custom-control-input" id="acceptance" name="acceptance" value="Tengo claro que no estoy obligado a asistir, pero asumo el riesgo y decido continuar con el proceso de retorno a la presencialidad.">
-                    <label class="custom-control-label" for="acceptance"> Tengo claro que no estoy obligado a asistir, pero asumo el riesgo y decido continuar con el proceso de retorno a la presencialidad.</label>
+                    @if(!$userCard->poses_risk_due_work_home_circumstance)
+                        <input type="checkbox" class="custom-control-input" id="acceptance" name="acceptance" value="Tengo claro que no estoy obligado a asistir, pero asumo el riesgo y decido continuar con el proceso de retorno a la presencialidad.">
+                    @else
+                        <input type="checkbox" class="custom-control-input" id="acceptance" name="acceptance" value="Tengo claro que no estoy obligado a asistir, pero asumo el riesgo y decido continuar con el proceso de retorno a la presencialidad. Además, me comprometo a realizarme (bajo mi propio costo) una prueba PCR cada mes.">
+                    @endif
+                @if(!$userCard->poses_risk_due_work_home_circumstance)
+                @else
+                @endif
+                    <label class="custom-control-label" for="acceptance">
+                        @if(!$userCard->poses_risk_due_work_home_circumstance)
+                            Tengo claro que no estoy obligado a asistir,
+                            pero asumo el riesgo y decido continuar con el proceso de retorno a la presencialidad.
+                        @else
+                            Tengo claro que no estoy obligado a asistir,
+                            pero asumo el riesgo y decido continuar con el proceso de retorno a la presencialidad.
+                            <strong class="text-danger">Además, me comprometo a realizarme (bajo mi propio costo) una prueba PCR cada mes.</strong>
+                        @endif
+                    </label>
                 </div>
 
                 <div class="row mt-5">

@@ -28,6 +28,7 @@ class QuestionnaireOneController extends Controller
         unset($inputs["_token"]);
         if (count($inputs) > 0)
         {
+            $userCard->poses_risk_due_work_home_circumstance = array_key_exists('circumstance_1', $inputs) || array_key_exists('circumstance_2', $inputs) ? 1 : 0;
             $userCard->state = UserCard::ADVICED_NOT_TO_ATTEND;
             $userCard->save();
             $t = Transition::create([ 'user_id' => $userCard->user_id,

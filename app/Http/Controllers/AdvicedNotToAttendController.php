@@ -12,7 +12,8 @@ class AdvicedNotToAttendController extends Controller
 {
     public function index()
     {
-        return view('advicednottoattend');
+        $userCard = Auth::user()->userCard;
+        return view('advicednottoattend', [ 'userCard' => $userCard ]);
     }
 
     public function submitDecisionToAttend(Request $request)
@@ -21,7 +22,14 @@ class AdvicedNotToAttendController extends Controller
         if (array_key_exists('acceptance', $inputs))
         {
             $userCard = Auth::user()->userCard;
-            $userCard->state = UserCard::PENDING_COVERED_TEST_1;
+            if (!$userCard->poses_risk_due_work_home_circumstance)
+            {
+                $userCard->state = UserCard::PENDING_COVERED_TEST_1;
+            }
+            else
+            {
+                $userCard->state = UserCard::PENDING_PCR_TEST;
+            }
             $userCard->save();
 
             $t = Transition::create([ 'user_id' => Auth::user()->id,

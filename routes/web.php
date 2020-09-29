@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\MandatoryQuarantineController;
+use App\Http\Controllers\PCRTestController;
 use App\Http\Controllers\QuestionnaireOneController;
 use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\QuestionnaireTwoController;
@@ -15,7 +17,9 @@ use App\Http\Controllers\TrackedAccountController;
 use App\Http\Middleware\AdvicedNotToAttend;
 use App\Http\Middleware\Authorized;
 use App\Http\Middleware\CanEnterTestResults;
+use App\Http\Middleware\MandatoryQuarantine;
 use App\Http\Middleware\PendingEnrollment;
+use App\Http\Middleware\PendingPCRTest;
 use App\Http\Middleware\PendingQuestionnaireOne;
 use App\Http\Middleware\PendingQuestionnaireTwo;
 use App\Http\Middleware\PreemptiveQuarantine;
@@ -56,5 +60,8 @@ Route::get('cuentas/{id}', [TrackedAccountController::class, 'show'])->name('tra
 Route::post('cuentas/store', [TrackedAccountController::class, 'store'])->name('trackedaccount_store')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('transitions/create', [TrackedAccountController::class, 'transitionToState'])->name('trackedaccount_transition')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('respuesta/{id}', [AnswerController::class, 'show'])->name('answer_show')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('pruebapcr', [PCRTestController::class, 'create'])->name('pcrtest_create')->middleware('auth:web', PendingPCRTest::class);
+Route::post('pruebapcr', [PCRTestController::class, 'store'])->name('pcrtest_store')->middleware('auth:web', PendingPCRTest::class);
+Route::get('cuarentenamandatoria', [MandatoryQuarantineController::class, 'index'])->name('mandatoryQuarantine')->middleware('auth:web', MandatoryQuarantine::class);
 
 

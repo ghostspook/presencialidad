@@ -32,6 +32,10 @@ class HomeController extends Controller
                 return view('noncoveredtest');
             case UserCard::PREEMPTIVE_QUARANTINE:
                 return redirect()->route('preemptiveQuarantine');
+            case UserCard::PENDING_PCR_TEST:
+                return redirect()->route('pcrtest_create');
+            case UserCard::MANDATORY_QUARANTINE:
+                return redirect()->route('mandatoryQuarantine');
             default:
                 return view('home');
         }
