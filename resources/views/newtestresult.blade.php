@@ -4,7 +4,7 @@
     <div id="app" class="row">
         <div class="col-md-12">
             <h1 class="title text-primary">{{ $card->user->name }}
-            <small class="text-muted"><em>Ingreso de nuevo resultado de prueva COVID-19</em></small></h1>
+            <small class="text-muted"><em>Ingreso de nuevo resultado de prueba COVID-19</em></small></h1>
             <form method="POST" class="form" action="{{ route('newtestresultsubmit') }}">
                 @csrf
 
