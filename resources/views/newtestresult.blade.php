@@ -3,14 +3,11 @@
 @section('main-content')
     <div id="app" class="row">
         <div class="col-md-12">
+            <h1 class="title text-primary">{{ $card->user->name }}
+            <small class="text-muted"><em>Ingreso de nuevo resultado de prueva COVID-19</em></small></h1>
             <form method="POST" class="form" action="{{ route('newtestresultsubmit') }}">
                 @csrf
 
-                <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter email" readonly name="name" value="{{ $card->user->name }}">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
                 <div class="form-group">
                     <label for="test_type">Tipo de Prueba</label>
                     <select class="form-control" id="test_type" name="test_type">
