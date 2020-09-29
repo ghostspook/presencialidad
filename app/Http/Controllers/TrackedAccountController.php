@@ -116,8 +116,11 @@ class TrackedAccountController extends Controller
         $accounts = TrackedAccount::all();
         return Datatables::of($accounts)
             ->addColumn('action', function($a) {
-                return '<a href="'.route('trackedaccounts_show', $a->id).'">'
+                if ($a->user){
+                    return '<a href="'.route('trackedaccounts_show', $a->user->id).'">'
                     .$a->email.'</a>';
+                }
+                return $a->email;
             })
             ->addColumn('type', function($a) {
                 return $a->getAccountTypeText();
