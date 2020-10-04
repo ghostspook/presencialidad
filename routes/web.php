@@ -16,6 +16,7 @@ use App\Http\Controllers\PreemptiveQuarantineController;
 use App\Http\Controllers\TrackedAccountController;
 use App\Http\Middleware\AdvicedNotToAttend;
 use App\Http\Middleware\Authorized;
+use App\Http\Middleware\CanAnswerQuestionnaire2;
 use App\Http\Middleware\CanEnterTestResults;
 use App\Http\Middleware\MandatoryQuarantine;
 use App\Http\Middleware\PendingEnrollment;
@@ -50,8 +51,8 @@ Route::post('submitdontfollowadvice', [ AdvicedNotToAttendController::class, 'su
 Route::get('pruebas/pendientes', [TestResultController::class, 'listUsersPendingTests'])->name('enterTestResults')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('usuarios/{userId}/resultados/nuevo', [TestResultController::class, 'newTestResult'])->name('newtestresult')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('usuarios/resultados/nuevo/submit', [ TestResultController::class, 'newTestResultSubmit'])->name('newtestresultsubmit')->middleware('auth:web', CanEnterTestResults::class);
-Route::get('cuestionardeautorizacion', [ QuestionnaireTwoController::class, 'index'])->name('questionnarieTwo')->middleware('auth:web', PendingQuestionnaireTwo::class);
-Route::post('questionnairetwosubmit', [ QuestionnaireTwoController::class, 'questionnaireSubmit'])->name('questionnaireTwoSubmit')->middleware('auth:web', PendingQuestionnaireTwo::class);
+Route::get('cuestionardeautorizacion', [ QuestionnaireTwoController::class, 'index'])->name('questionnarieTwo')->middleware('auth:web', CanAnswerQuestionnaire2::class);
+Route::post('questionnairetwosubmit', [ QuestionnaireTwoController::class, 'questionnaireSubmit'])->name('questionnaireTwoSubmit')->middleware('auth:web', CanAnswerQuestionnaire2::class);
 Route::get('autorizaciones/vigente', [ AuthorizationController::class, 'showValidAuthorization'])->name('showValidAuthorization')->middleware('auth:web', Authorized::class);
 Route::get('cuarentenapreventiva', [PreemptiveQuarantineController::class, 'index'])->name('preemptiveQuarantine')->middleware('auth:web', PreemptiveQuarantine::class);
 Route::get('cuentas', [TrackedAccountController::class, 'index'])->name('trackedaccounts_index')->middleware('auth:web', CanEnterTestResults::class);

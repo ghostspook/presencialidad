@@ -14,10 +14,6 @@ class QuestionnaireTwoController extends Controller
 {
     public function index()
     {
-        $userId = Auth::user()->id;
-        $userCard = UserCard::firstWhere('user_id', $userId);
-        if ($userCard->state != UserCard::PENDING_QUESTIONNAIRE_2)
-            return redirect('/');
         return view('questionnairetwo');
     }
 

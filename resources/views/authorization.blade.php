@@ -13,6 +13,7 @@
                     {{ $a->expires_at->day }} / {{ $a->expires_at->shortLocaleMonth }} / {{ $a->expires_at->year }}<br>
                     {{ $a->expires_at->format('h:i A') }}
                 </h2>
+                <a class="text-success" href="{{ route('questionnarieTwo') }}">Renovar autorización</a>
             </div>
         </div>
     </div>
