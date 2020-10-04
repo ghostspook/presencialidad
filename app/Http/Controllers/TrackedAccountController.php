@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\BatchTransitioner;
 use App\Models\AccountType;
 use App\Models\TrackedAccount;
 use App\Models\Transition;
@@ -20,6 +21,8 @@ class TrackedAccountController extends Controller
      */
     public function index()
     {
+        BatchTransitioner::HandleExpiredAuthorizations();
+
         $accounts = TrackedAccount::orderBy('email')->get();
         $accountTypes = AccountType::all();
 

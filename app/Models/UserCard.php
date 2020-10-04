@@ -50,6 +50,11 @@ class UserCard extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function authorization()
+    {
+        return $this->hasOne('App\Models\Authorization');
+    }
+
     public function getStateText()
     {
         switch ($this->state)
