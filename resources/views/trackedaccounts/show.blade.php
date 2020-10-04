@@ -38,18 +38,39 @@
                     @endif
                 </div>
                 <div class="col-md-8">
-                    <h3 class="title">Transiciones</h3>
-                    <ul>
-                        @foreach ($user->transitions as $t)
-                        <li>{{$t->created_at}} - {{ $t->getStateText() }} ({{ $t->actor}})
-                        @if($t->answer)
-                            <small>
-                                <a href="{{ route('answer_show', [ 'id' => $t->answer->id]) }}">Ver respuesta</a>
-                            </small>
-                        @endif
-                        </li>
-                        @endforeach
-                    </ul>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title">Transiciones</h3>
+                            <ul>
+                                @foreach ($user->transitions as $t)
+                                <li>{{$t->created_at}} - {{ $t->getStateText() }} ({{ $t->actor}})
+                                @if($t->answer)
+                                    <small>
+                                        <a href="{{ route('answer_show', [ 'id' => $t->answer->id]) }}">Ver respuesta</a>
+                                    </small>
+                                @endif
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title mt-3">Resultados de Pruebas</h3>
+                            <ul>
+                                @foreach ($user->testResults as $r)
+                                <li>
+                                    {{$r->test_date->format('yy-m-d')}} -
+                                    {{ $r->getTestTypeText() }} -
+                                    Resultado:
+                                    <span class="{{ ($r->result == 1) ? 'text-success' : 'text-danger' }}">
+                                        {{ $r->getResultText() }}
+                                    </span>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

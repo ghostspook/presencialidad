@@ -29,4 +29,30 @@ class TestResult extends Model
     protected $casts = [
         'test_date' => 'datetime',
     ];
+
+    function getTestTypeText()
+    {
+        switch ($this->test_type)
+        {
+            case 1:
+                return 'Prueba rápida';
+            case 2:
+                return 'PCR';
+            default:
+                return '?';
+        }
+    }
+
+    function getResultText()
+    {
+        switch ($this->result)
+        {
+            case 1:
+                return 'Negativo';
+            case 2:
+                return 'Positivo';
+            default:
+                return '?';
+        }
+    }
 }

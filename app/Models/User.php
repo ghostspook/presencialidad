@@ -53,4 +53,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Transition');
     }
+
+    public function testResults() {
+        return $this->hasMany('App\Models\TestResult');
+    }
 }
