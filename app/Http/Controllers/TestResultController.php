@@ -51,7 +51,8 @@ class TestResultController extends Controller
         TestResult::create(['user_id' => $input['user_id'],
                             'test_type' => $input['test_type'],
                             'result' => $input['result'],
-                            'test_date' => $input['test_date'] ]);
+                            'test_date' => $input['test_date'],
+                            'added_by' => Auth::user()->name ]);
 
         if ($input['test_type'] == 1) // PRUEBA RÁPIDA
         {

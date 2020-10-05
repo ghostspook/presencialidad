@@ -19,6 +19,7 @@ class TestResult extends Model
         'test_date',
         'test_type',
         'result',
+        'added_by'
     ];
 
     /**

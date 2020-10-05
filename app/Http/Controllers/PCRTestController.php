@@ -54,7 +54,8 @@ class PCRTestController extends Controller
                             'user_id' => Auth::user()->id,
                             'test_type' => 2, //PCR
                             'result' => $input['result'],
-                            'test_date' => $input['test_date']
+                            'test_date' => $input['test_date'],
+                            'added_by' => Auth::user()->name ]
         ]);
 
         if ($t->result == 1) // NEGATIVO
