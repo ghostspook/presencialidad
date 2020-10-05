@@ -76,12 +76,9 @@
     </div>
     @yield('after-main-content')
 
-
-    <!-- Scripts adicionales publicados por vistas bajo demanda -->
-    @stack('js')
-
     </body>
     <script src="{{ asset('/js/app.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-
+    <!-- Scripts adicionales publicados por vistas bajo demanda -->
+    @stack('js')
 </html>
