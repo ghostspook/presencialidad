@@ -32,5 +32,19 @@ class DatabaseSeeder extends Seeder
         \App\Models\TrackedAccount::create([ 'email' => 'hcadena@ide.edu.ec', 'account_type_id' => 3]);
         \App\Models\TrackedAccount::create([ 'email' => 'screspo@ide.edu.ec', 'account_type_id' => 3]);
 
+        \App\Models\Group::create([ 'name' => 'MDE 2018 Guayaquil P1' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2018 Quito P1' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2018 Guayaquil P2' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2018 Quito P2' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2019 Guayaquil P1' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2019 Quito P1' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2019 Guayaquil P2' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2019 Quito P2' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2020 Guayaquil P1' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2020 Quito P1' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2020 Guayaquil P2' ]);
+        \App\Models\Group::create([ 'name' => 'MDE 2020 Quito P2' ]);
+        \App\Models\Group::create([ 'name' => 'In-Co Bananeros' ]);
+        \App\Models\Group::create([ 'name' => 'In-Co Auacultura' ]);
     }
 }

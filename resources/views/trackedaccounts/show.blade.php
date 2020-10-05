@@ -10,6 +10,14 @@
                     <dl>
                         <dt>Status actual:</dt>
                         <dd>{{ $user->userCard->getStateText() }}</dd>
+                        <dt>Grupo:</dt>
+                        <dd>
+                            @if($user->trackedAccount->group_id)
+                            {{ $user->trackedAccount->group->name }}
+                            @else
+                            -
+                            @endif
+                        </dd>
                         @if($user->userCard->most_recent_negative_test_result_at)
                         <dt>Última prueba con resultado negativo:</dt>
                         <dd>{{ $user->userCard->most_recent_negative_test_result_at->toDateString() }}</dd>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\BatchTransitioner;
 use App\Models\AccountType;
+use App\Models\Group;
 use App\Models\TrackedAccount;
 use App\Models\Transition;
 use App\Models\User;
@@ -25,8 +26,13 @@ class TrackedAccountController extends Controller
 
         $accounts = TrackedAccount::orderBy('email')->get();
         $accountTypes = AccountType::all();
+        $groups = Group::all();
 
-        return view('trackedaccounts.index', ['accounts' => $accounts, 'accountTypes' => $accountTypes]);
+        return view('trackedaccounts.index', [
+                'accounts' => $accounts,
+                'accountTypes' => $accountTypes,
+                'groups' => $groups,
+            ]);
     }
 
     /**
@@ -48,7 +54,11 @@ class TrackedAccountController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        TrackedAccount::create([ 'email' => $inputs['email'], 'account_type_id' => $inputs['account_type_id']]);
+        TrackedAccount::create([
+                'email' => $inputs['email'],
+                'account_type_id' => $inputs['account_type_id'],
+                'group_id' => $inputs['group_id'] == '-' ? null : $inputs['group_id'],
+            ]);
         return redirect()->route('trackedaccounts_index');
     }
 
@@ -132,6 +142,15 @@ class TrackedAccountController extends Controller
                 if ($a->user)
                 {
                     return $a->user->name;
+                }
+                else{
+                    return '-';
+                }
+            })
+            ->addColumn('groupname', function($a) {
+                if ($a->group_id)
+                {
+                    return $a->group->name;
                 }
                 else{
                     return '-';

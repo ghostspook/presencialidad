@@ -15,7 +15,8 @@ class TrackedAccount extends Model
     protected $fillable = [
         'email',
         'account_type_id',
-        'user_id'
+        'user_id',
+        'group_id',
     ];
 
     public function accountType()
@@ -38,5 +39,10 @@ class TrackedAccount extends Model
             case 3:
                 return 'Administrativo';
         }
+    }
+
+    public function group()
+    {
+        return $this->belongsTo('App\Models\Group');
     }
 }

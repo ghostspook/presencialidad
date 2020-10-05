@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function testResults() {
         return $this->hasMany('App\Models\TestResult');
     }
+
+    public function trackedAccount() {
+        return $this->HasOne('App\Models\TrackedAccount');
+    }
 }

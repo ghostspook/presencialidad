@@ -5,20 +5,23 @@
         <div class="col-md-12">
             <h1 class="title">Cuentas habilitadas</h1>
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <table class="table table-striped table-hover" id="myTable">
                         <thead>
                             <tr>
                                 <th>Email</th>
                                 <th>Tipo</th>
                                 <th>Nombre</th>
+                                <th>Grupo</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
                     </table>
                 </div>
-                <div class="col-md-3">
-                    <h2 class="title text-primary">Añadir cuenta</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h2 class="title text-primary mt-5">Añadir cuenta</h2>
                     <form method="POST" class="form" action="{{ route('trackedaccount_store') }}">
                         @csrf
                         <div class="form-control-group">
@@ -32,9 +35,21 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="group_id">Grupo:</label>
+                                <select class="form-control" id="group_id" name="group_id">
+                                    <option value="-">Ninguno</option>
+                                    @foreach ($groups as $group)
+                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Añadir</button>
                     </form>
+                </div>
+                <div class="col-md-8">
+
                 </div>
             </div>
         </div>
@@ -55,6 +70,7 @@
                     { data: 'action', name: 'nombre' },
                     { data: 'type', name: 'type' },
                     { data: 'name', name: 'name' },
+                    { data: 'groupname', name: 'groupname' },
                     { data: 'state', name: 'state' }
                 ]
             });
