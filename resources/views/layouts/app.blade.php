@@ -17,8 +17,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Protocolo de Retorno a la Presencialidad</title>
 
-        <script src="{{ asset('/js/app.js') }}"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
         @stack('head-scripts')
         <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
@@ -53,6 +51,9 @@
                                 {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu">
+                                    @if (Auth::user()->can_scan_qr)
+                                    <a class="dropdown-item" href="{{ route('qrScanner') }}">Scan QR</a>
+                                    @endif
                                     @if (Auth::user()->can_enter_test_results)
                                         <a class="dropdown-item" href="{{ route('enterTestResults') }}">Ingresar Resultados</a>
                                         <a class="dropdown-item" href="{{ route('trackedaccounts_index') }}">Cuentas habilitadas</a>
@@ -80,4 +81,7 @@
     @stack('js')
 
     </body>
+    <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
 </html>

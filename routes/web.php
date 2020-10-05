@@ -13,11 +13,13 @@ use App\Http\Controllers\QuestionnaireOneController;
 use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\QuestionnaireTwoController;
 use App\Http\Controllers\PreemptiveQuarantineController;
+use App\Http\Controllers\QrScannerController;
 use App\Http\Controllers\TrackedAccountController;
 use App\Http\Middleware\AdvicedNotToAttend;
 use App\Http\Middleware\Authorized;
 use App\Http\Middleware\CanAnswerQuestionnaire2;
 use App\Http\Middleware\CanEnterTestResults;
+use App\Http\Middleware\CanScanQr;
 use App\Http\Middleware\MandatoryQuarantine;
 use App\Http\Middleware\PendingEnrollment;
 use App\Http\Middleware\PendingPCRTest;
@@ -64,5 +66,6 @@ Route::get('respuesta/{id}', [AnswerController::class, 'show'])->name('answer_sh
 Route::get('pruebapcr', [PCRTestController::class, 'create'])->name('pcrtest_create')->middleware('auth:web', PendingPCRTest::class);
 Route::post('pruebapcr', [PCRTestController::class, 'store'])->name('pcrtest_store')->middleware('auth:web', PendingPCRTest::class);
 Route::get('cuarentenamandatoria', [MandatoryQuarantineController::class, 'index'])->name('mandatoryQuarantine')->middleware('auth:web', MandatoryQuarantine::class);
+Route::get('qrscanner', [QrScannerController::class, 'index'])->name('qrScanner')->middleware('auth:web', CanScanQr::class);
 
 
