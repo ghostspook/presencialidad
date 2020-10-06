@@ -18,6 +18,8 @@
                             -
                             @endif
                         </dd>
+                        <dt>Pruebas requeridas al inicio:</dt>
+                        <dd>{{ $user->userCard->required_initial_test_count }}</dd>
                         @if($user->userCard->most_recent_negative_test_result_at)
                         <dt>Última prueba con resultado negativo:</dt>
                         <dd>{{ $user->userCard->most_recent_negative_test_result_at->toDateString() }}</dd>
