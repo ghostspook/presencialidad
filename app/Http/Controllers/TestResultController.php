@@ -61,7 +61,12 @@ class TestResultController extends Controller
                 $c->most_recent_negative_test_result_at = $input['test_date'];
                 if ($c->state == UserCard::PENDING_COVERED_TEST_1)
                 {
-                    $c->state = UserCard::PENDING_COVERED_TEST_2;
+                    if ($c->required_initial_test_count == 2)
+                    {
+                        $c->state = UserCard::PENDING_COVERED_TEST_2;
+                    } else {
+                        $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
+                    }
                 } elseif ($c->state == UserCard::PENDING_COVERED_TEST_2) {
                     $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
                 } elseif ($c->state == UserCard::PENDING_NON_COVERED_TEST) {

@@ -32,6 +32,7 @@ class UserCard extends Model
         'mandatorily_quarantined_at',
         'preemptively_quarantined_at',
         'state',
+        'required_initial_test_count',
     ];
 
     /**

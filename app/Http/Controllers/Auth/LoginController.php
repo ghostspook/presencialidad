@@ -52,6 +52,7 @@ class LoginController extends Controller
             $user_card = UserCard::create ([
                 'user_id' => $user->id,
                 'days_authorazation_valid' => $account->accountType->default_days_authorization_valid,
+                'required_initial_test_count' => $account->group_id ? $account->group->default_required_initial_test_count : 2,
                 'state' => UserCard::PENDING_ENROLLMENT,
             ]);
 
