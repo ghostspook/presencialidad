@@ -76,6 +76,7 @@
                                     <span class="{{ ($r->result == 1) ? 'text-success' : 'text-danger' }}">
                                         {{ $r->getResultText() }}
                                     </span>
+                                    - <a href="{{ route('testresults_show', [ 'id' => $r->id ]) }}">Ver resultado</a>
                                 </li>
                                 @endforeach
                             </ul>

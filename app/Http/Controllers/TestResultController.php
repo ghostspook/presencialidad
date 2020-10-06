@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TestResult;
+use App\Models\TestResultFile;
 use App\Models\Transition;
 use App\Models\UserCard;
 use App\Models\User;
@@ -10,7 +11,7 @@ use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PHPUnit\Framework\MockObject\Stub\ReturnReference;
+use Illuminate\Support\Facades\Storage;
 
 class TestResultController extends Controller
 {
@@ -103,5 +104,46 @@ class TestResultController extends Controller
         }
 
         return redirect()->route('enterTestResults');
+    }
+
+    function show($id)
+    {
+        $testResult = TestResult::find($id);
+        return view('testresults.show', [ 'tr' => $testResult ]);
+    }
+
+    function uploadFile(Request $request)
+    {
+        $inputs = $request->all();
+        $file = $request->file('test_file');
+
+        $path = 'test-results/'.time().'-tr-'.$inputs['id'];
+
+        $t = Storage::disk('do_spaces')->put($path , file_get_contents($file));
+
+        TestResultFile::create([
+            'test_result_id' => $inputs['id'],
+            'filename' => $file->getClientOriginalName(),
+            'mime_type' => $file->getClientMimeType(),
+            'created_by' => Auth::user()->name,
+            'path' => $path
+        ]);
+
+        return redirect()->route('testresults_show', [ 'id' => $inputs['id'] ]);
+    }
+
+    function downloadFile($id)
+    {
+        $f = TestResult::find($id)->file;
+        $contents = Storage::disk('do_spaces')->get($f->path);
+
+        $headers = [
+            'Content-Type' => $f->mime_type,
+            'Content-Description' => 'File Transfer',
+            'Content-Disposition' => "attachment; filename=".$f->filename,
+            'filename'=> $f->filename,
+        ];
+
+        return response($contents, 200, $headers);
     }
 }

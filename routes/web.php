@@ -60,6 +60,9 @@ Route::get('cuarentenapreventiva', [PreemptiveQuarantineController::class, 'inde
 Route::get('cuentas', [TrackedAccountController::class, 'index'])->name('trackedaccounts_index')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('cuentas/datatables', [TrackedAccountController::class, 'dataTable'])->name('trackedaccounts_datatables')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('cuentas/{id}', [TrackedAccountController::class, 'show'])->name('trackedaccounts_show')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('pruebas/{id}', [TestResultController::class, 'show'])->name('testresults_show')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('pruebas/{id}/download', [TestResultController::class, 'downloadFile'])->name('testresults_download')->middleware('auth:web', CanEnterTestResults::class);
+Route::post('pruebas/uploadfile', [TestResultController::class, 'uploadFile'])->name('testresults_uploadfile')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('cuentas/store', [TrackedAccountController::class, 'store'])->name('trackedaccount_store')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('transitions/create', [TrackedAccountController::class, 'transitionToState'])->name('trackedaccount_transition')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('respuesta/{id}', [AnswerController::class, 'show'])->name('answer_show')->middleware('auth:web', CanEnterTestResults::class);

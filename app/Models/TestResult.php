@@ -56,4 +56,14 @@ class TestResult extends Model
                 return '?';
         }
     }
+
+    function user()
+    {
+        return $this->belongsTo('\App\Models\User');
+    }
+
+    function file()
+    {
+        return $this->hasOne('\App\Models\TestResultFile');
+    }
 }
