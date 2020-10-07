@@ -4,20 +4,38 @@
     <div id="app" class="row">
         <h1 class="title">Pruebas pendientes</h1>
         <div class="col-md-12">
-            <table class="table">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Estado</th>
-                </tr>
-            @foreach ($cards as $card)
-                <tr>
-                    <td><a href="{{ route('newtestresult', $card->user_id) }}">{{ $card->user->name }}</a></td>
-                    <td>{{ $card->user->email }}</td>
-                    <td>{{ $card->getStateText() }}</td>
-                </tr>
-            @endforeach
+            <table class="table table-striped table-hover" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Grupo</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
             </table>
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script type="text/javascript">
+        $(function() {
+            $('#myTable').DataTable({
+                processing: true,
+                serverSide: false,
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                },
+                ajax: '{!! route('pendingTests_datatables') !!}',
+                columns: [
+                    { data: 'action', name: 'nombre' },
+                    { data: 'email', name: 'email' },
+                    { data: 'group_name', name: 'group_name' },
+                    { data: 'state', name: 'state' },
+                ]
+            });
+        });
+    </script>
+@endpush
+

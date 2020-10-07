@@ -54,6 +54,7 @@ Route::get('resultados/{id}/descargar', [ MyTestResultController::class, 'downlo
 Route::get('recomendacion', [AdvicedNotToAttendController::class, 'index'])->name('advicedNotToAttend')->middleware('auth:web', AdvicedNotToAttend::class);
 Route::post('submitdontfollowadvice', [ AdvicedNotToAttendController::class, 'submitDecisionToAttend'])->name('submitDontFollowAdvice')->middleware('auth:web', AdvicedNotToAttend::class);
 Route::get('pruebas/pendientes', [TestResultController::class, 'listUsersPendingTests'])->name('enterTestResults')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('pruebas/pendientes/datatables', [TestResultController::class, 'dataTable'])->name('pendingTests_datatables')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('usuarios/{userId}/resultados/nuevo', [TestResultController::class, 'newTestResult'])->name('newtestresult')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('usuarios/resultados/nuevo/submit', [ TestResultController::class, 'newTestResultSubmit'])->name('newtestresultsubmit')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('cuestionardeautorizacion', [ QuestionnaireTwoController::class, 'index'])->name('questionnarieTwo')->middleware('auth:web', CanAnswerQuestionnaire2::class);

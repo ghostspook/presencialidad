@@ -12,6 +12,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class TestResultController extends Controller
 {
@@ -19,6 +20,31 @@ class TestResultController extends Controller
     {
         $cards = UserCard::where('state', UserCard::PENDING_COVERED_TEST_1)->orWhere('state', UserCard::PENDING_COVERED_TEST_2)->get();
         return view('userspendingtests', ['cards' => $cards]);
+    }
+
+    public function dataTable(Request $request)
+    {
+        $cards = UserCard::where('state', UserCard::PENDING_COVERED_TEST_1)->orWhere('state', UserCard::PENDING_COVERED_TEST_2)->get();
+
+        return Datatables::of($cards)
+            ->addColumn('action', function($c) {
+                return '<a href="'.route('newtestresult', $c->user_id).'">'
+                    .$c->user->name.'</a>';
+            })
+            ->addColumn('email', function($c) {
+                return $c->user->email;
+            })
+            ->addColumn('group_name', function($c) {
+                if ($c->user->trackedAccount->group_id)
+                {
+                    return $c->user->trackedAccount->group->name;
+                }
+                return '-';
+            })
+            ->addColumn('state', function($c) {
+                return $c->user->userCard->getStateText();
+            })
+            ->make(true);
     }
 
     public function newTestResult($userId)
