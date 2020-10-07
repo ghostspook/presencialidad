@@ -43,6 +43,13 @@
                         <li class="nav-item">
                         <a class="nav-link" href="/">Inicio</a>
                         </li>
+                    @auth
+                        @if(Auth::user()->testResults->count() > 0)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('myTestResults_index') }}">Mis Resultados</a>
+                        </li>
+                        @endif
+                    @endauth
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         @auth
