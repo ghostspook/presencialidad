@@ -4,7 +4,7 @@
     <div id="app" class="row">
         <div class="col-md-12">
             <h1 class="title text-primary">Mis resultados</h1>
-            <table class="table">
+            <table class="table mt-5">
                 <thead>
                     <tr>
                         <th>Fecha</th>
