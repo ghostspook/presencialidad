@@ -110,24 +110,23 @@ class TestResultController extends Controller
                 }
             }
 
-            if ($input['test_type'] == 2) // PRUEBA PCR
+        } else { // PRUEBA PCR
+            if($input['result'] == 1) // NEGATIVO
             {
-                if($input['result'] == 1) // NEGATIVO
-                {
-                    $c->most_recent_negative_test_result_at = $input['test_date'];
-                    $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
-                } else // PRUEBA SALIÓ POSITIVA
-                {
-                    $c->state = UserCard::MANDATORY_QUARANTINE;
-                    $c->mandatorily_quarantined_at = $input['test_date'];
-                }
+                $c->most_recent_negative_test_result_at = $input['test_date'];
+                $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
+            } else // PRUEBA SALIÓ POSITIVA
+            {
+                $c->state = UserCard::MANDATORY_QUARANTINE;
+                $c->mandatorily_quarantined_at = $input['test_date'];
             }
-            $c->save();
-
-            Transition::create([ 'user_id' => $c->user_id,
-                                 'state' => $c->state,
-                                 'actor' => $c->user->name ]);
         }
+
+        $c->save();
+
+        Transition::create([ 'user_id' => $c->user_id,
+                             'state' => $c->state,
+                             'actor' => $c->user->name ]);
 
         return redirect()->route('enterTestResults');
     }
