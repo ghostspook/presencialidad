@@ -8,12 +8,21 @@
                 <dt>Nombre</dt>
                 <dd>{{ $tr->user->name }}</dd>
                 <dt>Fecha</dt>
-                <dd>{{ $tr->test_date->format('yy-m-d') }}</dd>
+                <dd>{{ $tr->test_date->format('d-M-yy') }}</dd>
                 <dt>Resultado</dt>
                 <dd>
                     <span class="{{ ($tr->result == 1) ? 'text-success' : 'text-danger' }}">
                         {{ $tr->getResultText() }}
                     </span>
+                </dd>
+                <dt>Ingresado por</dt>
+                <dd>
+                    @if ($tr->added_by)
+                    {{ $tr->added_by }}
+                    @else
+                    <em>desconocido</em>
+                    @endif
+                    ({{ $tr->created_at->format('d-M-yy') }})
                 </dd>
             </dl>
             <div class="row">
