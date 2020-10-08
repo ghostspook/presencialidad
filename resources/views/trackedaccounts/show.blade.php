@@ -52,7 +52,7 @@
                         <div class="col-md-12">
                             <h3 class="title">Transiciones</h3>
                             <ul>
-                                @foreach ($user->transitions as $t)
+                                @foreach ($user->transitions->sortBy('id') as $t)
                                 <li>{{$t->created_at}} - {{ $t->getStateText() }} ({{ $t->actor}})
                                 @if($t->answer)
                                     <small>
@@ -68,7 +68,7 @@
                         <div class="col-md-12">
                             <h3 class="title mt-3">Resultados de Pruebas</h3>
                             <ul>
-                                @foreach ($user->testResults as $r)
+                                @foreach ($user->testResults->sortBy('test_date') as $r)
                                 <li>
                                     {{$r->test_date->format('yy-m-d')}} -
                                     {{ $r->getTestTypeText() }} -
