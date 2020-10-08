@@ -102,11 +102,11 @@ class TestResultController extends Controller
             }
             else // PRUEBA SALIÓ POSITIVA
             {
-                if ($c->state == UserCard::PENDING_COVERED_TEST_1 || $c->state == UserCard::PENDING_COVERED_TEST_2) {
-                    $c->state = UserCard::PENDING_PCR_TEST;
-                } elseif ($c->state == UserCard::PENDING_NON_COVERED_TEST) {
+                if ($c->state == UserCard::PENDING_NON_COVERED_TEST) {
                     $c->state = UserCard::MANDATORY_QUARANTINE;
                     $c->mandatorily_quarantined_at = $input['test_date'];
+                } else {
+                    $c->state = UserCard::PENDING_PCR_TEST;
                 }
             }
 
