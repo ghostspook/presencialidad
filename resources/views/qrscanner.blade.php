@@ -3,7 +3,7 @@
 @section('main-content')
 <div id="app">
     <div class="row">
-        Scanner goes here
+        <example-component></example-component>
     </div>
 </div>
 
