@@ -32,7 +32,7 @@ class Authorization extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function authorizations()
+    public function qrScans()
     {
         return $this->hasMany('App\Models\QrScan');
     }

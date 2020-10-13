@@ -10,8 +10,9 @@ class QrScan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'authorization_id',
+        'authorized',
+        'scanned_by',
     ];
 
     public function authorization() {

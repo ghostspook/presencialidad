@@ -7,6 +7,7 @@
 
                     <div class="card-body">
                         <qrcode-stream @decode="onDecode"></qrcode-stream>
+                        <span>{{ message }}</span>
                     </div>
                 </div>
             </div>
@@ -16,17 +17,39 @@
 
 <script>
     import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
+    import api from '../services/qrScan.js'
 
     export default {
         components: {
             QrcodeStream
         },
+        data() {
+            return {
+                message: ''
+            }
+        },
         mounted() {
             console.log('Component mounted.')
         },
         methods: {
-            onDecode(decodedString) {
-                console.log(decodedString)
+            async onDecode(decodedString) {
+                if (decodedString != '') {
+                    this.message = "Leyendo..."
+                    try {
+                        var response = await api.checkAuthorization(decodedString)
+                        console.log(decodedString)
+                        if (response.status == "1") {
+                            this.message = 'Autorizado: ' + response.name
+                        } else if (response.status == "3") {
+                            this.message = 'Autorización expirada: ' + response.name
+                        } else {
+                            this.message = 'Código no válido'
+                        }
+                    }
+                    catch (e) {
+                        console.log(e)
+                    }
+                }
             }
         }
     }

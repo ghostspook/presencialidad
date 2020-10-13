@@ -74,5 +74,6 @@ Route::get('pruebapcr', [PCRTestController::class, 'create'])->name('pcrtest_cre
 Route::post('pruebapcr', [PCRTestController::class, 'store'])->name('pcrtest_store')->middleware('auth:web', PendingPCRTest::class);
 Route::get('cuarentenamandatoria', [MandatoryQuarantineController::class, 'index'])->name('mandatoryQuarantine')->middleware('auth:web', MandatoryQuarantine::class);
 Route::get('qrscanner', [QrScannerController::class, 'index'])->name('qrScanner')->middleware('auth:web', CanScanQr::class);
+Route::get('qrscanner/checkauthorization/{code}', [QrScannerController::class, 'checkAuthorization'])->name('checkAuthorization')->middleware('auth:web', CanScanQr::class);
 
 
