@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <div id="app" class="row">
+    <div  class="row">
         <h1 class="title">Pruebas pendientes</h1>
         <div class="col-md-12">
             <table class="table table-striped table-hover" id="myTable">

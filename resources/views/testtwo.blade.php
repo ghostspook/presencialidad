@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-<div id="app" class="row">
+<div  class="row">
     <div class="col-md-12">
         <div class="text-center">
             <img src="/images/lab-test.png">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <div id="app" class="row">
+    <div  class="row">
         <div class="col-md-12">
             <h1 class="title text-primary text-center">Ingrese el resultado de su prueba PCR para COVID-19</h1>
             <div class="text-center mt-5">
