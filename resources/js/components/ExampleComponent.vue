@@ -3,11 +3,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Qr Scanner</div>
+                    <div class="card-header"><span :class="messageClass">{{ message }}</span></div>
 
                     <div class="card-body">
                         <qrcode-stream @decode="onDecode"></qrcode-stream>
-                        <span>{{ message }}</span>
                     </div>
                 </div>
             </div>
@@ -25,7 +24,8 @@
         },
         data() {
             return {
-                message: ''
+                message: 'Qr Scanner',
+                messageClass: 'text-primary'
             }
         },
         mounted() {
@@ -35,15 +35,16 @@
             async onDecode(decodedString) {
                 if (decodedString != '') {
                     this.message = "Leyendo..."
+                    this.messageClass = 'text-primary'
                     try {
                         var response = await api.checkAuthorization(decodedString)
                         console.log(decodedString)
                         if (response.status == "1") {
                             this.message = 'Autorizado: ' + response.name
-                        } else if (response.status == "3") {
-                            this.message = 'Autorización expirada: ' + response.name
+                            this.messageClass = 'text-success'
                         } else {
-                            this.message = 'Código no válido'
+                            this.message = response.name + ' - ' + response.message
+                            this.messageClass = 'text-danger'
                         }
                     }
                     catch (e) {
