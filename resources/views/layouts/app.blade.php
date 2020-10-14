@@ -65,6 +65,9 @@
                                         <a class="dropdown-item" href="{{ route('enterTestResults') }}">Ingresar Resultados</a>
                                         <a class="dropdown-item" href="{{ route('trackedaccounts_index') }}">Cuentas habilitadas</a>
                                     @endif
+                                    @if (Auth::user()->can_read_access_report)
+                                    <a class="dropdown-item" href="{{ route('accessReport_index') }}">Reporte de Accesos</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a>
                                 </div>
                             </li>

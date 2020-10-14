@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccessReportController;
 use App\Http\Controllers\AdvicedNotToAttendController;
 use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ use App\Http\Middleware\AdvicedNotToAttend;
 use App\Http\Middleware\Authorized;
 use App\Http\Middleware\CanAnswerQuestionnaire2;
 use App\Http\Middleware\CanEnterTestResults;
+use App\Http\Middleware\CanReadAccessReport;
 use App\Http\Middleware\CanScanQr;
 use App\Http\Middleware\MandatoryQuarantine;
 use App\Http\Middleware\PendingEnrollment;
@@ -75,5 +77,9 @@ Route::post('pruebapcr', [PCRTestController::class, 'store'])->name('pcrtest_sto
 Route::get('cuarentenamandatoria', [MandatoryQuarantineController::class, 'index'])->name('mandatoryQuarantine')->middleware('auth:web', MandatoryQuarantine::class);
 Route::get('qrscanner', [QrScannerController::class, 'index'])->name('qrScanner')->middleware('auth:web', CanScanQr::class);
 Route::get('qrscanner/checkauthorization/{code}', [QrScannerController::class, 'checkAuthorization'])->name('checkAuthorization')->middleware('auth:web', CanScanQr::class);
+Route::get('controldeacceso', [AccessReportController::class, 'index'])->name('accessReport_index')->middleware('auth:web', CanReadAccessReport::class);
+Route::post('controldeacceso/query', [AccessReportController::class, 'postQueryCriteria'])->name('accessReport_query')->middleware('auth:web', CanReadAccessReport::class);
+Route::get('controldeacceso/{date}', [AccessReportController::class, 'showReport'])->name('accessReport_showReport')->middleware('auth:web', CanReadAccessReport::class);
+Route::get('controldeacceso/{date}/datatables', [AccessReportController::class, 'dataTable'])->name('accessReport_datatables')->middleware('auth:web', CanEnterTestResults::class);
 
 
