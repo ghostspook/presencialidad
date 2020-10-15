@@ -80,6 +80,6 @@ Route::get('qrscanner/checkauthorization/{code}', [QrScannerController::class, '
 Route::get('controldeacceso', [AccessReportController::class, 'index'])->name('accessReport_index')->middleware('auth:web', CanReadAccessReport::class);
 Route::post('controldeacceso/query', [AccessReportController::class, 'postQueryCriteria'])->name('accessReport_query')->middleware('auth:web', CanReadAccessReport::class);
 Route::get('controldeacceso/{date}', [AccessReportController::class, 'showReport'])->name('accessReport_showReport')->middleware('auth:web', CanReadAccessReport::class);
-Route::get('controldeacceso/{date}/datatables', [AccessReportController::class, 'dataTable'])->name('accessReport_datatables')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('controldeacceso/{date}/datatables', [AccessReportController::class, 'dataTable'])->name('accessReport_datatables')->middleware('auth:web', CanReadAccessReport::class);
 
 
