@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\QrScan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -10,7 +11,8 @@ class AccessReportController extends Controller
 {
     function index()
     {
-        return view('accessreport.index');
+        $date = Carbon::now()->format('yy-m-d');
+        return redirect()->route('accessReport_showReport', $date);
     }
 
 
