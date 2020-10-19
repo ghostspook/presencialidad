@@ -40,6 +40,10 @@
                                 <option value="11">Cuarentena preventiva</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label v-for="comment_text">Comentarios <small class="text-danger">(requerido)</small></label>
+                            <textarea class="form-control" id="comment_text" name="comment_text" required></textarea>
+                        </div>
                         <input type="hidden" value="{{ $user->id }}" name="user_id">
                         <button type="submit" class="btn btn-danger">Transicionar</button>
                     </form>

@@ -7,10 +7,12 @@ use App\Models\AccountType;
 use App\Models\Group;
 use App\Models\TrackedAccount;
 use App\Models\Transition;
+use App\Models\TransitionComment;
 use App\Models\User;
 use App\Models\UserCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
 
 class TrackedAccountController extends Controller
@@ -110,6 +112,14 @@ class TrackedAccountController extends Controller
 
     public function transitionToState(Request $request)
     {
+        $request->validate([
+            'state' => [
+                'required',
+                Rule::in([ 1, 2, 4, 5, 10, 11 ]),
+            ],
+            'comment_text' => 'required',
+        ]);
+
         $inputs = $request->all();
 
         $c = UserCard::firstWhere('user_id', $inputs['user_id']);
@@ -119,6 +129,10 @@ class TrackedAccountController extends Controller
             'user_id' => $inputs['user_id'],
             'state' => $inputs['state'],
             'actor' => Auth::user()->name,
+        ]);
+        TransitionComment::create([
+            'transition_id' => $t->id,
+            'comment_text' => $inputs['comment_text']
         ]);
 
         return redirect()->route('trackedaccounts_show', ['id' => $inputs['user_id']]);

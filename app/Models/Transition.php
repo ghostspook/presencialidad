@@ -60,4 +60,9 @@ class Transition extends Model
     {
         return $this->hasOne('App\Models\Answer');
     }
+
+    public function comments()
+    {
+        return $this->hasOne('App\Models\TransitionComment');
+    }
 }
