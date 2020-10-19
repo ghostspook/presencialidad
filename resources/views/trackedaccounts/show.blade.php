@@ -57,11 +57,19 @@
                             <h3 class="title">Transiciones</h3>
                             <ul>
                                 @foreach ($user->transitions->sortBy('id') as $t)
-                                <li>{{$t->created_at}} - {{ $t->getStateText() }} ({{ $t->actor}})
-                                @if($t->answer)
-                                    <small>
-                                        <a href="{{ route('answer_show', [ 'id' => $t->answer->id]) }}">Ver respuesta</a>
-                                    </small>
+                                <li>
+                                    <span>
+                                        {{$t->created_at}} - {{ $t->getStateText() }} ({{ $t->actor}})
+                                        @if($t->answer)
+                                            <small>
+                                                <a href="{{ route('answer_show', [ 'id' => $t->answer->id]) }}">Ver respuesta</a>
+                                            </small>
+                                        @endif
+                                    </span>
+                                @if($t->comments)
+                                <div>
+                                    <em class="text-muted"><small>{{$t->comments->comment_text}}</small></em>
+                                </div>
                                 @endif
                                 </li>
                                 @endforeach
