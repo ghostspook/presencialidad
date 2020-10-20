@@ -24,7 +24,7 @@
                                 <th>Nombre</th>
                                 <th>Tipo</th>
                                 <th>Grupo</th>
-                                <th>Resultado</th>
+                                <th>Acceso</th>
                             </tr>
                         </thead>
                     </table>
