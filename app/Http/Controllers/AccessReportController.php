@@ -50,6 +50,9 @@ class AccessReportController extends Controller
             ->addColumn('time', function($s) {
                 return $s->created_at->format('H:i:s');
             })
+            ->addColumn('authorized', function($s) {
+                return $s->authorized ? 'Autorizado' : 'No autorizado';
+            })
             ->make(true);
     }
 }

@@ -20,10 +20,11 @@
                     <table class="table table-striped table-hover" id="myTable">
                         <thead>
                             <tr>
+                                <th>Hora</th>
                                 <th>Nombre</th>
                                 <th>Tipo</th>
                                 <th>Grupo</th>
-                                <th>Hora</th>
+                                <th>Resultado</th>
                             </tr>
                         </thead>
                     </table>
@@ -44,11 +45,17 @@
                 },
                 ajax: '{!! route('accessReport_datatables', $date) !!}',
                 columns: [
+                    { data: 'time', name: 'time' },
                     { data: 'name', name: 'name' },
                     { data: 'type', name: 'type' },
                     { data: 'groupname', name: 'groupname' },
-                    { data: 'time', name: 'time' }
-                ]
+                    { data: 'authorized', name: 'authorized' }
+                ],
+                "createdRow": function( row, data, dataIndex) {
+                    if( data.authorized ==  'No autorizado'){
+                        $(row).addClass('text-danger');
+                    }
+                }
             });
         });
     </script>
