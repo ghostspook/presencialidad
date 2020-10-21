@@ -46,9 +46,9 @@ class LoginController extends Controller
                 'name' => $social_user->name,
                 'email' => $social_user->email,
                 'provider' => 'google',
+                'tracked_account_id' => $account->id
             ]);
-            $account->user_id = $user->id;
-            $account->save();
+
             $user_card = UserCard::create ([
                 'user_id' => $user->id,
                 'days_authorazation_valid' => $account->accountType->default_days_authorization_valid,

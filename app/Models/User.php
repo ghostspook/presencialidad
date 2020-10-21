@@ -23,6 +23,7 @@ class User extends Authenticatable
         'provider',
         'can_enter_test_results',
         'poses_risk_due_work_home_circumstance',
+        'tracked_account_id'
     ];
 
     /**
@@ -59,6 +60,6 @@ class User extends Authenticatable
     }
 
     public function trackedAccount() {
-        return $this->HasOne('App\Models\TrackedAccount');
+        return $this->belongsTo('App\Models\TrackedAccount');
     }
 }

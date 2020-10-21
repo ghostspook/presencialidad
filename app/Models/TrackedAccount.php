@@ -15,7 +15,6 @@ class TrackedAccount extends Model
     protected $fillable = [
         'email',
         'account_type_id',
-        'user_id',
         'group_id',
     ];
 
@@ -26,7 +25,7 @@ class TrackedAccount extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasOne('App\Models\User');
     }
 
     public function getAccountTypeText()
