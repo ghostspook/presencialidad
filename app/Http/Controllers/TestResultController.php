@@ -47,10 +47,16 @@ class TestResultController extends Controller
             ->make(true);
     }
 
-    public function newTestResult($userId)
+    public function newTestResult($userId, Request $request)
     {
+        $inputs = $request->all();
+        if (array_key_exists('returnTo', $inputs) && $inputs['returnTo'] == 'cuenta') {
+            $returnTo = 'cuenta';
+        } else {
+            $returnTo = '';
+        }
         $card = UserCard::firstWhere('user_id', $userId);
-        return view('newtestresult', ['card' => $card]);
+        return view('newtestresult', ['card' => $card, 'returnTo' => $returnTo]);
     }
 
     public function newTestResultSubmit(Request $request)
@@ -128,7 +134,13 @@ class TestResultController extends Controller
                              'state' => $c->state,
                              'actor' => $c->user->name ]);
 
-        return redirect()->route('enterTestResults');
+        if ($input['returnTo'] && $input['returnTo'] == 'cuenta') {
+            $returnTo = route('trackedaccounts_show', ['id' => $c->user->id ]);
+        } else {
+            $returnTo = route('enterTestResults');
+        }
+
+        return redirect()->to($returnTo);
     }
 
     function show($id)

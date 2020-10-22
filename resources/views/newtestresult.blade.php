@@ -27,6 +27,7 @@
                     <input type="date" class="form-control" id="test_date" name="test_date" required>
                 </div>
                 <input type="hidden" id="user_id" name="user_id" value="{{ $card->user_id }}">
+                <input type="hidden" id="returnTo" name="returnTo" value="{{ $returnTo }}">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
         </div>

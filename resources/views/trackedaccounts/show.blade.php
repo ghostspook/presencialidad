@@ -92,6 +92,13 @@
                                 </li>
                                 @endforeach
                             </ul>
+                            @if (Auth::user()->can_enter_test_results)
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a class="btn btn-warning" href="{{ route('newtestresult', ['userId' => $user->id, 'returnTo' => 'cuenta']) }}">Ingresar nuevo resultado</a>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
