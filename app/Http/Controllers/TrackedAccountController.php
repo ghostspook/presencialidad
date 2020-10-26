@@ -24,8 +24,6 @@ class TrackedAccountController extends Controller
      */
     public function index()
     {
-        BatchTransitioner::HandleExpiredAuthorizations();
-
         $accounts = TrackedAccount::orderBy('email')->get();
         $accountTypes = AccountType::all();
         $groups = Group::all();
