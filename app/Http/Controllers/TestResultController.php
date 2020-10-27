@@ -128,6 +128,7 @@ class TestResultController extends Controller
             }
         }
 
+        $c->requires_maintenance_test = 0;
         $c->save();
 
         Transition::create([ 'user_id' => $c->user_id,

@@ -29,6 +29,14 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             BatchTransitioner::HandleExpiredAuthorizations();
         })->everyFiveMinutes();
+
+        $schedule->call(function () {
+            BatchTransitioner::HandleNewTestsDueSoon();
+        })->daily()->at("05:10:00");
+
+        $schedule->call(function () {
+            BatchTransitioner::HandleRequiredNewTests();
+        })->daily()->at("05:15:00");
     }
 
     /**
