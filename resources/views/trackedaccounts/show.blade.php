@@ -24,6 +24,10 @@
                         <dt>Última prueba con resultado negativo:</dt>
                         <dd>{{ $user->userCard->most_recent_negative_test_result_at->toDateString() }}</dd>
                         @endif
+                        @if($user->userCard->requires_maintenance_test)
+                        <dt>Requiere preuba mantenimiento hasta:</dt>
+                        <dd>{{ $user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED'))->toDateString() }}</dd>
+                        @endif
                     </dl>
                     <hr class="dotted">
                     <h3 class="title text-danger">Forzar transición</h3>
