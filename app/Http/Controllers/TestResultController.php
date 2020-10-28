@@ -83,6 +83,11 @@ class TestResultController extends Controller
             return redirect()->back()->withErrors([ 'result' => 'Respuesta no permitida' ]);
         }
 
+        if ($input['test_date'] > Carbon::now())
+        {
+            return redirect()->back()->withErrors([ 'test_date' => 'La fecha de la prueba no puede ser en el futuro.' ]);
+        }
+
         $input = $request->all();
         $c = UserCard::firstWhere('user_id', $input['user_id']);
 

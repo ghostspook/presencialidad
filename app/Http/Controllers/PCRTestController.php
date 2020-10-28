@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TestResult;
 use App\Models\Transition;
 use App\Models\UserCard;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,11 @@ class PCRTestController extends Controller
         ]);
 
         $input = $request->all();
+
+        if ($input['test_date'] > Carbon::now())
+        {
+            return redirect()->back()->withErrors([ 'test_date' => 'La fecha de la prueba no puede ser en el futuro.' ]);
+        }
 
         if ($input['result'] != '1' && $input['result'] != '2') {
             return redirect()->back()->withErrors([ 'result' => 'Respuesta no permitida' ]);

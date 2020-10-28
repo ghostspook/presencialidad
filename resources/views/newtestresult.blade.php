@@ -23,13 +23,16 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="test_date">Fecha de la prueba</label>
-                    <input type="date" class="form-control" id="test_date" name="test_date" required>
+                    <label for="test_date" class="@error('test_date') text-danger @enderror">Fecha de la prueba</label>
+                    <input type="date" class="form-control @error('test_date') is-invalid @enderror" id="test_date" name="test_date" required>
+                    @error('test_date')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                    @enderror
                 </div>
                 <input type="hidden" id="user_id" name="user_id" value="{{ $card->user_id }}">
                 <input type="hidden" id="returnTo" name="returnTo" value="{{ $returnTo }}">
                 <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+            </form>
         </div>
     </div>
 @endsection
