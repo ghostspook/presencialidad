@@ -18,13 +18,15 @@ class TestResultController extends Controller
 {
     public function listUsersPendingTests()
     {
-        $cards = UserCard::where('state', UserCard::PENDING_COVERED_TEST_1)->orWhere('state', UserCard::PENDING_COVERED_TEST_2)->get();
-        return view('userspendingtests', ['cards' => $cards]);
+        return view('userspendingtests');
     }
 
     public function dataTable(Request $request)
     {
-        $cards = UserCard::where('state', UserCard::PENDING_COVERED_TEST_1)->orWhere('state', UserCard::PENDING_COVERED_TEST_2)->get();
+        $cards = UserCard::where('state', UserCard::PENDING_COVERED_TEST_1)
+                ->orWhere('state', UserCard::PENDING_COVERED_TEST_2)
+                ->orWhere('requires_maintenance_test', 1)
+                ->get();
 
         return Datatables::of($cards)
             ->addColumn('action', function($c) {
@@ -42,6 +44,9 @@ class TestResultController extends Controller
                 return '-';
             })
             ->addColumn('state', function($c) {
+                if ($c->requires_maintenance_test){
+                    return "Requiere prueba mantenimiento";
+                }
                 return $c->user->userCard->getStateText();
             })
             ->make(true);
