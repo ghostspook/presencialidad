@@ -61,8 +61,8 @@ class BatchTransitioner
                 FROM user_cards
                     INNER JOIN  users ON user_cards.user_id = users.id
                     INNER JOIN tracked_accounts ON users.tracked_account_id = tracked_accounts.id
-                    INNER JOIN groups ON tracked_accounts.group_id = groups.id
-                WHERE tracked_accounts.account_type_id = 1 AND groups.automatically_require_maintenance_test = 1 AND (user_cards.state = 5 OR user_cards.state = 6)
+                    INNER JOIN `groups` ON tracked_accounts.group_id = `groups`.id
+                WHERE tracked_accounts.account_type_id = 1 AND `groups`.automatically_require_maintenance_test = 1 AND (user_cards.state = 5 OR user_cards.state = 6)
                 HAVING day_count >= {$max_days}
                 ORDER BY most_recent_negative_test_result_at;";
 
@@ -112,8 +112,8 @@ class BatchTransitioner
                 FROM user_cards
                     INNER JOIN  users ON user_cards.user_id = users.id
                     INNER JOIN tracked_accounts ON users.tracked_account_id = tracked_accounts.id
-                    INNER JOIN groups ON tracked_accounts.group_id = groups.id
-                WHERE tracked_accounts.account_type_id = 1 AND groups.automatically_require_maintenance_test = 1 AND (user_cards.state = 5 OR user_cards.state = 6)
+                    INNER JOIN `groups` ON tracked_accounts.group_id = `groups`.id
+                WHERE tracked_accounts.account_type_id = 1 AND `groups`.automatically_require_maintenance_test = 1 AND (user_cards.state = 5 OR user_cards.state = 6)
                 HAVING day_count >= {$days_before_warning} AND day_count < {$max_days}
                 ORDER BY most_recent_negative_test_result_at;";
 
