@@ -17,6 +17,7 @@ class Group extends Model
     protected $fillable = [
         'name',
         'default_required_initial_test_count',
+        'automatically_require_maintenance_test',
     ];
 
     public function trackedAccounts()

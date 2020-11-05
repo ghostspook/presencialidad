@@ -31,12 +31,20 @@ class Kernel extends ConsoleKernel
         })->everyFiveMinutes();
 
         $schedule->call(function () {
-            BatchTransitioner::HandleNewTestsDueSoon();
+            BatchTransitioner::HandleNewTestsDueSoon_StaffAndFaculty();
         })->daily()->at("05:10:00");
 
         $schedule->call(function () {
-            BatchTransitioner::HandleRequiredNewTests();
+            BatchTransitioner::HandleNewTestsDueSoon_Students();
         })->daily()->at("05:15:00");
+
+        $schedule->call(function () {
+            BatchTransitioner::HandleRequiredNewTests_StaffAndFaculty();
+        })->daily()->at("05:20:00");
+
+        $schedule->call(function () {
+            BatchTransitioner::HandleRequiredNewTest_Students();
+        })->daily()->at("05:25:00");
     }
 
     /**
