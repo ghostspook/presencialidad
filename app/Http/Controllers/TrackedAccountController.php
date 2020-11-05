@@ -24,7 +24,7 @@ class TrackedAccountController extends Controller
      */
     public function index()
     {
-        BatchTransitioner::HandleRequiredNewTest_Students();
+        BatchTransitioner::HandleNewTestsDueSoon_Students();
         $accounts = TrackedAccount::orderBy('email')->get();
         $accountTypes = AccountType::all();
         $groups = Group::all();
