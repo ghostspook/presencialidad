@@ -13,9 +13,14 @@ class QrScan extends Model
         'authorization_id',
         'authorized',
         'scanned_by',
+        'location_id',
     ];
 
     public function authorization() {
         return $this->belongsTo('App\Models\Authorization');
+    }
+
+    public function location() {
+        return $this->belongsTo('App\Models\Location');
     }
 }

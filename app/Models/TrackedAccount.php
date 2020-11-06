@@ -44,4 +44,9 @@ class TrackedAccount extends Model
     {
         return $this->belongsTo('App\Models\Group');
     }
+
+    public function location()
+    {
+        return $this->belongsTo('App\Models\Location');
+    }
 }

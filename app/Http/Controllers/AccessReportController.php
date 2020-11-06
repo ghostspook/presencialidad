@@ -53,6 +53,9 @@ class AccessReportController extends Controller
             ->addColumn('authorized', function($s) {
                 return $s->authorized ? 'Autorizado' : 'No autorizado';
             })
+            ->addColumn('location', function($s) {
+                return $s->location ? $s->location->name : '?';
+            })
             ->make(true);
     }
 }

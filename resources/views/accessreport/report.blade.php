@@ -22,6 +22,7 @@
                             <tr>
                                 <th>Hora</th>
                                 <th>Nombre</th>
+                                <th>Ciudad</th>
                                 <th>Tipo</th>
                                 <th>Grupo</th>
                                 <th>Acceso</th>
@@ -47,6 +48,7 @@
                 columns: [
                     { data: 'time', name: 'time' },
                     { data: 'name', name: 'name' },
+                    { data: 'location', name: 'location' },
                     { data: 'type', name: 'type' },
                     { data: 'groupname', name: 'groupname' },
                     { data: 'authorized', name: 'authorized' }

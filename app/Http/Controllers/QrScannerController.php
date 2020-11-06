@@ -32,6 +32,7 @@ class QrScannerController extends Controller
                 'authorization_id' => $a->id,
                 'authorized' => 0,
                 'scanned_by' => Auth::user()->name,
+                'location_id' => Auth::user()->trackedAccount->location_id,
             ]);
             $response["status"] = "4";
             $response["message"] = "Usuario en cuarentena!";
@@ -45,6 +46,7 @@ class QrScannerController extends Controller
                 'authorization_id' => $a->id,
                 'authorized' => 0,
                 'scanned_by' => Auth::user()->name,
+                'location_id' => Auth::user()->trackedAccount->location_id,
             ]);
             $response["status"] = "5";
             $response["message"] = "Status del usuario no es 'Autorizado'";
@@ -57,6 +59,7 @@ class QrScannerController extends Controller
                 'authorization_id' => $a->id,
                 'authorized' => 0,
                 'scanned_by' => Auth::user()->name,
+                'location_id' => Auth::user()->trackedAccount->location_id,
             ]);
             $response["status"] = "3";
             $response["message"] = "Autorización ha expirado";
@@ -68,6 +71,7 @@ class QrScannerController extends Controller
             'authorization_id' => $a->id,
             'authorized' => 1,
             'scanned_by' => Auth::user()->name,
+            'location_id' => Auth::user()->trackedAccount->location_id,
         ]);
         $response["status"] = "1";
         $response["message"] = "Autorización OK";
