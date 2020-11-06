@@ -24,12 +24,10 @@ class TrackedAccountController extends Controller
      */
     public function index()
     {
-        $accounts = TrackedAccount::orderBy('email')->get();
         $accountTypes = AccountType::all();
         $groups = Group::all();
 
         return view('trackedaccounts.index', [
-                'accounts' => $accounts,
                 'accountTypes' => $accountTypes,
                 'groups' => $groups,
             ]);
