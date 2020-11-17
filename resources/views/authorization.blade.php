@@ -5,17 +5,22 @@
     <div class="row">
         <div class="col-md-12">
             <div class="alert alert-warning" role="alert">
-                <h3 class="alert-heading"><strong>COVID-19 de mantenimiento</strong></h3>
-                <p>Por favor, es necesario que se acerque a Laboratorio Veris para realizarse su siguiente prueba rápida.</p>
+                <h3 class="alert-heading"><strong>Prueba COVID-19 de mantenimiento</strong></h3>
+                <p>
+                    Por favor, acérquese a Laboratorio Veris para realizarse su siguiente prueba rápida antes del
+                    <strong>
+                        {{ $a->user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED') - 5)->day }} /
+                        {{ $a->user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED') - 5)->shortLocaleMonth }} /
+                        {{ $a->user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED') - 5)->year }}
+                    </strong>
+                </p>
                 <hr>
                 <p class="mb-0">
                     <small>
                         Su última prueba con resultado negativo fue el
-                        <strong>
-                            {{ $a->user->userCard->most_recent_negative_test_result_at->day }} /
-                            {{ $a->user->userCard->most_recent_negative_test_result_at->shortLocaleMonth }} /
-                            {{ $a->user->userCard->most_recent_negative_test_result_at->year }}
-                        </strong>
+                        {{ $a->user->userCard->most_recent_negative_test_result_at->day }} /
+                        {{ $a->user->userCard->most_recent_negative_test_result_at->shortLocaleMonth }} /
+                        {{ $a->user->userCard->most_recent_negative_test_result_at->year }}
                     </small>
                 </p>
             </div>
