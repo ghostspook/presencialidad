@@ -90,6 +90,7 @@ class TestResultController extends Controller
 
         $input = $request->all();
         $c = UserCard::firstWhere('user_id', $input['user_id']);
+        $from_state = $c->state;
 
         TestResult::create(['user_id' => $input['user_id'],
                             'test_type' => $input['test_type'],
@@ -143,7 +144,8 @@ class TestResultController extends Controller
 
         Transition::create([ 'user_id' => $c->user_id,
                              'state' => $c->state,
-                             'actor' => $c->user->name ]);
+                             'actor' => $c->user->name,
+                             'from_state' => $from_state ]);
 
         if ($input['returnTo'] && $input['returnTo'] == 'cuenta') {
             $returnTo = route('trackedaccounts_show', ['id' => $c->user->id ]);

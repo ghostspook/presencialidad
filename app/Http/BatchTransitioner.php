@@ -14,6 +14,7 @@ class BatchTransitioner
         foreach($expiredAuthCardIds as $c)
         {
             $userCard = UserCard::find($c->id);
+            $from_state = $userCard->state;
             $userCard->state = UserCard::PENDING_QUESTIONNAIRE_2;
             $userCard->authorization_id = null;
             $userCard->save();
@@ -22,6 +23,7 @@ class BatchTransitioner
                 'user_id' => $userCard->user->id,
                 'state' => $userCard->state,
                 'actor' => 'System',
+                'from_state' => $from_state,
             ]);
         }
     }
@@ -41,6 +43,7 @@ class BatchTransitioner
         foreach($affectedRecords as $c)
         {
             $userCard = UserCard::find($c->id);
+            $from_state = $userCard->state;
             $userCard->state = UserCard::PENDING_COVERED_TEST_2;
             $userCard->authorization_id = null;
             $userCard->requires_maintenance_test = 1;
@@ -50,6 +53,7 @@ class BatchTransitioner
                 'user_id' => $userCard->user->id,
                 'state' => $userCard->state,
                 'actor' => 'System',
+                'from_state' => $from_state.
             ]);
         }
     }
@@ -70,6 +74,7 @@ class BatchTransitioner
         foreach($affectedRecords as $c)
         {
             $userCard = UserCard::find($c->id);
+            $from_state = $userCard->state;
             $userCard->state = UserCard::PENDING_COVERED_TEST_2;
             $userCard->authorization_id = null;
             $userCard->requires_maintenance_test = 1;
@@ -79,6 +84,7 @@ class BatchTransitioner
                 'user_id' => $userCard->user->id,
                 'state' => $userCard->state,
                 'actor' => 'System',
+                'from_state' => $from_state,
             ]);
         }
     }

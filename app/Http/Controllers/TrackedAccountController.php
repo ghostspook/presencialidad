@@ -119,12 +119,14 @@ class TrackedAccountController extends Controller
         $inputs = $request->all();
 
         $c = UserCard::firstWhere('user_id', $inputs['user_id']);
+        $from_state = $c->state;
         $c->state = $inputs['state'];
         $c->save();
         $t = Transition::create([
             'user_id' => $inputs['user_id'],
             'state' => $inputs['state'],
             'actor' => Auth::user()->name,
+            'from_state' => $from_state,
         ]);
         TransitionComment::create([
             'transition_id' => $t->id,

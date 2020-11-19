@@ -23,12 +23,14 @@ class EnrollmentController extends Controller
         {
             $userId = Auth::user()->id;
             $userCard = UserCard::firstWhere('user_id', $userId);
+            $from_state = $userCard->state;
             $userCard->state = UserCard::PENDING_QUESTIONNAIRE_1;
             $userCard->save();
 
             $t = Transition::create([ 'user_id' => $userId,
                                  'state' => $userCard->state,
-                                 'actor' => Auth::user()->name ]);
+                                 'actor' => Auth::user()->name,
+                                 'from_state' => $from_state ]);
 
             Answer::create([
                             'transition_id' => $t->id ,

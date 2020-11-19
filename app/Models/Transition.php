@@ -18,6 +18,7 @@ class Transition extends Model
         'user_id',
         'state',
         'actor',
+        'from_state',
     ];
 
     public function getStateText()

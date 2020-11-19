@@ -22,6 +22,7 @@ class AdvicedNotToAttendController extends Controller
         if (array_key_exists('acceptance', $inputs))
         {
             $userCard = Auth::user()->userCard;
+            $from_state = $userCard->state;
             if (!$userCard->poses_risk_due_work_home_circumstance)
             {
                 $userCard->state = UserCard::PENDING_COVERED_TEST_1;
@@ -34,7 +35,8 @@ class AdvicedNotToAttendController extends Controller
 
             $t = Transition::create([ 'user_id' => Auth::user()->id,
                                  'state' => $userCard->state,
-                                 'actor' => Auth::user()->name ]);
+                                 'actor' => Auth::user()->name,
+                                 'from_state' => $from_state ]);
             Answer::create([
                 'transition_id' => $t->id ,
                 'answers_text' => json_encode($inputs),

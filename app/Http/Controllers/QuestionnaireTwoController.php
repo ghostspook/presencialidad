@@ -21,6 +21,7 @@ class QuestionnaireTwoController extends Controller
     {
         $userId = Auth::user()->id;
         $userCard = UserCard::firstWhere('user_id', $userId);
+        $from_state = $userCard->state;
 
         $inputs = $request->all();
         unset($inputs["_token"]);
@@ -32,7 +33,8 @@ class QuestionnaireTwoController extends Controller
             $userCard->save();
             $t =Transition::create([ 'user_id' => $userCard->user_id,
                                 'state' => $userCard->state,
-                                'actor' => $userCard->user->name ]);
+                                'actor' => $userCard->user->name,
+                                'from_state' => $from_state ]);
             Answer::create([
                             'transition_id' => $t->id ,
                             'answers_text' => json_encode($inputs),
@@ -51,7 +53,8 @@ class QuestionnaireTwoController extends Controller
             $userCard->save();
             $t = Transition::create([ 'user_id' => $userCard->user_id,
                                 'state' => $userCard->state,
-                                'actor' => $userCard->user->name ]);
+                                'actor' => $userCard->user->name,
+                                'from_state' => $from_state ]);
             Answer::create([
                             'transition_id' => $t->id ,
                             'answers_text' => json_encode($inputs),

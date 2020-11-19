@@ -30,12 +30,14 @@ class AuthorizationController extends Controller
             $a = Authorization::find($c->authorization_id);
             if ($a->expires_at < Carbon::now()) {
                 $c->authorization_id = null;
+                $from_state = $userCard->state;
                 $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
                 $c->save();
                 Transition::create([
                     'user_id' => $c->user_id,
                     'state' => $c->state,
-                    'actor' => 'system'
+                    'actor' => 'system',
+                    'from_state' => $from_state,
                     ]);
                 return redirect('/');
             }

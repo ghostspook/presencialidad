@@ -56,6 +56,7 @@ class PCRTestController extends Controller
         }
 
         $c = Auth::user()->userCard;
+        $from_state = $c->state;
         $t = TestResult::create([
                             'user_id' => Auth::user()->id,
                             'test_type' => 2, //PCR
@@ -79,7 +80,8 @@ class PCRTestController extends Controller
         Transition::create([
             'user_id' => $c->user_id,
             'state' => $c->state,
-            'actor' => Auth::user()->name
+            'actor' => Auth::user()->name,
+            'from_state' => $from_state,
             ]);
 
         return redirect('/');
