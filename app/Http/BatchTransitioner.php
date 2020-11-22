@@ -53,7 +53,7 @@ class BatchTransitioner
                 'user_id' => $userCard->user->id,
                 'state' => $userCard->state,
                 'actor' => 'System',
-                'from_state' => $from_state.
+                'from_state' => $from_state,
             ]);
         }
     }
