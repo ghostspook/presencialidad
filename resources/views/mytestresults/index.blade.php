@@ -2,7 +2,21 @@
 
 @section('main-content')
     <div  class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
+            <dl>
+                <dt>Status actual:</dt>
+                <dd>{{ $user->userCard->getStateText() }}</dd>
+                @if($user->userCard->most_recent_negative_test_result_at)
+                <dt>Última prueba con resultado negativo:</dt>
+                <dd>{{ $user->userCard->most_recent_negative_test_result_at->format('d-M-Y') }}</dd>
+                @endif
+                @if($displayNextTestResultDeadline)
+                <dt>Requiere prueba mantenimiento hasta:</dt>
+                <dd>{{ $nextTestResultDeadline->format('d-M-Y') }}</dd>
+                @endif
+            </dl>
+        </div>
+        <div class="col-md-9">
             <h1 class="title text-primary">Mis resultados</h1>
             <table class="table mt-5">
                 <thead>

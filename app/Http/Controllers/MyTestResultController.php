@@ -17,7 +17,22 @@ class MyTestResultController extends Controller
     public function index()
     {
         $test_results = TestResult::where('user_id', Auth::user()->id)->get();
-        return view('mytestresults.index', [ 'test_results' => $test_results ]);
+        $user = Auth::user();
+        $displayNextTestResultDeadline = (
+            $user->trackedAccount->account_type_id == 2 // profesores
+            || $user->trackedAccount->account_type_id == 3 // administrativos
+            || ($user->trackedAccount->group_id // group requires maintenance test
+                && $user->trackedAccount->group->automatically_require_maintenance_test == 1)
+        );
+        $nextTestResultDeadline = $displayNextTestResultDeadline ?
+            $user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED') - 5) :
+            "";
+        return view('mytestresults.index', [
+                'test_results' => $test_results,
+                'user' => $user,
+                'displayNextTestResultDeadline' => $displayNextTestResultDeadline,
+                'nextTestResultDeadline' => $nextTestResultDeadline,
+        ]);
     }
 
     public function downloadFile($id)
