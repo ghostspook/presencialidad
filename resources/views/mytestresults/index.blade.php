@@ -11,7 +11,7 @@
                 <dd>{{ $user->userCard->most_recent_negative_test_result_at->format('d-M-Y') }}</dd>
                 @endif
                 @if($displayNextTestResultDeadline)
-                <dt>Requiere prueba mantenimiento hasta:</dt>
+                <dt>Próxima prueba:</dt>
                 <dd>{{ $nextTestResultDeadline->format('d-M-Y') }}</dd>
                 @endif
             </dl>
