@@ -22,11 +22,11 @@
                         <dd>{{ $user->userCard->required_initial_test_count }}</dd>
                         @if($user->userCard->most_recent_negative_test_result_at)
                         <dt>Última prueba con resultado negativo:</dt>
-                        <dd>{{ $user->userCard->most_recent_negative_test_result_at->toDateString() }}</dd>
+                        <dd>{{ $user->userCard->most_recent_negative_test_result_at->format('d-M-Y') }}</dd>
                         @endif
                         @if($user->userCard->requires_maintenance_test)
                         <dt>Requiere prueba mantenimiento hasta:</dt>
-                        <dd>{{ $user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED'))->toDateString() }}</dd>
+                        <dd>{{ $user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED'))->format('d-M-Y') }}</dd>
                         @endif
                     </dl>
                     <hr class="dotted">
