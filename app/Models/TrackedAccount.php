@@ -30,14 +30,7 @@ class TrackedAccount extends Model
 
     public function getAccountTypeText()
     {
-        switch ($this->account_type_id) {
-            case 1:
-                return 'Alumno';
-            case 2:
-                return 'Profesor';
-            case 3:
-                return 'Administrativo';
-        }
+        return $this->accountType->name;
     }
 
     public function group()

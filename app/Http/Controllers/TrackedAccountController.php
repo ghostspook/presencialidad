@@ -148,7 +148,7 @@ class TrackedAccountController extends Controller
                 return $a->email;
             })
             ->addColumn('type', function($a) {
-                return $a->getAccountTypeText();
+                return $a->accountType->name;
             })
             ->addColumn('name', function($a) {
                 if ($a->user)
