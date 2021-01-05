@@ -86,7 +86,7 @@
                             <ul>
                                 @foreach ($user->testResults->sortBy('test_date') as $r)
                                 <li>
-                                    {{$r->test_date->format('yy-m-d')}} -
+                                    {{$r->test_date->format('Y-m-d')}} -
                                     {{ $r->getTestTypeText() }} -
                                     Resultado:
                                     <span class="{{ ($r->result == 1) ? 'text-success' : 'text-danger' }}">

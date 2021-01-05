@@ -8,7 +8,7 @@
                 <dt>Nombre</dt>
                 <dd>{{ $tr->user->name }}</dd>
                 <dt>Fecha</dt>
-                <dd>{{ $tr->test_date->format('d-M-yy') }}</dd>
+                <dd>{{ $tr->test_date->format('d-M-Y') }}</dd>
                 <dt>Resultado</dt>
                 <dd>
                     <span class="{{ ($tr->result == 1) ? 'text-success' : 'text-danger' }}">
@@ -22,7 +22,7 @@
                     @else
                     <em>desconocido</em>
                     @endif
-                    ({{ $tr->created_at->format('d-M-yy') }})
+                    ({{ $tr->created_at->format('d-M-Y') }})
                 </dd>
             </dl>
             <div class="row">
