@@ -11,7 +11,7 @@ class AccessReportController extends Controller
 {
     function index()
     {
-        $date = Carbon::now()->format('yy-m-d');
+        $date = Carbon::now()->format('Y-m-d');
         return redirect()->route('accessReport_showReport', $date);
     }
 
