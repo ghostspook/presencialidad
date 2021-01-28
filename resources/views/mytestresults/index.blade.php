@@ -29,7 +29,7 @@
                 <tbody>
                     @foreach ($test_results as $tr)
                     <tr>
-                        <td>{{ $tr->test_date->format('d-M-yy') }}</td>
+                        <td>{{ $tr->test_date->format('d-M-Y') }}</td>
                         <td>
                             <span class="{{ ($tr->result == 1) ? 'text-success' : 'text-danger' }}">
                                 {{ $tr->getResultText() }}
