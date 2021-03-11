@@ -72,8 +72,7 @@ Route::post('pruebas/uploadfile', [TestResultController::class, 'uploadFile'])->
 Route::post('cuentas/store', [TrackedAccountController::class, 'store'])->name('trackedaccount_store')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('transitions/create', [TrackedAccountController::class, 'transitionToState'])->name('trackedaccount_transition')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('respuesta/{id}', [AnswerController::class, 'show'])->name('answer_show')->middleware('auth:web', CanEnterTestResults::class);
-Route::get('pruebapcr', [PCRTestController::class, 'create'])->name('pcrtest_create')->middleware('auth:web', PendingPCRTest::class);
-Route::post('pruebapcr', [PCRTestController::class, 'store'])->name('pcrtest_store')->middleware('auth:web', PendingPCRTest::class);
+Route::get('pruebapcr', [PCRTestController::class, 'index'])->name('pcrtest_create')->middleware('auth:web', PendingPCRTest::class);
 Route::get('cuarentenamandatoria', [MandatoryQuarantineController::class, 'index'])->name('mandatoryQuarantine')->middleware('auth:web', MandatoryQuarantine::class);
 Route::get('qrscanner', [QrScannerController::class, 'index'])->name('qrScanner')->middleware('auth:web', CanScanQr::class);
 Route::get('qrscanner/checkauthorization/{code}', [QrScannerController::class, 'checkAuthorization'])->name('checkAuthorization')->middleware('auth:web', CanScanQr::class);

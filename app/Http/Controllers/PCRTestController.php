@@ -18,7 +18,7 @@ class PCRTestController extends Controller
      */
     public function index()
     {
-        //
+        return view('pcrtest.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class PCRTestController extends Controller
      */
     public function create()
     {
-        return view('pcrtest.create');
+        //
     }
 
     /**
@@ -39,52 +39,7 @@ class PCRTestController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'result' => 'required',
-            'test_date' => 'required|date',
-        ]);
-
-        $input = $request->all();
-
-        if ($input['test_date'] > Carbon::now())
-        {
-            return redirect()->back()->withErrors([ 'test_date' => 'La fecha de la prueba no puede ser en el futuro.' ]);
-        }
-
-        if ($input['result'] != '1' && $input['result'] != '2') {
-            return redirect()->back()->withErrors([ 'result' => 'Respuesta no permitida' ]);
-        }
-
-        $c = Auth::user()->userCard;
-        $from_state = $c->state;
-        $t = TestResult::create([
-                            'user_id' => Auth::user()->id,
-                            'test_type' => 2, //PCR
-                            'result' => $input['result'],
-                            'test_date' => $input['test_date'],
-                            'added_by' => Auth::user()->name
-        ]);
-
-        if ($t->result == 1) // NEGATIVO
-        {
-            $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
-            $c->most_recent_negative_test_result_at = $t->test_date;
-        }
-        else
-        {
-            $c->state = UserCard::MANDATORY_QUARANTINE;
-            $c->mandatorily_quarantined_at = $t->test_date;
-        }
-        $c->save();
-
-        Transition::create([
-            'user_id' => $c->user_id,
-            'state' => $c->state,
-            'actor' => Auth::user()->name,
-            'from_state' => $from_state,
-            ]);
-
-        return redirect('/');
+        //
     }
 
     /**
