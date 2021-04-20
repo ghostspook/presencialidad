@@ -144,12 +144,12 @@ class TrackedAccountController extends Controller
                 account_types.name as account_type_name,
                 users.id as user_id,
                 users.name as user_name,
-                groups.name as group_name,
+                `groups`.name as group_name,
                 user_cards.state as user_state
             FROM tracked_accounts
                 inner join account_types on tracked_accounts.account_type_id = account_types.id
                 left join users on tracked_accounts.id =  users.tracked_account_id
-                left join groups on tracked_accounts.group_id = groups.id
+                left join `groups` on tracked_accounts.group_id = `groups`.id
                 left join user_cards on users.id = user_cards.user_id";
 
         $accounts = DB::select($sqlQuery);
