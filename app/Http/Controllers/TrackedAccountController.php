@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\UserCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -138,43 +139,59 @@ class TrackedAccountController extends Controller
 
     public function dataTable(Request $request)
     {
-        $accounts = TrackedAccount::all();
+        $sqlQuery =
+            "SELECT tracked_accounts.email as email,
+                account_types.name as account_type_name,
+                users.id as user_id,
+                users.name as user_name,
+                groups.name as group_name,
+                user_cards.state as user_state
+            FROM tracked_accounts
+                inner join account_types on tracked_accounts.account_type_id = account_types.id
+                left join users on tracked_accounts.id =  users.tracked_account_id
+                left join groups on tracked_accounts.group_id = groups.id
+                left join user_cards on users.id = user_cards.user_id";
+
+        $accounts = DB::select($sqlQuery);
         return Datatables::of($accounts)
             ->addColumn('action', function($a) {
-                if ($a->user){
-                    return '<a href="'.route('trackedaccounts_show', $a->user->id).'">'
+                if ($a->user_id){
+                    return '<a href="'.route('trackedaccounts_show', $a->user_id).'">'
                     .$a->email.'</a>';
                 }
                 return $a->email;
             })
-            ->addColumn('type', function($a) {
-                return $a->accountType->name;
-            })
-            ->addColumn('name', function($a) {
-                if ($a->user)
-                {
-                    return $a->user->name;
-                }
-                else{
+            ->addColumn('state_text', function($a) {
+                if (!$a->user_state) {
                     return '-';
                 }
-            })
-            ->addColumn('groupname', function($a) {
-                if ($a->group_id)
+
+                switch ($a->user_state)
                 {
-                    return $a->group->name;
-                }
-                else{
-                    return '-';
-                }
-            })
-            ->addColumn('state', function($a) {
-                if ($a->user && $a->user->userCard)
-                {
-                    return $a->user->userCard->getStateText();
-                }
-                else{
-                    return '-';
+                    case UserCard::PENDING_ENROLLMENT:
+                        return "Pendiente aceptación de términos";
+                    case UserCard::PENDING_QUESTIONNAIRE_1:
+                        return "Pendiente cuestionario 1";
+                    case UserCard::ADVICED_NOT_TO_ATTEND:
+                        return "Recomendación de no asistir";
+                    case UserCard::PENDING_COVERED_TEST_1:
+                        return "Pendiente prueba rápida 1";
+                    case UserCard::PENDING_COVERED_TEST_2:
+                        return "Pendiente prueba rápida 2";
+                    case UserCard::PENDING_PCR_TEST:
+                        return "Pendiente prueba PCR";
+                    case UserCard::PENDING_QUESTIONNAIRE_2:
+                        return "Pendiente cuestionario 2";
+                    case UserCard::PREEMPTIVE_QUARANTINE:
+                        return "Aislamiento preventivo";
+                    case UserCard::AUTHORIZED:
+                        return "Autorizado/a";
+                    case UserCard::PENDING_PCR_TEST:
+                        return 'Pendiente prueba PCR';
+                    case UserCard::MANDATORY_QUARANTINE:
+                        return 'Cuarentena mandatoria';
+                    default:
+                        return "?";
                 }
             })
             ->make(true);

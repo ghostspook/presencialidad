@@ -61,17 +61,17 @@
         $(function() {
             $('#myTable').DataTable({
                 processing: true,
-                serverSide: false,
+                serverSide: true,
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
                 },
                 ajax: '{!! route('trackedaccounts_datatables') !!}',
                 columns: [
-                    { data: 'action', name: 'nombre' },
-                    { data: 'type', name: 'type' },
-                    { data: 'name', name: 'name' },
-                    { data: 'groupname', name: 'groupname' },
-                    { data: 'state', name: 'state' }
+                    { data: 'action', name: 'email' },
+                    { data: 'account_type_name', name: 'account_type_name' },
+                    { data: null, name: 'user_name', render: (data, type, row) => (data.user_name) ? data.user_name : '-' },
+                    { data: null, name: 'group_name', render: (data, type, row) => (data.group_name) ? data.group_name : '-' },
+                    { data: 'state_text', name: 'state_text', sortable: false, searchable: false }
                 ]
             });
         });
