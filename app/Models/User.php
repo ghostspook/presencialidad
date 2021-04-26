@@ -62,4 +62,8 @@ class User extends Authenticatable
     public function trackedAccount() {
         return $this->belongsTo('App\Models\TrackedAccount');
     }
+
+    public function vaccinations() {
+        return $this->hasMany('App\Models\Vaccination');
+    }
 }

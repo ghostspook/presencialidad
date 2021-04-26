@@ -105,6 +105,26 @@
                             @endif
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title mt-5">Registros de Vacunación</h3>
+                            <ul>
+                                @foreach ($user->vaccinations->sortBy('test_date') as $v)
+                                <li>
+                                    {{$v->vaccinated_date->format('Y-m-d')}} -
+                                    {{ $v->vaccineType->name }}
+                                </li>
+                                @endforeach
+                            </ul>
+                            @if (Auth::user()->can_enter_test_results)
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a class="btn btn-success" href="{{ route('vaccination_create', ['userId' => $user->id, 'returnTo' => 'cuenta']) }}">Ingresar nuevo registro</a>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
