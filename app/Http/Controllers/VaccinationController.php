@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\UserCard;
 use App\Models\Vaccination;
+use App\Models\VaccinationFile;
 use App\Models\VaccineType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class VaccinationController extends Controller
 {
@@ -31,6 +33,12 @@ class VaccinationController extends Controller
             'returnTo' => $returnTo,
             'vaccineTypes' => $vaccineTypes,
         ]);
+    }
+
+    function show($id)
+    {
+        $v = Vaccination::find($id);
+        return view('vaccinations.show', [ 'v' => $v ]);
     }
 
     /**
@@ -60,6 +68,41 @@ class VaccinationController extends Controller
         $returnTo = route('trackedaccounts_show', ['id' => $input['user_id'] ]);
 
         return redirect()->to($returnTo);
+    }
+
+    function uploadFile(Request $request)
+    {
+        $inputs = $request->all();
+        $file = $request->file('test_file');
+
+        $path = 'vaccinations/'.time().'-v-'.$inputs['id'];
+
+        $t = Storage::disk('do_spaces')->put($path , file_get_contents($file));
+
+        VaccinationFile::create([
+            'vaccination_id' => $inputs['id'],
+            'filename' => $file->getClientOriginalName(),
+            'mime_type' => $file->getClientMimeType(),
+            'created_by' => Auth::user()->name,
+            'path' => $path
+        ]);
+
+        return redirect()->route('vaccination_show', [ 'id' => $inputs['id'] ]);
+    }
+
+    function downloadFile($id)
+    {
+        $f = Vaccination::find($id)->file;
+        $contents = Storage::disk('do_spaces')->get($f->path);
+
+        $headers = [
+            'Content-Type' => $f->mime_type,
+            'Content-Description' => 'File Transfer',
+            'Content-Disposition' => "attachment; filename=".$f->filename,
+            'filename'=> $f->filename,
+        ];
+
+        return response($contents, 200, $headers);
     }
 
     /**

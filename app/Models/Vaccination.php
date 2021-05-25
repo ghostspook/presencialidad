@@ -35,4 +35,14 @@ class Vaccination extends Model
     {
         return $this->belongsTo('App\Models\VaccineType');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function file()
+    {
+        return $this->hasOne('App\Models\VaccinationFile');
+    }
 }

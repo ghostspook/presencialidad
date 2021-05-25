@@ -63,6 +63,9 @@ Route::post('usuarios/resultados/nuevo/submit', [ TestResultController::class, '
 Route::get('usuarios/{userId}/vacunaciones/nueva', [VaccinationController::class, 'create'])->name('vaccination_create')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('usuarios/vacunaciones/nuevo/submit', [ VaccinationController::class, 'store'])->name('vaccination_store')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('cuestionardeautorizacion', [ QuestionnaireTwoController::class, 'index'])->name('questionnarieTwo')->middleware('auth:web', CanAnswerQuestionnaire2::class);
+Route::get('vacunaciones/{id}', [VaccinationController::class, 'show'])->name('vaccination_show')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('vacunaciones/{id}/descargar', [ VaccinationController::class, 'downloadFile'])->name('vaccination_download')->middleware('auth:web');
+Route::post('vacunaciones/uploadfile', [VaccinationController::class, 'uploadFile'])->name('vaccination_uploadfile')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('questionnairetwosubmit', [ QuestionnaireTwoController::class, 'questionnaireSubmit'])->name('questionnaireTwoSubmit')->middleware('auth:web', CanAnswerQuestionnaire2::class);
 Route::get('autorizaciones/vigente', [ AuthorizationController::class, 'showValidAuthorization'])->name('showValidAuthorization')->middleware('auth:web', Authorized::class);
 Route::get('cuarentenapreventiva', [PreemptiveQuarantineController::class, 'index'])->name('preemptiveQuarantine')->middleware('auth:web', PreemptiveQuarantine::class);

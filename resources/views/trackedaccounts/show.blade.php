@@ -113,6 +113,7 @@
                                 <li>
                                     {{$v->vaccinated_date->format('Y-m-d')}} -
                                     {{ $v->vaccineType->name }}
+                                    - <a href="{{ route('vaccination_show', [ 'id' => $v->id ]) }}">Ver registro</a>
                                 </li>
                                 @endforeach
                             </ul>
