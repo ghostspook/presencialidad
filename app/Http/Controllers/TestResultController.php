@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TestResult;
+use App\Models\TestResultComment;
 use App\Models\TestResultFile;
 use App\Models\Transition;
 use App\Models\UserCard;
@@ -195,5 +196,18 @@ class TestResultController extends Controller
         ];
 
         return response($contents, 200, $headers);
+    }
+
+    function postComment(Request $request)
+    {
+        $input = $request->all();
+
+        TestResultComment::create([
+            'test_result_id' => $input['test_result_id'],
+            'comment_text' => $input['comment_text'],
+            'added_by' => Auth::user()->name,
+        ]);
+
+        return redirect()->route('testresults_show', [ 'id' => $input['test_result_id'] ]);
     }
 }

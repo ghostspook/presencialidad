@@ -66,4 +66,9 @@ class TestResult extends Model
     {
         return $this->hasOne('\App\Models\TestResultFile');
     }
+
+    function comments()
+    {
+        return $this->hasMany('\App\Models\TestResultComment');
+    }
 }

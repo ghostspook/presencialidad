@@ -73,6 +73,7 @@ Route::get('cuentas', [TrackedAccountController::class, 'index'])->name('tracked
 Route::get('cuentas/datatables', [TrackedAccountController::class, 'dataTable'])->name('trackedaccounts_datatables')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('cuentas/{id}', [TrackedAccountController::class, 'show'])->name('trackedaccounts_show')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('pruebas/{id}', [TestResultController::class, 'show'])->name('testresults_show')->middleware('auth:web', CanEnterTestResults::class);
+Route::post('pruebas/comentario', [ TestResultController::class, 'postComment'])->name('testresults_postcomment')->middleware('auth:web', CanEnterTestResults::class);
 Route::get('pruebas/{id}/download', [TestResultController::class, 'downloadFile'])->name('testresults_download')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('pruebas/uploadfile', [TestResultController::class, 'uploadFile'])->name('testresults_uploadfile')->middleware('auth:web', CanEnterTestResults::class);
 Route::post('cuentas/store', [TrackedAccountController::class, 'store'])->name('trackedaccount_store')->middleware('auth:web', CanEnterTestResults::class);
