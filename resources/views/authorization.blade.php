@@ -9,9 +9,9 @@
                 <p>
                     Por favor, acérquese a Laboratorio Veris para realizarse su siguiente prueba rápida antes del
                     <strong>
-                        {{ $a->user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED') - 5)->day }} /
-                        {{ $a->user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED') - 5)->shortLocaleMonth }} /
-                        {{ $a->user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED') - 5)->year }}
+                        {{ $a->user->userCard->next_test_result_due_date->addDays(-5)->day }} /
+                        {{ $a->user->userCard->next_test_result_due_date->addDays(-5)->shortLocaleMonth }} /
+                        {{ $a->user->userCard->next_test_result_due_date->addDays(-5)->year }}
                     </strong>
                 </p>
                 <hr>

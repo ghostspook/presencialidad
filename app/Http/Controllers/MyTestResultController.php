@@ -25,7 +25,7 @@ class MyTestResultController extends Controller
                 && $user->trackedAccount->group->automatically_require_maintenance_test == 1)
         );
         $nextTestResultDeadline = $displayNextTestResultDeadline ?
-            $user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED') - 5) :
+            $user->userCard->next_test_result_due_date->addDays(-5) :
             "";
         return view('mytestresults.index', [
                 'test_results' => $test_results,

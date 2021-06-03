@@ -24,9 +24,14 @@
                         <dt>Última prueba con resultado negativo:</dt>
                         <dd>{{ $user->userCard->most_recent_negative_test_result_at->format('d-M-Y') }}</dd>
                         @endif
-                        @if($user->userCard->requires_maintenance_test)
+                        @if($user->userCard->next_test_result_due_date)
                         <dt>Requiere prueba mantenimiento hasta:</dt>
-                        <dd>{{ $user->userCard->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED'))->format('d-M-Y') }}</dd>
+                        <dd>
+                            {{ $user->userCard->next_test_result_due_date->format('d-M-Y') }}
+                            @if($user->userCard->requires_maintenance_test)
+                            <span class="text-warning small">(Advertencia)</span>
+                            @endif
+                        </dd>
                         @endif
                     </dl>
                     <hr class="dotted">

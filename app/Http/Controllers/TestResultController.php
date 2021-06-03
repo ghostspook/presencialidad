@@ -104,6 +104,7 @@ class TestResultController extends Controller
             if($input['result'] == 1) // NEGATIVO
             {
                 $c->most_recent_negative_test_result_at = $input['test_date'];
+                $c->next_test_result_due_date = $c->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED'));
                 if ($c->state == UserCard::PENDING_COVERED_TEST_1)
                 {
                     if ($c->required_initial_test_count == 2)
@@ -132,6 +133,7 @@ class TestResultController extends Controller
             if($input['result'] == 1) // NEGATIVO
             {
                 $c->most_recent_negative_test_result_at = $input['test_date'];
+                $c->next_test_result_due_date = $c->most_recent_negative_test_result_at->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED'));
                 $c->state = UserCard::PENDING_QUESTIONNAIRE_2;
             } else // PRUEBA SALIÓ POSITIVA
             {

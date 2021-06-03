@@ -30,13 +30,12 @@ class BatchTransitioner
 
     static function HandleRequiredNewTests_StaffAndFaculty()
     {
-        $max_days = env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED');
-        $query = "SELECT user_cards.id, users.email, user_cards.most_recent_negative_test_result_at, user_cards.state, DATEDIFF(NOW(), user_cards.most_recent_negative_test_result_at) AS day_count
+        $query = "SELECT user_cards.id, users.email, user_cards.most_recent_negative_test_result_at, user_cards.state
                 FROM user_cards
                     INNER JOIN  users ON user_cards.user_id = users.id
                     INNER JOIN tracked_accounts ON users.tracked_account_id = tracked_accounts.id
-                WHERE (tracked_accounts.account_type_id = 3 OR tracked_accounts.account_type_id = 2) AND (user_cards.state = 5 OR user_cards.state = 6)
-                HAVING day_count >= {$max_days}
+                WHERE (tracked_accounts.account_type_id = 3 OR tracked_accounts.account_type_id = 2)
+                    AND (user_cards.state = 5 OR user_cards.state = 6) AND (user_cards.next_test_result_due_date < NOW())
                 ORDER BY most_recent_negative_test_result_at;";
 
         $affectedRecords = DB::select($query);
@@ -60,14 +59,13 @@ class BatchTransitioner
 
     static function HandleRequiredNewTest_Students()
     {
-        $max_days = env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED');
-        $query = "SELECT user_cards.id, users.email, user_cards.most_recent_negative_test_result_at, user_cards.state, DATEDIFF(NOW(), user_cards.most_recent_negative_test_result_at) AS day_count
+        $query = "SELECT user_cards.id, users.email, user_cards.most_recent_negative_test_result_at, user_cards.state
                 FROM user_cards
                     INNER JOIN  users ON user_cards.user_id = users.id
                     INNER JOIN tracked_accounts ON users.tracked_account_id = tracked_accounts.id
                     INNER JOIN `groups` ON tracked_accounts.group_id = `groups`.id
-                WHERE tracked_accounts.account_type_id = 1 AND `groups`.automatically_require_maintenance_test = 1 AND (user_cards.state = 5 OR user_cards.state = 6)
-                HAVING day_count >= {$max_days}
+                WHERE tracked_accounts.account_type_id = 1 AND `groups`.automatically_require_maintenance_test = 1
+                    AND (user_cards.state = 5 OR user_cards.state = 6) AND (user_cards.next_test_result_due_date < NOW())
                 ORDER BY most_recent_negative_test_result_at;";
 
         $affectedRecords = DB::select($query);
@@ -91,14 +89,15 @@ class BatchTransitioner
 
     static function HandleNewTestsDueSoon_StaffAndFaculty()
     {
-        $max_days = env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED');
-        $days_before_warning = env('DAYS_BEFORE_NEW_TEST_DUE_SOON_WARNING');
-        $query = "SELECT user_cards.id, users.email, user_cards.most_recent_negative_test_result_at, user_cards.state, DATEDIFF(NOW(), user_cards.most_recent_negative_test_result_at) AS day_count
+        $days_before_warning = env('DAYS_BEFORE_NEXT_TEST_WARNING');
+        $query = "SELECT user_cards.id, users.email, user_cards.most_recent_negative_test_result_at, user_cards.state, DATEDIFF(user_cards.next_test_result_due_date, NOW()) AS day_count
                 FROM user_cards
                     INNER JOIN  users ON user_cards.user_id = users.id
                     INNER JOIN tracked_accounts ON users.tracked_account_id = tracked_accounts.id
-                WHERE (tracked_accounts.account_type_id = 3 OR tracked_accounts.account_type_id = 2) AND (user_cards.state = 5 OR user_cards.state = 6)
-                HAVING day_count >= {$days_before_warning} AND day_count < {$max_days}
+                WHERE (tracked_accounts.account_type_id = 3 OR tracked_accounts.account_type_id = 2)
+                    AND NOT requires_maintenance_test = 1 AND (user_cards.state = 5 OR user_cards.state = 6)
+                    AND NOT user_cards.next_test_result_due_date IS NULL
+                HAVING day_count < {$days_before_warning}
                 ORDER BY most_recent_negative_test_result_at;";
 
         $affectedRecords = DB::select($query);
@@ -112,15 +111,16 @@ class BatchTransitioner
 
     static function HandleNewTestsDueSoon_Students()
     {
-        $max_days = env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED');
-        $days_before_warning = env('DAYS_BEFORE_NEW_TEST_DUE_SOON_WARNING');
-        $query = "SELECT user_cards.id, users.email, user_cards.most_recent_negative_test_result_at, user_cards.state, DATEDIFF(NOW(), user_cards.most_recent_negative_test_result_at) AS day_count
+        $days_before_warning = env('DAYS_BEFORE_NEXT_TEST_WARNING');
+        $query = "SELECT user_cards.id, users.email, user_cards.most_recent_negative_test_result_at, user_cards.state, DATEDIFF(user_cards.next_test_result_due_date, NOW()) AS day_count
                 FROM user_cards
                     INNER JOIN  users ON user_cards.user_id = users.id
                     INNER JOIN tracked_accounts ON users.tracked_account_id = tracked_accounts.id
                     INNER JOIN `groups` ON tracked_accounts.group_id = `groups`.id
-                WHERE tracked_accounts.account_type_id = 1 AND `groups`.automatically_require_maintenance_test = 1 AND (user_cards.state = 5 OR user_cards.state = 6)
-                HAVING day_count >= {$days_before_warning} AND day_count < {$max_days}
+                WHERE tracked_accounts.account_type_id = 1 AND `groups`.automatically_require_maintenance_test = 1
+                    AND NOT requires_maintenance_test = 1 AND (user_cards.state = 5 OR user_cards.state = 6)
+                    AND NOT user_cards.next_test_result_due_date IS NULL
+                HAVING day_count < {$days_before_warning}
                 ORDER BY most_recent_negative_test_result_at;";
 
         $affectedRecords = DB::select($query);

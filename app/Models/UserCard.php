@@ -43,7 +43,8 @@ class UserCard extends Model
     protected $casts = [
         'mandatorily_quarantined_at' => 'datetime',
         'preemptively_quarantined_at' => 'datetime',
-        'most_recent_negative_test_result_at' => 'datetime'
+        'most_recent_negative_test_result_at' => 'datetime',
+        'next_test_result_due_date' => 'datetime',
     ];
 
     public function user()
