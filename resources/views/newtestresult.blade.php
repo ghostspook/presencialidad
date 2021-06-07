@@ -13,6 +13,8 @@
                     <select class="form-control" id="test_type" name="test_type">
                         <option value="1" selected>Prueba rápida</option>
                         <option value="2">Prueba PCR</option>
+                        <option value="3">Prueba Cuantitativa</option>
+                        <option value="4">Antígenos</option>
                     </select>
                 </div>
                 <div class="form-group">

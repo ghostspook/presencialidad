@@ -39,6 +39,10 @@ class TestResult extends Model
                 return 'Prueba rápida';
             case 2:
                 return 'PCR';
+            case 3:
+                return 'Prueba cuantitativa';
+            case 4:
+                return 'Antígenos';
             default:
                 return '?';
         }
