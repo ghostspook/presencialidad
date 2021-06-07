@@ -18,14 +18,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="result" class="@error('result') text-danger @enderror">Resultado</label>
-                    <select class="form-control @error('test_date') is-invalid @enderror" id="result" name="result">
+                    <label for="result">Resultado</label>
+                    <select class="form-control" id="result" name="result">
                         <option value="1" selected>Negativo para COVID-19</option>
                         <option value="2">Positivo para COVID 19</option>
                     </select>
-                    @error('result')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="test_date" class="@error('test_date') text-danger @enderror">Fecha de la prueba</label>
