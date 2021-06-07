@@ -9,13 +9,16 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="test_type">Tipo de Prueba</label>
-                    <select class="form-control" id="test_type" name="test_type">
+                    <label for="test_type" class="@error('test_type') text-danger @enderror">Tipo de Prueba</label>
+                    <select class="form-control @error('test_type') is-invalid @enderror" id="test_type" name="test_type">
                         <option value="1" selected>Prueba rápida</option>
                         <option value="2">Prueba PCR</option>
                         <option value="3">Prueba Cuantitativa</option>
                         <option value="4">Antígenos</option>
                     </select>
+                    @error('test_type')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="result">Resultado</label>
