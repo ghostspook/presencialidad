@@ -76,7 +76,7 @@ class TestResultController extends Controller
 
         $input = $request->all();
 
-        if ($input['test_type'] != '1' && $input['test_type'] != '2' && $input['test_type'] != '3') {
+        if ($input['test_type'] != '1' && $input['test_type'] != '2' && $input['test_type'] != '3' && $input['test_type'] != '4') {
             return redirect()->back()->withErrors([ 'test_type' => 'Respuesta no permitida' ]);
         }
 
@@ -99,7 +99,7 @@ class TestResultController extends Controller
                             'test_date' => $input['test_date'],
                             'added_by' => Auth::user()->name ]);
 
-        if ($input['test_type'] == 1 || $input['test_type'] == 3) // PRUEBA RÁPIDA O CUANTITATIVA
+        if ($input['test_type'] == 1 || $input['test_type'] == 3|| $input['test_type'] == 4) // PRUEBA RÁPIDA, CUANTITATIVA O ANTÍGENOS
         {
             if($input['result'] == 1) // NEGATIVO
             {

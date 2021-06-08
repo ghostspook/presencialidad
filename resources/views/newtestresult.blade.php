@@ -14,6 +14,7 @@
                         <option value="1" selected>Prueba rápida</option>
                         <option value="2">Prueba PCR</option>
                         <option value="3">Prueba Cuantitativa</option>
+                        <option value="4">Antígenos</option>
                     </select>
                     @error('test_type')
                     <div class="text-danger"><small>{{ $message }}</small></div>
