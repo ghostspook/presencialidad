@@ -99,7 +99,7 @@ class TestResultController extends Controller
                             'test_date' => $input['test_date'],
                             'added_by' => Auth::user()->name ]);
 
-        if ($input['test_type'] == 1 || $input['test_type'] == 3|| $input['test_type'] == 4) // PRUEBA RÁPIDA, CUANTITATIVA O ANTÍGENOS
+        if ($input['test_type'] == 1 || $input['test_type'] == 3) // PRUEBA RÁPIDA O CUANTITATIVA
         {
             if($input['result'] == 1) // NEGATIVO
             {
@@ -129,7 +129,7 @@ class TestResultController extends Controller
                 }
             }
 
-        } else { // PRUEBA PCR
+        } else { // PRUEBA PCR O DE ANTÍGENOS
             if($input['result'] == 1) // NEGATIVO
             {
                 $c->most_recent_negative_test_result_at = $input['test_date'];
