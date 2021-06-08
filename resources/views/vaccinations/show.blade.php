@@ -13,6 +13,8 @@
                 <dd>
                     {{ $v->vaccineType->name }}
                 </dd>
+                <dd>Comentarios</dd>
+                <dt>{{ $v->comments }}</dt>
                 <dt>Ingresado por</dt>
                 <dd>
                     @if ($v->added_by)
