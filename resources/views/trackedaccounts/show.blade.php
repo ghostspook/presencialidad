@@ -116,9 +116,14 @@
                             <ul>
                                 @foreach ($user->vaccinations->sortBy('test_date') as $v)
                                 <li>
-                                    {{$v->vaccinated_date->format('Y-m-d')}} -
-                                    {{ $v->vaccineType->name }}
-                                    - <a href="{{ route('vaccination_show', [ 'id' => $v->id ]) }}">Ver registro</a>
+                                    <span>
+                                        {{$v->vaccinated_date->format('Y-m-d')}} -
+                                        {{ $v->vaccineType->name }}
+                                        - <a href="{{ route('vaccination_show', [ 'id' => $v->id ]) }}">Ver registro</a>
+                                    </span>
+                                    <div>
+                                        <em class="text-muted"><small>{{$v->comments}}</small></em>
+                                    </div>
                                 </li>
                                 @endforeach
                             </ul>
