@@ -43,6 +43,8 @@ class TestResult extends Model
                 return 'Prueba cuantitativa';
             case 4:
                 return 'Antígenos';
+            case 5:
+                return 'Anticuerpos Neutralizantes';
             default:
                 return '?';
         }
