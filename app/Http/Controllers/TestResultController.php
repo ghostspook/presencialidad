@@ -76,7 +76,7 @@ class TestResultController extends Controller
 
         $input = $request->all();
 
-        if ($input['test_type'] != '1' && $input['test_type'] != '2' && $input['test_type'] != '3' && $input['test_type'] != '4') {
+        if ($input['test_type'] != '1' && $input['test_type'] != '2' && $input['test_type'] != '3' && $input['test_type'] != '4' && $input['test_type'] != '5') {
             return redirect()->back()->withErrors([ 'test_type' => 'Respuesta no permitida' ]);
         }
 
@@ -99,8 +99,18 @@ class TestResultController extends Controller
                             'test_date' => $input['test_date'],
                             'added_by' => Auth::user()->name ]);
 
-        if ($input['test_type'] == 1 || $input['test_type'] == 3) // PRUEBA RÁPIDA O CUANTITATIVA
+        if ($input['test_type'] == 5) // PRUEBA DE ANTICUERPOS NEUTRALIZANTES
         {
+            if($input['result'] == 2) // POSITIVO: QUE ES LO DESEABLE
+            {
+                $c->next_test_result_due_date = $c->most_recent_negative_test_result_at->addMonths(env('MAX_MONTHS_BEFORE_TEST_FOLLOWING_INOCULATION'));
+                $c->requires_maintenance_test = 0;
+            }
+        }
+        else if ($input['test_type'] == 1 || $input['test_type'] == 3) // PRUEBA RÁPIDA O CUANTITATIVA
+        {
+            $c->requires_maintenance_test = 0;
+
             if($input['result'] == 1) // NEGATIVO
             {
                 $c->most_recent_negative_test_result_at = $input['test_date'];
@@ -130,6 +140,8 @@ class TestResultController extends Controller
             }
 
         } else { // PRUEBA PCR O DE ANTÍGENOS
+            $c->requires_maintenance_test = 0;
+
             if($input['result'] == 1) // NEGATIVO
             {
                 $c->most_recent_negative_test_result_at = $input['test_date'];
@@ -142,7 +154,6 @@ class TestResultController extends Controller
             }
         }
 
-        $c->requires_maintenance_test = 0;
         $c->save();
 
         Transition::create([ 'user_id' => $c->user_id,
