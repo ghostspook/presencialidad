@@ -103,7 +103,8 @@ class TestResultController extends Controller
         {
             if($input['result'] == 2) // POSITIVO: QUE ES LO DESEABLE
             {
-                $c->next_test_result_due_date = $c->most_recent_negative_test_result_at->addMonths(env('MAX_MONTHS_BEFORE_TEST_FOLLOWING_INOCULATION'));
+                $testDate = Carbon::parse($input['test_date']);
+                $c->next_test_result_due_date = $testDate->addMonths(env('MAX_MONTHS_BEFORE_TEST_FOLLOWING_INOCULATION'));
                 $c->requires_maintenance_test = 0;
             }
         }
