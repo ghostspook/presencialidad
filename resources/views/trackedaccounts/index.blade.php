@@ -14,6 +14,7 @@
                                 <th>Nombre</th>
                                 <th>Grupo</th>
                                 <th>Estado</th>
+                                <th>Próxima prueba</th>
                             </tr>
                         </thead>
                     </table>
@@ -71,7 +72,8 @@
                     { data: 'account_type_name', name: 'account_type_name' },
                     { data: null, name: 'user_name', render: (data, type, row) => (data.user_name) ? data.user_name : '-' },
                     { data: null, name: 'group_name', render: (data, type, row) => (data.group_name) ? data.group_name : '-' },
-                    { data: 'state_text', name: 'state_text', sortable: false, searchable: false }
+                    { data: 'state_text', name: 'state_text', sortable: false, searchable: false },
+                    { data: 'next_test_due_for', name: 'next_test_due_for', sortable: false, searchable: false },
                 ]
             });
         });

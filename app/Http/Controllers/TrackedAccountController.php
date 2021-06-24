@@ -10,6 +10,7 @@ use App\Models\Transition;
 use App\Models\TransitionComment;
 use App\Models\User;
 use App\Models\UserCard;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -145,7 +146,8 @@ class TrackedAccountController extends Controller
                 users.id as user_id,
                 users.name as user_name,
                 `groups`.name as group_name,
-                user_cards.state as user_state
+                user_cards.state as user_state,
+                user_cards.next_test_result_due_date as next_test_result_due_date
             FROM tracked_accounts
                 inner join account_types on tracked_accounts.account_type_id = account_types.id
                 left join users on tracked_accounts.id =  users.tracked_account_id
@@ -193,6 +195,12 @@ class TrackedAccountController extends Controller
                     default:
                         return "?";
                 }
+            })
+            ->addColumn('next_test_due_for', function($a) {
+                return (!$a->next_test_result_due_date)
+                    ? '-'
+                    : Carbon::createFromTimeString($a->next_test_result_due_date)
+                        ->addDays(-5)->format('Y-m-d');
             })
             ->make(true);
     }
