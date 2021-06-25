@@ -23,7 +23,8 @@ class User extends Authenticatable
         'provider',
         'can_enter_test_results',
         'poses_risk_due_work_home_circumstance',
-        'tracked_account_id'
+        'tracked_account_id',
+        'can_manage_groups'
     ];
 
     /**

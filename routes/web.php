@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MandatoryQuarantineController;
 use App\Http\Controllers\MyTestResultController;
 use App\Http\Controllers\PCRTestController;
@@ -22,6 +23,7 @@ use App\Http\Middleware\AdvicedNotToAttend;
 use App\Http\Middleware\Authorized;
 use App\Http\Middleware\CanAnswerQuestionnaire2;
 use App\Http\Middleware\CanEnterTestResults;
+use App\Http\Middleware\CanManageGroups;
 use App\Http\Middleware\CanReadAccessReport;
 use App\Http\Middleware\CanScanQr;
 use App\Http\Middleware\MandatoryQuarantine;
@@ -87,5 +89,7 @@ Route::get('controldeacceso', [AccessReportController::class, 'index'])->name('a
 Route::post('controldeacceso/query', [AccessReportController::class, 'postQueryCriteria'])->name('accessReport_query')->middleware('auth:web', CanReadAccessReport::class);
 Route::get('controldeacceso/{date}', [AccessReportController::class, 'showReport'])->name('accessReport_showReport')->middleware('auth:web', CanReadAccessReport::class);
 Route::get('controldeacceso/{date}/datatables', [AccessReportController::class, 'dataTable'])->name('accessReport_datatables')->middleware('auth:web', CanReadAccessReport::class);
+Route::get('grupos/datatable', [GroupController::class, 'dataTable'])->name('groups.datatable')->middleware('auth:web', CanReadAccessReport::class);
+Route::resource('grupos', GroupController::class)->middleware(['auth', CanManageGroups::class]);
 
 
