@@ -53,6 +53,10 @@ class TrackedAccountController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'email' => 'required|unique:tracked_accounts',
+        ]);
+
         $inputs = $request->all();
         TrackedAccount::create([
                 'email' => $inputs['email'],

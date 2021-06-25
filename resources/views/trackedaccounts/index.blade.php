@@ -26,8 +26,13 @@
                     <form method="POST" class="form" action="{{ route('trackedaccount_store') }}">
                         @csrf
                         <div class="form-control-group">
-                            <label for="email">Agregar nuevo email</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <div class="form-group">
+                                <label for="email" class="@error('email') text-danger @enderror">Agregar nuevo email</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required>
+                                @error('email')
+                                <div class="text-danger"><small>{{ $message }}</small></div>
+                                @enderror
+                            </div>
                             <div class="form-group">
                                 <label for="account_type_id">Tipo de cuenta:</label>
                                 <select class="form-control" id="account_type_id" name="account_type_id">
