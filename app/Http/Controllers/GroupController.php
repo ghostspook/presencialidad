@@ -25,7 +25,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('groups.create');
     }
 
     /**
@@ -36,7 +36,21 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:groups',
+            'default_required_initial_test_count' => 'required',
+            'automatically_require_maintenance_test' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        Group::create([
+            'name' => $input['name'],
+            'default_required_initial_test_count' => $input['default_required_initial_test_count'],
+            'automatically_require_maintenance_test' => $input['automatically_require_maintenance_test'],
+        ]);
+
+        return redirect()->route('grupos.index');
     }
 
     /**

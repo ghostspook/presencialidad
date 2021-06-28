@@ -3,7 +3,12 @@
 @section('main-content')
     <div  class="row">
         <div class="col-md-12">
-            <h1 class="title text-primary">Grupos</h1>
+            <div class="d-flex justify-content-between">
+                <h1 class="title text-primary">Grupos</h1>
+                <div class="my-auto">
+                    <a href="{{route('grupos.create')}}" class="btn btn-success">Nuevo</a>
+                </div>
+            </div>
             <div class="row mt-5">
                 <div class="col-md-12">
                     <table class="table table-striped table-hover" id="myTable">
@@ -12,6 +17,7 @@
                                 <th>Nombre</th>
                                 <th>Pruebas requeridas al inicio</th>
                                 <th>Requerir prueba de mantenimiento</th>
+                                <th>Creado</th>
                             </tr>
                         </thead>
                     </table>
@@ -35,6 +41,7 @@
                     { data: 'name', name: 'name' },
                     { data: 'default_required_initial_test_count', name: 'default_required_initial_test_count' },
                     { data: null, name: 'automatically_require_maintenance_test', render: (data, type, row) => (data.automatically_require_maintenance_test) ? 'Sí' : 'No' },
+                    { data: null, name: 'created_at' , render: (data, type, row) => data.created_at.substring(0,10)},
                 ]
             });
         });
