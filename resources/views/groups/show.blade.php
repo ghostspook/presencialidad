@@ -14,7 +14,9 @@
                         <div class="card-header d-flex justify-content-between">
                             Información General
                             <div class="my-auto">
+                                @if(Auth::user()->can_manage_groups)
                                 <a href="{{route('groups.edit', ['group'=>$group])}}" class="btn btn-primary btn-sm pull-right">Editar</a>
+                                @endif
                             </div>
                         </div>
                         <div class="card-body">

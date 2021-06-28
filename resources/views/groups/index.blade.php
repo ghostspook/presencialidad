@@ -6,7 +6,9 @@
             <div class="d-flex justify-content-between">
                 <h1 class="title text-primary">Grupos</h1>
                 <div class="my-auto">
+                    @if(Auth::user()->can_manage_groups)
                     <a href="{{route('groups.create')}}" class="btn btn-success">Nuevo</a>
+                    @endif
                 </div>
             </div>
             <div class="row mt-5">
