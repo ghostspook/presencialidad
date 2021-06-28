@@ -89,9 +89,14 @@ Route::get('controldeacceso', [AccessReportController::class, 'index'])->name('a
 Route::post('controldeacceso/query', [AccessReportController::class, 'postQueryCriteria'])->name('accessReport_query')->middleware('auth:web', CanReadAccessReport::class);
 Route::get('controldeacceso/{date}', [AccessReportController::class, 'showReport'])->name('accessReport_showReport')->middleware('auth:web', CanReadAccessReport::class);
 Route::get('controldeacceso/{date}/datatables', [AccessReportController::class, 'dataTable'])->name('accessReport_datatables')->middleware('auth:web', CanReadAccessReport::class);
-Route::get('grupos/datatable', [GroupController::class, 'dataTable'])->name('groups.datatable')->middleware('auth:web', CanManageGroups::class);
-Route::resource('groups', GroupController::class)->middleware(['auth', CanManageGroups::class]);
-Route::get('grupos/{id}/users', [GroupController::class, 'usersDataTable'])->name('groups.users.datatable')->middleware('auth:web', CanManageGroups::class);
+Route::get('groups', [GroupController::class, 'index'])->name('groups.index')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('groups/create', [GroupController::class, 'create'])->name('groups.create')->middleware('auth:web', CanManageGroups::class);
+Route::post('groups', [GroupController::class, 'store'])->name('groups.store')->middleware('auth:web', CanManageGroups::class);
+Route::get('groups/datatable', [GroupController::class, 'dataTable'])->name('groups.datatable')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('groups/{group}', [GroupController::class, 'show'])->name('groups.show')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('groups/{group}/edit', [GroupController::class, 'edit'])->name('groups.edit')->middleware('auth:web', CanManageGroups::class);
+Route::put('groups/{group}', [GroupController::class, 'update'])->name('groups.update')->middleware('auth:web', CanManageGroups::class);
+Route::get('groups/{id}/users', [GroupController::class, 'usersDataTable'])->name('groups.users.datatable')->middleware('auth:web', CanEnterTestResults::class);
 
 
 
