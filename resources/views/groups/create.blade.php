@@ -4,7 +4,7 @@
     <div  class="row">
         <div class="col-md-12">
             <h1 class="title text-primary">Nuevo Grupo</h1>
-            <form method="POST" class="form" action="{{ route('grupos.store') }}">
+            <form method="POST" class="form" action="{{ route('groups.store') }}">
                 @csrf
 
                 <div class="form-group">

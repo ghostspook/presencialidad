@@ -50,7 +50,7 @@ class GroupController extends Controller
             'automatically_require_maintenance_test' => $input['automatically_require_maintenance_test'],
         ]);
 
-        return redirect()->route('grupos.index');
+        return redirect()->route('groups.index');
     }
 
     /**
