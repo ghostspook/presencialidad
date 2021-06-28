@@ -72,7 +72,7 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        return view('groups.edit', ['group' => $group]);
     }
 
     /**
@@ -84,7 +84,21 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'default_required_initial_test_count' => 'required',
+            'automatically_require_maintenance_test' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        $group->update([
+            'name' => $input['name'],
+            'default_required_initial_test_count' => $input['default_required_initial_test_count'],
+            'automatically_require_maintenance_test' => $input['automatically_require_maintenance_test'],
+        ]);
+
+        return redirect()->route('groups.index');
     }
 
     /**
@@ -102,6 +116,11 @@ class GroupController extends Controller
     {
         $groups = Group::all();
 
-        return DataTables::of($groups)->make(true);
+        return DataTables::of($groups)
+            ->addColumn('action', function($g) {
+                return '<a href="'.route('groups.edit', ['group' => $g]).'">'
+                    .$g->name.'</a>';
+            })
+            ->make(true);
     }
 }

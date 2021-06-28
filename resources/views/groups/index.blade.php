@@ -6,7 +6,7 @@
             <div class="d-flex justify-content-between">
                 <h1 class="title text-primary">Grupos</h1>
                 <div class="my-auto">
-                    <a href="{{route('grupos.create')}}" class="btn btn-success">Nuevo</a>
+                    <a href="{{route('groups.create')}}" class="btn btn-success">Nuevo</a>
                 </div>
             </div>
             <div class="row mt-5">
@@ -38,7 +38,7 @@
                 },
                 ajax: '{!! route('groups.datatable') !!}',
                 columns: [
-                    { data: 'name', name: 'name' },
+                    { data: 'action', name: 'name' },
                     { data: 'default_required_initial_test_count', name: 'default_required_initial_test_count' },
                     { data: null, name: 'automatically_require_maintenance_test', render: (data, type, row) => (data.automatically_require_maintenance_test) ? 'Sí' : 'No' },
                     { data: null, name: 'created_at' , render: (data, type, row) => data.created_at.substring(0,10)},

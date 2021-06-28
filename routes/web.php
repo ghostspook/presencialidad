@@ -90,6 +90,6 @@ Route::post('controldeacceso/query', [AccessReportController::class, 'postQueryC
 Route::get('controldeacceso/{date}', [AccessReportController::class, 'showReport'])->name('accessReport_showReport')->middleware('auth:web', CanReadAccessReport::class);
 Route::get('controldeacceso/{date}/datatables', [AccessReportController::class, 'dataTable'])->name('accessReport_datatables')->middleware('auth:web', CanReadAccessReport::class);
 Route::get('grupos/datatable', [GroupController::class, 'dataTable'])->name('groups.datatable')->middleware('auth:web', CanReadAccessReport::class);
-Route::resource('grupos', GroupController::class)->middleware(['auth', CanManageGroups::class]);
+Route::resource('groups', GroupController::class)->middleware(['auth', CanManageGroups::class]);
 
 

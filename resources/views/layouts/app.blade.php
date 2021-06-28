@@ -66,7 +66,7 @@
                                         <a class="dropdown-item" href="{{ route('trackedaccounts_index') }}">Cuentas habilitadas</a>
                                     @endif
                                     @if (Auth::user()->can_manage_groups)
-                                        <a class="dropdown-item" href="{{ route('grupos.index') }}">Administrar Grupos</a>
+                                        <a class="dropdown-item" href="{{ route('groups.index') }}">Administrar Grupos</a>
                                     @endif
                                     @if (Auth::user()->can_read_access_report)
                                     <a class="dropdown-item" href="{{ route('accessReport_index') }}">Reporte de Accesos</a>
