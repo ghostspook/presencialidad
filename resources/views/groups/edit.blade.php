@@ -3,14 +3,14 @@
 @section('main-content')
     <div  class="row">
         <div class="col-md-12">
-            <h1 class="title text-primary">Editar Grupo</h1>
+            <h1 class="title text-primary">Editar: {{$group->name}}</h1>
             <form method="POST" class="form" action="{{ route('groups.update', ['group' => $group]) }}">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
                     <label for="name" class="@error('name') text-danger @enderror">
-                        Fecha de la prueba
+                        Nombre
                     </label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror"
                             id="name" name="name" required value="{{$group->name}}">
