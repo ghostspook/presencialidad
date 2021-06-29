@@ -31,6 +31,7 @@
                             @if($user->userCard->requires_maintenance_test)
                             <span class="text-warning small">(Advertencia)</span>
                             @endif
+                            <a class="small" href="{{route('extensions.create', ['user_id' => $user->id])}}">Modificar...</a>
                         </dd>
                         @endif
                     </dl>

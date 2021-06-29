@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\ExtensionController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MandatoryQuarantineController;
 use App\Http\Controllers\MyTestResultController;
@@ -97,6 +98,8 @@ Route::get('groups/{group}', [GroupController::class, 'show'])->name('groups.sho
 Route::get('groups/{group}/edit', [GroupController::class, 'edit'])->name('groups.edit')->middleware('auth:web', CanManageGroups::class);
 Route::put('groups/{group}', [GroupController::class, 'update'])->name('groups.update')->middleware('auth:web', CanManageGroups::class);
 Route::get('groups/{id}/users', [GroupController::class, 'usersDataTable'])->name('groups.users.datatable')->middleware('auth:web', CanEnterTestResults::class);
+Route::get('cuentas/{user_id}/extender', [ExtensionController::class, 'create'])->name('extensions.create')->middleware('auth:web', CanEnterTestResults::class);
+Route::post('extensions', [ExtensionController::class, 'store'])->name('extensions.store')->middleware('auth:web', CanEnterTestResults::class);
 
 
 
