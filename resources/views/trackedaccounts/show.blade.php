@@ -13,7 +13,9 @@
                         <dt>Grupo:</dt>
                         <dd>
                             @if($user->trackedAccount->group_id)
-                            {{ $user->trackedAccount->group->name }}
+                            <a href="{{route('groups.show', ['group' => $user->trackedAccount->group])}}">
+                                {{ $user->trackedAccount->group->name }}
+                            </a>
                             @else
                             -
                             @endif

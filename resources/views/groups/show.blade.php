@@ -65,6 +65,7 @@
             $('#myTable').DataTable({
                 processing: true,
                 serverSide: true,
+                pageLength: 100,
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
                 },
