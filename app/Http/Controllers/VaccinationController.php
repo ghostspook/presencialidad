@@ -6,6 +6,7 @@ use App\Models\UserCard;
 use App\Models\Vaccination;
 use App\Models\VaccinationFile;
 use App\Models\VaccineType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -57,13 +58,32 @@ class VaccinationController extends Controller
 
         $input = $request->all();
 
-        Vaccination::create([
+        $v = Vaccination::create([
             'user_id' => $input['user_id'],
             'vaccine_type_id' => $input['vaccine_type_id'],
             'vaccinated_date' => $input['vaccinated_date'],
             'added_by' => Auth::user()->name,
             'comments' => $input['comments'],
         ]);
+
+        $tentativeNextTestDate = $v->vaccinated_date->addDays(env('MAX_DAYS_BEFORE_NEW_TEST_REQUIRED'));
+
+        $card = UserCard::firstWhere('id', $input['user_id']);
+        if (!$card->next_test_result_due_date) {
+            $card->next_test_result_due_date = $tentativeNextTestDate;
+        } else if ($tentativeNextTestDate->isAfter($card->next_test_result_due_date)) {
+            $card->next_test_result_due_date = $tentativeNextTestDate;
+        }
+
+        if ($card->next_test_result_due_date->isFuture())
+        if ($card->state == UserCard::PENDING_COVERED_TEST_1
+            || $card->state == UserCard::PENDING_COVERED_TEST_2
+            || $card->state == UserCard::PENDING_NON_COVERED_TEST)
+        {
+            $card->state = UserCard::PENDING_QUESTIONNAIRE_2;
+        }
+
+        $card->save();
 
         $returnTo = route('trackedaccounts_show', ['id' => $input['user_id'] ]);
 
