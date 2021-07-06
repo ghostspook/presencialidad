@@ -83,6 +83,8 @@ class VaccinationController extends Controller
             $card->state = UserCard::PENDING_QUESTIONNAIRE_2;
         }
 
+        $card->requires_maintenance_test = !$card->next_test_result_due_date->addDays(-env('DAYS_BEFORE_NEXT_TEST_WARNING'))->isFuture();
+
         $card->save();
 
         $returnTo = route('trackedaccounts_show', ['id' => $input['user_id'] ]);
