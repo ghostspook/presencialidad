@@ -58,6 +58,11 @@ class VaccinationController extends Controller
 
         $input = $request->all();
 
+        if ($input['vaccinated_date'] > Carbon::now())
+        {
+            return redirect()->back()->withErrors([ 'vaccinated_date' => 'La fecha de vacunación no puede ser en el futuro.' ]);
+        }
+
         $v = Vaccination::create([
             'user_id' => $input['user_id'],
             'vaccine_type_id' => $input['vaccine_type_id'],
