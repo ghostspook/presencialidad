@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Extension;
 use App\Models\User;
 use App\Models\UserCard;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,6 +50,9 @@ class ExtensionController extends Controller
 
         $card = UserCard::firstWhere('user_id', $input['user_id']);
         $card->next_test_result_due_date = $input['new_date'];
+        $extendedDate = Carbon::parse($input['new_date']);
+        $card->requires_maintenance_test = !($extendedDate->addDays(-env('DAYS_BEFORE_NEXT_TEST_WARNING'))->isFuture());
+
         $card->save();
 
         Extension::create([

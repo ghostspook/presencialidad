@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="comments" class="@error('comments') text-danger @enderror">
-                        Comentarios <small>(opcional)</small>
+                        Comentarios <small class="text-danger">(requerido)</small>
                     </label>
                     <textarea class="form-control @error('comments') is-invalid @enderror" id="comments" name="comments">{{old('comments')}}</textarea>
                     @error('comments')
