@@ -49,6 +49,11 @@
                             <a class="nav-link" href="{{ route('myTestResults_index') }}">Mis Resultados</a>
                         </li>
                         @endif
+                        @if(Auth::user()->vaccinations->count() > 0)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('myvaccinations.index') }}">Mis Vacunas</a>
+                        </li>
+                        @endif
                     @endauth
                     </ul>
                     <ul class="navbar-nav ml-auto">
