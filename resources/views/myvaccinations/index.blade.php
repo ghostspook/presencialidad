@@ -21,7 +21,7 @@
                         </td>
                         <td>
                             @if ($v->file)
-                            <a target="_blank" href="{{ route('myvaccinations.download', [ 'id' => $tr->id ]) }}">Descargar archivo</a>
+                            <a target="_blank" href="{{ route('myvaccinations.download', [ 'id' => $v->id ]) }}">Descargar archivo</a>
                             @endif
                         </td>
                     </tr>
