@@ -59,7 +59,7 @@ Route::post('questionnaireonesubmit', [ QuestionnaireOneController::class, 'ques
 Route::get('resultados', [ MyTestResultController::class, 'index'])->name('myTestResults_index')->middleware('auth:web');
 Route::get('resultados/{id}/descargar', [ MyTestResultController::class, 'downloadFile'])->name('myTestResults_download')->middleware('auth:web');
 Route::get('vacunas', [ MyVaccionationController::class, 'index'])->name('myvaccinations.index')->middleware('auth:web');
-Route::get('vacunas/{id}/descargar', [ MyTestResultController::class, 'downloadFile'])->name('myvaccinations.download')->middleware('auth:web');
+Route::get('vacunas/{id}/descargar', [ MyVaccionationController::class, 'downloadFile'])->name('myvaccinations.download')->middleware('auth:web');
 Route::get('recomendacion', [AdvicedNotToAttendController::class, 'index'])->name('advicedNotToAttend')->middleware('auth:web', AdvicedNotToAttend::class);
 Route::post('submitdontfollowadvice', [ AdvicedNotToAttendController::class, 'submitDecisionToAttend'])->name('submitDontFollowAdvice')->middleware('auth:web', AdvicedNotToAttend::class);
 Route::get('pruebas/pendientes', [TestResultController::class, 'listUsersPendingTests'])->name('enterTestResults')->middleware('auth:web', CanEnterTestResults::class);
