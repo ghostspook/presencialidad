@@ -15,6 +15,7 @@
                     </strong>
                 </p>
                 <hr>
+                @if($a->user->userCard->most_recent_negative_test_result_at)
                 <p class="mb-0">
                     <small>
                         Su última prueba con resultado negativo fue el
@@ -23,6 +24,7 @@
                         {{ $a->user->userCard->most_recent_negative_test_result_at->year }}
                     </small>
                 </p>
+                @endif
             </div>
         </div>
     </div>
