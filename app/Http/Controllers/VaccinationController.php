@@ -90,11 +90,36 @@ class VaccinationController extends Controller
 
         $card->requires_maintenance_test = !$card->next_test_result_due_date->addDays(-env('DAYS_BEFORE_NEXT_TEST_WARNING'))->isFuture();
 
+        $card->completed_immunization = $this->inmunizationCompleted($card);
+        if ($card->completed_immunization) {
+            $card->requires_maintenance_test = 0;
+            if ($card->state == UserCard::PENDING_COVERED_TEST_2 || $card->state == UserCard::PENDING_COVERED_TEST_1) {
+                $card->state = UserCard::PENDING_QUESTIONNAIRE_2;
+            }
+        }
+
         $card->save();
 
         $returnTo = route('trackedaccounts_show', ['id' => $input['user_id'] ]);
 
         return redirect()->to($returnTo);
+    }
+
+    protected function inmunizationCompleted($card) {
+        $vaccinations = $card->user->vaccinations;
+
+        if ($vaccinations->count() >= 2) {
+            return true;
+        }
+
+        foreach($vaccinations as $v) {
+            if ($v->vaccineType->name == "Johnson & Johnson’s Janssen") {
+                return true;
+            }
+        }
+
+        return false;
+
     }
 
     function uploadFile(Request $request)

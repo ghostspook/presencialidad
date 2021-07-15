@@ -10,6 +10,10 @@
                 <dt>Última prueba con resultado negativo:</dt>
                 <dd>{{ $user->userCard->most_recent_negative_test_result_at->format('d-M-Y') }}</dd>
                 @endif
+                @if($user->userCard->completed_immunization)
+                <dt>Estado Actual</dt>
+                <dd><span class="text-success"><strong>Inmunizado</strong></span></dd>
+                @endif
                 @if($displayNextTestResultDeadline)
                 <dt>Próxima prueba:</dt>
                 <dd>{{ $nextTestResultDeadline->format('d-M-Y') }}</dd>

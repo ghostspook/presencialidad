@@ -19,10 +19,11 @@ class MyTestResultController extends Controller
         $test_results = TestResult::where('user_id', Auth::user()->id)->get();
         $user = Auth::user();
         $displayNextTestResultDeadline = (
-            $user->trackedAccount->account_type_id == 2 // profesores
-            || $user->trackedAccount->account_type_id == 3 // administrativos
-            || ($user->trackedAccount->group_id // group requires maintenance test
-                && $user->trackedAccount->group->automatically_require_maintenance_test == 1)
+            !$user->userCard->completed_immunization && (
+                $user->trackedAccount->account_type_id == 2 // profesores
+                || $user->trackedAccount->account_type_id == 3 // administrativos
+                || ($user->trackedAccount->group_id // group requires maintenance test
+                    && $user->trackedAccount->group->automatically_require_maintenance_test == 1))
         );
         $nextTestResultDeadline = $displayNextTestResultDeadline ?
             $user->userCard->next_test_result_due_date->addDays(-5) :
